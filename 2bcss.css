@@ -11,63 +11,71 @@
     border:0px;
 }
 
-.topnav {
-    background-color: #1389eb;
-    overflow: hidden;
-    align-items: center;
-    vertical-align: middle;
-    display:block;
-  }
+/* Navbar design */
+.nav-list {
+  background: white;
+  box-shadow: 0px 0px 10px #cfd8dc;
+  padding: 1rem 0;
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  .topnav input[type=text]{
-    float: right;
-    padding: 15px;
-    border-radius: 30px;
-    border-color: #1389eb;
-    border-width: 1px;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    margin-left: auto;
-    margin-right:auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #e4eb13;
-    color: white;
-  }
-  .Logo {
-  margin-left: 0px;
-  margin-right: 99;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 75px;
-  width: auto;
-  float:left;
-  }
+/*  Removes bulletpoints on the li items */
+.nav-item {
+  list-style: none;
+}
 
-  .sidebarDiv {
-    margin: 5px;
-  }
+/*   Navbar Links design */
+.nav-item a {
+  text-decoration: none;
+  color: black;
+  margin-right: 2rem;
+  font-size: 1rem;
+  background: #2adbde;
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
 
-  .centerGrid {
-    margin-left: auto;
-    margin-right: auto;
+/* Navbar Links hover effekt */
+.nav-item a:hover {
+  color: #fff;
+}
 
-  }
+/* Navbar right logo and left links */
+.nav-item:nth-child(1) {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+
+/* Navbar last child fix edge */
+.nav-item:last-child {
+  margin-right: 10px;
+}
+
+/* Navbar img design */
+.nav-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+/* Navbar search bar */
+.nav-item input[type=text]{
+  padding: 13px;
+  border-radius: 30px;
+  border-color: #2adbde;
+  border-width: 1px;
+}
+
+.logo {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 38px;
+}
