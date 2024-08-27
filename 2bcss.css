@@ -6,9 +6,14 @@
     column-count: auto;
     align-items: center;
     align-content: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     border:0px;
+    font-family: "Matemasie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2adbde;
+    
 }
 
 .topnav {
@@ -67,7 +72,56 @@
   }
 
   .centerGrid {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 100px;
+    
 
   }
+  .centerGrid h1{
+    color: #2adbde;
+    font-family: "Matemasie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+
+  }
+  .containerVaddragt{
+    height: 100px;
+    position: relative;
+  }
+  .verticalCenter{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  }
+  /* Vi skal huske at have ændret vores info text */
+  .matemasie-regular {
+    font-family: "Matemasie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .matemasie-thin{
+    font-family: "Matemasie", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .info {
+    font-family: "Matemasie", sans-serif;
+    font-style: italic;
+    font-size:small;
+    
+    margin-right: 500px;
+    color: #2adbde;
+
+  }
+
+  
