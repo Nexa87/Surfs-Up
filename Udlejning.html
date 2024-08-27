@@ -17,7 +17,7 @@
 <body>
     <nav>
         <ul class="nav-list">
-            <li class="nav-item logo">
+            <li class="nav-item logo matemasie-regular">
                 <img src="JohnDude.jpg" class="Logo">
                 <span>Surf's up</span>
             </li>
@@ -42,12 +42,53 @@
     </ul>
 </nav>
 
-<section>
+   <!-- These am from Grey Basqit branch O: -->
+   <div class="BasketDiv">
+    <div class="BasketContentDiv">
+        <h2 class="BasketText">Kurv</h3>
+        <div id="BasketItems">
+            <!-- Basket Items goes here -->
+                <p>Item 1</p>
+                <p>Item 2</p>
+        </div>
+    </div>
+
+    <hr class="BasketHorizontalLine">
+
+    <p class="BasketTotalP">Total: <span class="BasketTotalRightSideText">999$</span></p>
+    <div class="BasketButtonDiv">
+        <button class="BasketDoneButton" onClick="Test_AlterBasketContent()">Köb</button>
+    </div>
+</div>
+
+<script>
+    function BasketFunc () {
+
+    }
+
+    function Test_AlterBasketContent () {
+        // WOK IN PROGRESZ O:
+
+        // document.write();
+
+        const randStrings = new Array ("Super Swank Board 426 LX", "Bönne-Wax 12 PT");
+
+        var final = "";
+
+        for (var i = 0; i < randStrings.Length; i++) {
+            final = final + "<p>"+randStrings[i]+"</p>";
+        }
+
+        //document.getElementById("BasketItems").innerHTML = "<p>An Item After CLicking Done-Button</p>"; // Test thingy, works
+
+        document.getElementById("BasketItems").innerHTML = final;
+    }
+</script>
+<!-- ----------------------------------- -->
+
     <div class="info">
         Hvordan lejer surfudstyr : ipsum lorem vnvnavåqvm vqånqåovnqåv qvå qmvåq våqn qåvnqåvnqån qåvnåq våq åqnv åqn våqnvå qnåvq nåvnq å
     </div>
-</section>
-<section>
 
     <div class="centerGrid">
 
@@ -125,7 +166,6 @@
     
                 </div>
         </div>
-    </section>
 </body>
 
 </html>

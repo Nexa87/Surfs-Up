@@ -35,7 +35,7 @@
 /*   Navbar Links design */
 .nav-item a {
   text-decoration: none;
-  color: black;
+  color: white;
   margin-right: 2rem;
   font-size: 1rem;
   background: #2adbde;
@@ -44,6 +44,8 @@
   border-radius: 0.2rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  font-family: "Matemasie", sans-serif;
+  font-style: normal;
 }
 
   .centerGrid {
@@ -135,20 +137,19 @@
   align-items: center;
   gap: 20px;
   font-size: 38px;
+  color: #2adbde;
 }
 
   /* Grey basket branch CSS thingamajigg */
 .BasketDiv {
   z-index: 10; /* Probably not needed (yet?) */
-
   background-color: grey;
   position: absolute;
   right: 0px;
-
   height: 100%;
   width: 300px;
-
-  background-color: rgb(141, 205, 237);
+  background-color: #2adbde;
+  border-radius: 30px;
 }
 
 .BasketContentDiv {
