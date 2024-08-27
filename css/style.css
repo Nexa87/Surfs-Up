@@ -1,0 +1,21 @@
+
+  /* Vi skal huske at have ændret vores info text */
+  .matemasie-regular {
+    font-family: "Matemasie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .matemasie-thin {
+    font-family: "Matemasie", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .centerGrid h1 {
+    color: #2adbde;
+    font-family: "Matemasie", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: x-large;
+  }
