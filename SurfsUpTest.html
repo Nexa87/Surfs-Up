@@ -34,5 +34,80 @@
     </ul>
 </nav>
 
+    <!-- These am from Grey Basqit branch O: -->
+    <div class="BasketDiv">
+        <div class="BasketContentDiv">
+            <h2 class="BasketText">Kurv</h3>
+            <div id="BasketItems">
+                <!-- Basket Items goes here -->
+                    <p>Item 1</p>
+                    <p>Item 2</p>
+            </div>
+        </div>
+
+        <hr class="BasketHorizontalLine">
+
+        <p class="BasketTotalP">Total: <span class="BasketTotalRightSideText">999$</span></p>
+        <div class="BasketButtonDiv">
+            <button class="BasketDoneButton" onClick="Test_AlterBasketContent()">Köb</button>
+        </div>
+    </div>
+
+    <script>
+        function BasketFunc () {
+
+        }
+
+        function Test_AlterBasketContent () {
+            // WOK IN PROGRESZ O:
+
+            // document.write();
+
+            const randStrings = new Array ("Super Swank Board 426 LX", "Bönne-Wax 12 PT");
+
+            var final = "";
+
+            for (var i = 0; i < randStrings.Length; i++) {
+                final = final + "<p>"+randStrings[i]+"</p>";
+            }
+
+            //document.getElementById("BasketItems").innerHTML = "<p>An Item After CLicking Done-Button</p>"; // Test thingy, works
+
+            document.getElementById("BasketItems").innerHTML = final;
+        }
+    </script>
+    <!-- ----------------------------------- -->
+
+    <div class="centerGrid">
+        <p>
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px" height="100px">
+                Lej surfboard
+             </button>
+             <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px" height="100px">
+                Lej surfboard
+             </button>
+             <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px" height="100px">
+                Lej surfboard
+             </button>
+        </p>
+
+        <p>
+            <button class="Surfboard">
+                <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px" height="100px">
+                Lej surfboard
+            </button>
+            <button class="Surfboard">
+                <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px" height="100px">
+                Lej surfboard
+            </button>
+            <button class="Surfboard">
+                <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px" height="100px">
+                Lej surfboard
+            </button>
+        </p>
+    </div>
 </body>
 </html>
