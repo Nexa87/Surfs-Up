@@ -18,13 +18,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\JohnDude.jpg" />
     <None Include="wwwroot\lib\bootstrap\css\navbar.css" />
     <None Include="wwwroot\lib\bootstrap\css\style.css" />
     <None Include="wwwroot\lib\bootstrap\css\udlejning.css" />
     <None Include="wwwroot\lib\bootstrap\img\JohnDude.jpg" />
-    <None Include="wwwroot\lib\bootstrap\img\JohnDude.png" />
     <None Include="wwwroot\lib\bootstrap\img\WhiteBasket.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
