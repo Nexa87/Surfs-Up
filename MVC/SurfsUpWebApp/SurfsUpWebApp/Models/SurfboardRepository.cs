@@ -126,7 +126,7 @@
         /// <param name="nameOfSurfboardToUpdate"></param>
         /// <param name="newLength"></param>
         /// <returns></returns>
-        public bool Update_Surfboard_Price(string nameOfSurfboardToUpdate, float newPrice)
+        public bool Update_Surfboard_Price(string nameOfSurfboardToUpdate, int newPrice)
         {
             bool updatedSuccesfully = false;
 
