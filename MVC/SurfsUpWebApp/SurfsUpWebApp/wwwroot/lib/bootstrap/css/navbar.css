@@ -57,10 +57,12 @@
   
   
   .nav-item input[type=text]{
-    padding: 13px;
+    padding: 5px;
     border-radius: 30px;
     border-color: #2adbde;
     border-width: 1px;
+    text-align:left;
+    
   }
   
   .logo {

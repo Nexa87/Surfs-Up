@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="css\**" />
+    <Compile Remove="wwwroot\images\**" />
     <Content Remove="css\**" />
+    <Content Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="css\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
     <None Remove="css\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\images\JohnDude.jpg" />
+    <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +23,6 @@
     <None Include="wwwroot\lib\bootstrap\css\udlejning.css" />
     <None Include="wwwroot\lib\bootstrap\img\JohnDude.jpg" />
     <None Include="wwwroot\lib\bootstrap\img\WhiteBasket.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
