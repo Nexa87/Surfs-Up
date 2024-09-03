@@ -1,6 +1,6 @@
 
-  /* Grey basket branch CSS thingamajigg */
-  .BasketDiv {
+/* Grey basket branch CSS thingamajigg */
+.BasketDiv {
     z-index: 10; /* Probably not needed (yet?) */
     background-color: grey;
     position: absolute;
@@ -9,114 +9,112 @@
     width: 300px;
     background-color: #2adbde;
     border-radius: 30px;
-  }
-  
-  .BasketContentDiv {
+}
+
+.BasketContentDiv {
     margin-left: 15px;
-  }
-  
-  .BasketText {
+}
+
+.BasketText {
     font-weight: bold;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  
-  /* style="height: 25px; background-color: white; box-shadow: none; border: none; width: 25px;" */
-  .BasketHorizontalLine {
+}
+
+/* style="height: 25px; background-color: white; box-shadow: none; border: none; width: 25px;" */
+.BasketHorizontalLine {
     height: 2px;
     background-color: white;
-    border:none;
+    border: none;
     box-shadow: none;
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
-  }
-  
-  .BasketTotalP {
+}
+
+.BasketTotalP {
     margin-left: 15px;
     margin-right: 15px;
     font-weight: bold;
     font-size: larger;
-  }
-  
-  /* style="margin-left: 0px; text-align: right;position: absolute; right: 0px; */
-  .BasketTotalRightSideText {
+}
+
+/* style="margin-left: 0px; text-align: right;position: absolute; right: 0px; */
+.BasketTotalRightSideText {
     position: absolute;
     right: 0px;
     margin-right: 15px;
-  }
-  
-  .BasketButtonDiv {
+}
+
+.BasketButtonDiv {
     margin-left: 15px;
     margin-right: 15px;
     justify-content: center;
-  }
-  
-  .BasketDoneButton {
+}
+
+.BasketDoneButton {
     height: 35px;
     width: 100%;
     /* background-color: rgb(167, 210, 232); */
-    color:white;
-    color:black;
-  }
-  
-  .BasketDoneButton:hover {
-    background-color: white;
+    color: white;
     color: black;
-  }
-    /* ----------------------------------- */
-  
-    .Basketconetent {
-      display: flex;
-      text-align: center;
-      align-items: center;
-      gap: 45%;
+}
+
+    .BasketDoneButton:hover {
+        background-color: white;
+        color: black;
     }
+/* ----------------------------------- */
+
+.Basketconetent {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 45%;
+}
 
 
-    .Surfboard{
-        background-image: url(https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85);
-        text-align: center;
-        width: 110px;
-        column-count: auto;
-        align-items: center;
-        align-content: center;
-        margin-left: 10px;
-        margin-right: 10px;
-        border:0px;
-        color: #2adbde;
-        
-    }
+.Surfboard {
+    background-image: url(https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85);
+    text-align: center;
+    width: 150px;
+    column-count: auto;
+    align-items: center;
+    align-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0px;
+    color: #2adbde;
+}
 
 
-    .centerGrid {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        margin-top: 200px;
-      }
-    
-      .containerVaddragt {
-        height: 100px;
-        position: relative;
-      }
-    
-      .verticalCenter {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
+.centerGrid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 200px;
+    margin-left: -300px;
+}
 
-      .info {
-        font-family: "Arial", sans-serif;
-        font-style: italic;
-        font-size:small;
-        margin-right: 500px;
-        color: #2adbde;
-        font-weight: 200;
-      }
+.containerVaddragt {
+    height: 100px;
+    position: relative;
+}
+
+.verticalCenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.info {
+    font-family: "Arial", sans-serif;
+    font-style: italic;
+    font-size: small;
+    margin-right: 500px;
+    color: #2adbde;
+    font-weight: 200;
+}
+
