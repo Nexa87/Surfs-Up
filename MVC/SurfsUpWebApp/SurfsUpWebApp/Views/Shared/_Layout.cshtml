@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/css/style.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/udlejning.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/Home.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/Footer.css" />
     <link href="https://fonts.googleapis.com/css2?family=Matemasie&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,9 +21,9 @@
         <nav>
             <ul class="nav-list">
                 <li class="nav-item logo matemasie-thin">
-                <img src="~/lib/bootstrap/img/JohnDude.jpg" />
-                <span class="img-text">Surf's up</span>
-            </li>
+                    <img src="~/lib/bootstrap/img/JohnDude.jpg" />
+                    <span class="img-text">Surf's up</span>
+                </li>
                 <li class="nav-item">
                     <a href="Home">Home</a>
                 </li>
@@ -43,10 +44,54 @@
                 </li>
             </ul>
         </nav>
+
     </div>
+
 
     <div>
         @RenderBody()
     </div>
+
+    <footer class="footer">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social-icon">
+            <li class="social-icon__item">
+                <a class="social-icon__link" href="#">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+            </li>
+            <li class="social-icon__item">
+                <a class="social-icon__link" href="#">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+            </li>
+            <li class="social-icon__item">
+                <a class="social-icon__link" href="#">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+            </li>
+            <li class="social-icon__item">
+                <a class="social-icon__link" href="#">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="#">Hjem</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Om os</a></li>
+            <li class="menu__item"><a class="menu__link" href="Udlejning">Udlejning</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Ledige stillinger</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Kontakt os</a></li>
+
+        </ul>
+        <p>&copy;2024 Surfs Up | All Rights Reserved</p>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </footer>
 </body>
 </html>
