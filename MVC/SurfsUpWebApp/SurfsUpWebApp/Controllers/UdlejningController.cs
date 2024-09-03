@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SurfsUpWebApp.Models;
 
 namespace SurfsUpWebApp.Controllers
 {
@@ -6,7 +7,9 @@ namespace SurfsUpWebApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var repo = new SurfboardRepository();
+            return View(repo);
         }
+
     }
 }

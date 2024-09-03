@@ -1,4 +1,7 @@
-﻿<!-- These am from Grey Basqit branch O: -->
+﻿@using SurfsUpWebApp.Models
+@model SurfboardRepository
+
+<!-- These am from Grey Basqit branch O: -->
 <div class="BasketDiv">
     <div class="BasketContentDiv">
         <div class="Basketconetent">
@@ -49,13 +52,13 @@
 </div>
 <div class="container">
     <h3>Surfboards</h3>
-    <div class="row">
+    <div class="row" id="surfboardRows">
         <div class="col-4">
             <a href="RentOrder">
                 <button class="Surfboard">
                     <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
                          height="150px">
-                    Lej Surfboard
+                    @Model.Surfboards[0].BoardName;
                 </button>
             </a>
         </div>
@@ -63,7 +66,7 @@
             <button class="Surfboard">
                 <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
                      height="100px">
-                Lej Surfboard
+                @Model.Surfboards[1].BoardName;
             </button>
 
         </div>
@@ -71,7 +74,58 @@
             <button class="Surfboard">
                 <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
                      height="100px">
-                Lej Surfboard
+                @Model.Surfboards[2].BoardName;
+            </button>
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
+                     height="150px">
+                @Model.Surfboards[3].BoardName;
+            </button>
+
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[4].BoardName;
+            </button>
+
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[5].BoardName;
+            </button>
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[6].BoardName;
+            </button>
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[7].BoardName;
+            </button>
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[8].BoardName;
+            </button>
+        </div>
+        <div class="col-4">
+            <button class="Surfboard">
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                @Model.Surfboards[9].BoardName;
             </button>
         </div>
     </div>
@@ -81,25 +135,23 @@
     <div class="row">
         <div class="col-4">
             <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
-                     height="150px">
-                Lej Surfboard
+                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
+                     height="100px">
+                Lej en Vaaddragt O_O
             </button>
-
         </div>
         <div class="col-4">
             <button class="Surfboard">
                 <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
                      height="100px">
-                Lej Surfboard
+                Lej en Vaaddragt O_O
             </button>
-
         </div>
         <div class="col-4">
             <button class="Surfboard">
                 <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
                      height="100px">
-                Lej Surfboard
+                Lej en Vaaddragt O_O
             </button>
         </div>
     </div>
@@ -132,6 +184,32 @@
         </div>
     </div>
 </div>
+
+<!-- This doesn't work YET -->
+<script>
+    function Make_Surfboard_Buttons() {
+        const rowEl = document.getElementById("surfboardRows");
+
+        var allBtnHtml = "";
+
+
+        foreach(var surfboard in Model.Surfboards)
+        {
+            allBtnHtml += "< div class='col-4' ><a href='RentOrder' ><button class='Surfboard' ><img src='https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85' width = '150px'height = '150px' > " +
+            surfboard.BoardName + "</button>< /a>< /div>";
+        }
+
+        rowEl.innerHTML = allBtnHtml;
+    }
+</script>
+
+<script>
+    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
+    // Note: This first runs when the page has loaded
+    $(document).ready(
+        Make_Surfboard_Buttons();
+    );
+</script>
 
 @* <div class="grid-container">
 
