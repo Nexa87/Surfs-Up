@@ -53,83 +53,23 @@
 <div class="container">
     <h3>Surfboards</h3>
     <div class="row" id="surfboardRows">
-        <div class="col-4">
-            <a href="RentOrder">
-                <button class="Surfboard">
-                    <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
-                         height="150px">
-                    @Model.Surfboards[0].BoardName;
-                </button>
-            </a>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[1].BoardName;
-            </button>
 
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[2].BoardName;
-            </button>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
-                     height="150px">
-                @Model.Surfboards[3].BoardName;
-            </button>
+        <!-- As stolen from Von Claussen's group & ChatGPT after 4 hours of testing with Jeszckh'é -->
+        @foreach (var surfboard in Model.Surfboards) {
+            <div class="col-4">
+                <a href="RentOrder">
+                    <button class="Surfboard">
+                        <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="150px"
+                             height="150px">
+                        @surfboard.BoardName;
+                    </button>
+                </a>
+            </div>
+        }
 
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[4].BoardName;
-            </button>
-
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[5].BoardName;
-            </button>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[6].BoardName;
-            </button>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[7].BoardName;
-            </button>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[8].BoardName;
-            </button>
-        </div>
-        <div class="col-4">
-            <button class="Surfboard">
-                <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                     height="100px">
-                @Model.Surfboards[9].BoardName;
-            </button>
-        </div>
     </div>
 </div>
+
 <div class="container">
     <h3>Våddragt</h3>
     <div class="row">
@@ -156,6 +96,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <h3>Andre ting</h3>
     <div class="row">
@@ -184,139 +125,3 @@
         </div>
     </div>
 </div>
-
-<!-- This doesn't work YET -->
-<script>
-    function Make_Surfboard_Buttons() {
-        const rowEl = document.getElementById("surfboardRows");
-
-        var allBtnHtml = "";
-
-
-        foreach(var surfboard in Model.Surfboards)
-        {
-            allBtnHtml += "< div class='col-4' ><a href='RentOrder' ><button class='Surfboard' ><img src='https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85' width = '150px'height = '150px' > " +
-            surfboard.BoardName + "</button>< /a>< /div>";
-        }
-
-        rowEl.innerHTML = allBtnHtml;
-    }
-</script>
-
-<script>
-    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
-    // Note: This first runs when the page has loaded
-    $(document).ready(
-        Make_Surfboard_Buttons();
-    );
-</script>
-
-@* <div class="grid-container">
-
-    <div class="grid-item1">
-        <button class="Surfboard">
-            <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                 height="100px">
-            Lej Surfboard
-        </button>
-    </div>
-    <div class="grid-item1">
-        <button class="Surfboard">
-            <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                 height="100px">
-            Lej Surfboard
-        </button>
-    </div>
-    <div class="grid-item1">
-        <button class="Surfboard">
-            <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                 height="100px">
-            Lej Surfboard
-        </button>
-    </div>
-    <div class="grid-item1">
-        <button class="Surfboard">
-            <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-                 height="100px">
-            Lej Surfboard
-        </button>
-    </div>
-</div> *@
-
-
-@*@<div class="centerGrid">
-        <div>
-        <h1>
-        Surfboards
-        </h1>
-
-        <button class="Surfboard">
-        <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-        height="100px">
-        Lej Surfboard
-        </button>
-        <button class="Surfboard">
-        <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-        height="100px">
-        Lej Surfboard
-        </button>
-        <button class="Surfboard">
-        <img src="https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85" width="100px"
-        height="100px">
-        Lej Surfboard
-        </button>
-        </div>
-
-        <div>
-        <h1>
-        Våddragter
-        </h1>
-        <div class="containerVaddragt">
-        <div class="verticalCenter">
-        <button class="Surfboard">
-        <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px"
-        height="100px">
-        Lej Våddragt
-        </button>
-        <button class="Surfboard">
-        <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px"
-        height="100px">
-        Lej Våddragt
-        </button>
-        <button class="Surfboard">
-        <img src="https://productimages.biltema.com/v1/Image/product/xlarge/2000059764/4" width="100px"
-        height="100px">
-        Lej Våddragt
-        </button>
-
-        </div>
-
-        </div>
-        <div>
-        <h1>
-        Andre kategorier
-        </h1>
-        <div class="containerVaddragt">
-        <div class="verticalCenter">
-        <button class="Surfboard">
-        <img src="https://www.freaksports.com.au/wp-content/uploads/2020/07/Single-T-Grip-Canoe-Paddle-145cm-1200x1200-1-e1594246052351.jpg" width="100px"
-        height="100px">
-        Lej Paddle
-        </button>
-        <button class="Surfboard">
-        <img src="https://dfsdr5wqg5xgr.cloudfront.net/catalog/product/cache/27526a56b2e11603fd131d06b424c878/g/l/gl1296_napa_glove_par.jpg" width="100px"
-        height="100px">
-        Lej handsker
-        </button>
-        <button class="Surfboard">
-        <img src="https://westwind.dk/images/NP_Highhook_vest_yellow-p.jpg" width="100px"
-        height="100px">
-        Lej vest
-        </button>
-
-        </div>
-
-        </div>
-        </div>
-        </div>
-        </div>*@

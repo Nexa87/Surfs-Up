@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <!-- Date input -->
                                 <label class="control-label" for="date">Dato for Udlejning</label>
-                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" />
+                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
                             </div>
                             <div class="form-group">
                                 <!-- Submit button -->
@@ -131,10 +131,12 @@
         var date_input = $('input[name="date"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         var options = {
-            format: 'mm/dd/yyyy',
+            //format: 'mm/dd/yyyy',
+            format: 'dd/mm/yyyy',
             container: container,
             todayHighlight: true,
             autoclose: true,
+            weekStart: 1,
         };
         date_input.datepicker(options);
     })
