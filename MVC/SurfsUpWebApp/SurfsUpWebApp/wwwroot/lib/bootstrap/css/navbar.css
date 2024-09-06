@@ -9,8 +9,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    white-space:nowrap;
-  }
+    white-space: nowrap;
+    
+}
   
   /*  Removes bulletpoints on the li items */
   .nav-item {
@@ -30,7 +31,7 @@
     border-radius: 0.2rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
-    font-family: "Matemasie", sans-serif;
+ 
     font-style: italic;
     font-size:small;
     white-space:nowrap;
@@ -69,14 +70,18 @@
     text-align:left;
     
   }
-  
-  .logo {
+
+.logo {
     display: flex;
     text-align: center;
     align-items: center;
     gap: 20px;
     font-size: 38px;
     color: #2adbde;
-    visibility:visible;
-  }
+    visibility: visible;
+    
+}
+.nav-list_img-text{
+    font-family: "Matemasie", sans-serif;
+}
 
