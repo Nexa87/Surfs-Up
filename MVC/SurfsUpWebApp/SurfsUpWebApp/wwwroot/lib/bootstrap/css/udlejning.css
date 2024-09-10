@@ -74,16 +74,18 @@
 }
 
 
+
 .Surfboard {
     text-align: center;
-    width: 150px;
-    column-count: auto;
-    align-items: center;
+    width: 200px;
+    column-count:auto;
+    column-gap:10px;
     align-content: center;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 600px;     
     border: 0px;
     color: #2adbde;
+    
     /*background-color:transparent !important;*/
     background-color: rgba(0,0,0,0);
     box-shadow: none;
@@ -96,11 +98,21 @@
     left: 50%;
     margin-top: 200px;
     margin-left: -300px;
+    white-space:nowrap;
+    gap:20px;
+    
+}
+.grid-container {
+    display: grid;
+    column-gap: 10px;
+    padding-right:10px;
+    margin-right:50px;
 }
 
 .containerVaddragt {
     height: 100px;
     position: relative;
+    
 }
 
 .verticalCenter {
@@ -114,9 +126,43 @@
 .info {
     font-family: "Arial", sans-serif;
     font-style: italic;
-    font-size: small;
-    margin-right: 500px;
-    color: #2adbde;
-    font-weight: 200;
+    font-size:14px;
+    color: black;
+    font-weight: 300;
+    white-space:nowrap;
+    margin-right:auto;
+    margin-left:100px;
 }
+.Wetsuit {
+    text-align: center;
+    width: 200px;
+    column-count: auto;
+    align-items: center;
+    align-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0px;
+    color: #2adbde;
+    /*background-color:transparent !important;*/
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+    white-space: nowrap;
+    
+}
+
+.surfboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px; /* For at udligne den samlede negative margin */
+    margin-right: -5px; /* For at udligne den samlede negative margin */
+}
+
+.surfboard-item {
+    flex: 0 0 33.333%; /* 3 kolonner per række */
+    padding-left: 1px; /* Juster dette for at ændre gappet */
+    padding-right: 1px; /* Juster dette for at ændre gappet */
+    margin-bottom: 20px; /* Juster dette for vertikalt mellemrum mellem rækkerne */
+}
+
+
 

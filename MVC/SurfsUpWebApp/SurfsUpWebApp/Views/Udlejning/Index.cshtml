@@ -48,62 +48,71 @@
 <!-- ----------------------------------- -->
 
 <div class="info">
-    Hvordan lejer surfudstyr : ipsum lorem vnvnavåqvm vqånqåovnqåv qvå qmvåq våqn qåvnqåvnqån qåvnåq våq åqnv åqn våqnvå qnåvq nåvnq å
-</div>
-<div class="container">
-    <h3>Surfboards</h3>
-    <div class="row" id="surfboardRows">
+    Er du klar til at fange bølgerne og opleve havets frihed? <br /><br />
+    Hos Surf's Up tilbyder vi alt, hvad du behøver for at gøre din surfoplevelse uforglemmelig!<br /><br />
 
-        <!-- As stolen from Von Claussen's group & ChatGPT after 4 hours of testing with Jeszckh'é -->
-        @foreach (var surfboard in Model.Surfboards) {
-            <div class="col-4">
-                <a href="RentOrder">
-                    <button class="Surfboard">
-                        <img src="\lib\bootstrap\img\blueTest.jpg" width="150px"
-                             height="150px">
-                        @surfboard.BoardName
-                    </button>
+    Vores udlejningstilbud indeholder:<br /> <br />
+
+    -Surfboards til alle niveauer: Uanset om du er nybegynder eller erfaren surfer, 
+    <br />har vi det perfekte board til dig – fra soft-tops til shortboards og longboards.
+    <br /><br />
+    -Våddragter og Surfudstyr: Hold dig varm og komfortabel i vores topkvalitets våddragter,<br /> 
+    og få alt nødvendigt udstyr såsom leash, wax og fins.
+</div>
+<br />
+
+<div class="container">
+    <h3>Surfboards</h3><br />
+    <div class="surfboard-row" id="surfboardRows">
+        @foreach (var surfboard in Model.Surfboards)
+        {
+            <div class="col-md-4">
+                <a href="RentOrder" class="btn btn-primary Surfboard d-block text-center py-2">
+                    <img src="@Url.Content("~/lib/bootstrap/img/blueTest.jpg")" width="150" height="150" alt="Surfboard Image" class="img-fluid" />
+                    <div>@surfboard.BoardName</div>
                 </a>
             </div>
         }
-
     </div>
 </div>
+    
+<br />
 
 <div class="container">
-    <h3>Våddragt</h3>
+    <h3>Våddragter</h3><br />
     <div class="row">
         <div class="col-4">
-            <button class="Surfboard">
+            <button class="Wetsuit">
                 <img src="\lib\bootstrap\img\VåddragtBlue.jpg" width="100px"
-                     height="100px">
-                Lej en Våddragt O_O
+                     height="100px"><br />
+                Lej en våddragt
             </button>
         </div>
         <div class="col-4">
-            <button class="Surfboard">
+            <button class="Wetsuit">
                 <img src="\lib\bootstrap\img\VåddragtBlue.jpg" width="100px"
-                     height="100px">
-                Lej en Våddragt O_O
+                     height="100px"><br />
+                Lej en våddragt
             </button>
         </div>
         <div class="col-4">
-            <button class="Surfboard">
+            <button class="Wetsuit">
                 <img src="\lib\bootstrap\img\VåddragtBlue.jpg" width="100px"
-                     height="100px">
-                Lej en Våddragt O_O
+                     height="100px"><br />
+                Lej en våddragt
             </button>
         </div>
     </div>
 </div>
+<br />
 
 <div class="container">
-    <h3>Andre ting</h3>
+    <h3>Andre ting</h3><br />
     <div class="row">
         <div class="col-4">
             <button class="Surfboard">
                 <img src="\lib\bootstrap\img\LifeJacket.jpg" width="150px"
-                     height="150px">
+                     height="150px"><br />
                 Lej redningsvest
             </button>
 
@@ -111,7 +120,7 @@
         <div class="col-4">
             <button class="Surfboard">
                 <img src="\lib\bootstrap\img\SurfGloves.jpg" width="100px"
-                     height="100px">
+                     height="100px"><br />
                 Lej handsker
             </button>
 
@@ -119,7 +128,7 @@
         <div class="col-4">
             <button class="Surfboard">
                 <img src="\lib\bootstrap\img\PaddleBlack.jpg" width="100px"
-                     height="100px">
+                     height="100px"><br />
                 Lej roudstyr
             </button>
         </div>
