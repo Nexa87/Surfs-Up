@@ -25,4 +25,8 @@
     <None Include="wwwroot\lib\bootstrap\img\WhiteBasket.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
+  </ItemGroup>
+
 </Project>

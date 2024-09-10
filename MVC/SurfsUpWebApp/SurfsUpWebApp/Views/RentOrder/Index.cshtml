@@ -1,17 +1,30 @@
-﻿<div class="container">
+﻿<link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" />
 
+<div class="container">
+    <h3>Booking</h3>
+    <br />
+    <p>Indtast dine informationer:</p>
     <form>
         <!-- Name input -->
         <div class="form-group">
             <label for="exampleFormControlInput1">Fuldt Navn</label>
             <input type="email" class="form-control" id="rentOrderFullName" placeholder="John Dudeson">
         </div>
+        <br />
 
         <!-- Email input -->
         <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
             <input type="email" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk">
         </div>
+        <br/>
+
+        <!-- phone input -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Telefonnummer</label>
+            <input type="email" class="form-control" id="rentOrderEmail" placeholder="eks 40 40 40 40">
+        </div>
+        <br />
 
         <!-- Date Picker yoinked thingymabob -->
         <div class="bootstrap-iso">
@@ -26,10 +39,10 @@
                                 <label class="control-label" for="date">Dato for Udlejning</label>
                                 <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
                             </div>
-                            <div class="form-group">
+                            @* <div class="form-group">
                                 <!-- Submit button -->
                                 <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                            </div>
+                            </div> *@
                         </form>
                         <!-- Form code ends -->
 
@@ -37,6 +50,7 @@
                 </div>
             </div>
         </div>
+        <br />
 
         <!-- Surfboards amount -->
         <div class="form-group">
@@ -49,6 +63,7 @@
                 <option>5</option>
             </select>
         </div>
+        <br />
 
         <!-- Amount of wetsuits ; note, this also updates visibility of size-choosing below -->
         <div class="form-group">
@@ -62,14 +77,14 @@
                 <option>5</option>
             </select>
         </div>
+        <br />
 
         <!-- Wetsuit Size Selection -->
         <!-- TODO Make a row of individual size selector boxes -->
         <div class="form-group">
             <label for="exampleFormControlSelect2">Våddragt Størrelse</label>
             <select multiple class="form-control" id="vaaddragtSizes" style="visibility: hidden">
-                <option>XXXS</option>
-                <option>XXS</option>
+                <option>Børn 9-12 år</option>
                 <option>XS</option>
                 <option>S</option>
                 <option>M</option>
@@ -79,17 +94,21 @@
                 <option>XXXL</option>
             </select>
         </div>
+        <br />
 
         <!-- Example text area ; Possible 'Kommentater' ??? -->
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <label for="exampleFormControlTextarea1">Bemærking</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+        <br/>
 
         <!-- Test button linking to test script -->
         <div>
-            <button onclick="TestFunction()">Indsend</button>
+            <a href="BookingConfirmation" asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
+
         </div>
+        <br />
     </form>
 
 </div>
