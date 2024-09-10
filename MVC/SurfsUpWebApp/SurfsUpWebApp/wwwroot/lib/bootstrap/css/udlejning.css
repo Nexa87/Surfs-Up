@@ -75,7 +75,6 @@
 
 
 .Surfboard {
-    background-image: url(https://images.photowall.com/products/60791/surfboard-1.jpg?h=699&q=85);
     text-align: center;
     width: 150px;
     column-count: auto;
@@ -85,6 +84,9 @@
     margin-right: 10px;
     border: 0px;
     color: #2adbde;
+    /*background-color:transparent !important;*/
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
 }
 
 
