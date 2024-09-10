@@ -1,0 +1,14 @@
+﻿.Herobtn {
+    color: white;
+    border: none;
+    box-shadow:0 0px 0px rgba(0,0,0,0);
+    background-color:rgba(0,0,0,0);
+    font-size:larger;
+}
+.Herobtn:hover{
+    background-color:lightgray;
+    color:white;
+    border-radius:5px;
+}
+
+ 
