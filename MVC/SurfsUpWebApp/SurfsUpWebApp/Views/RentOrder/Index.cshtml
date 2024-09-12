@@ -1,12 +1,13 @@
 ﻿@* <link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" /> *@
 @using SurfsUpWebApp.Models;
-@model string? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
+@model Surfboard? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
+
 
 <div class="container">
     <h3>Bookingoversigt</h3>
     <br />
 
-    <p>Du har valgt at leje : @Model</p>
+    <p>Du har valgt at leje : @Model.BoardName (som er @Model.Length inches lang)</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
     <form>
         <!-- Name input -->
