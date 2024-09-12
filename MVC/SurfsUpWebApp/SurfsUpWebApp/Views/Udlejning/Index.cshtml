@@ -67,9 +67,9 @@
         @foreach (var surfboard in Model.Surfboards)
         {
             <div class="col-md-4">
-                <a href="RentOrder" class="btn btn-primary Surfboard d-block text-center py-2">
-                    <img src="@Url.Content("~/lib/bootstrap/img/blueTest.jpg")" width="150" height="150" alt="Surfboard Image" class="img-fluid" />
-                    <div>@surfboard.BoardName</div>
+                <a class="btn btn-primary Surfboard d-block text-center py-2" asp-controller="rentorder" asp-action="index" asp-route-passedSurfboard="@surfboard.BoardName">
+                    <img src="@Url.Content("~/lib/bootstrap/img/blueTestTransp.png")" width="150" height="150" alt="Surfboard Image" class="img-fluid" />
+                    @surfboard.BoardName
                 </a>
             </div>
         }

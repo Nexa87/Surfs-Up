@@ -1,10 +1,12 @@
-﻿<link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" />
+﻿@* <link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" /> *@
+@using SurfsUpWebApp.Models;
+@model string? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
 
 <div class="container">
     <h3>Bookingoversigt</h3>
     <br />
 
-    <p>Du har valgt at leje : category.name  </p>
+    <p>Du har valgt at leje : @Model</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
     <form>
         <!-- Name input -->
@@ -107,7 +109,7 @@
 
         <!-- Test button linking to test script -->
         <div>
-            <a href="BookingConfirmation" asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
+            <a asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
 
         </div>
         <br />
