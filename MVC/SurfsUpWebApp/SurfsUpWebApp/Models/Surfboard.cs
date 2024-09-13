@@ -1,32 +1,41 @@
-﻿namespace SurfsUpWebApp.Models
+﻿using Microsoft.EntityFrameworkCore;
+namespace SurfsUpWebApp.Models
 {
     public class Surfboard
     {
+        public int SurfboardId { get; set; }
         public string BoardName { get; set; }
         public float Length { get; set; }
         public float Width { get; set; }
         public float Thickness {  get; set; }
         public float Volume { get; set; }
 
-        public BoardType boardType;
+        public int Price { get; set; }
+        public string Equipment { get; set; } // E.g. "Fin, Paddle, Pump, Leash"
+
+        public BoardType boardType { get; set; }
         public enum BoardType
         {
             None, Shortboard, Funboard, Fish, Longboard, SUP
         }
 
-        public int Price { get; set; }
-        public string Equipment { get; set; } // E.g. "Fin, Paddle, Pump, Leash"
 
-        public Surfboard (string boardName, float length, float width, float thickness, float volume, BoardType boardType, int price, string equipment)
+        public Surfboard (int surfboardId, string boardName, float length, float width, float thickness, float volume, BoardType boardtype, int price, string equipment)
         {
+            SurfboardId = surfboardId;
             BoardName = boardName;
             Length = length;
             Width = width;
             Thickness = thickness;
             Volume = volume;
-            this.boardType = boardType;
+            boardType = boardtype;
             Price = price;
             Equipment = equipment;
         }   
+    }
+    class SurfboardDb : DbContext
+    {
+        public SurfboardDb(DbContextOptions options) : base(options) { }
+        public DbSet<Surfboard> Surfboards { get; set; } = null!;
     }
 }
