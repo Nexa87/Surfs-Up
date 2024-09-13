@@ -1,12 +1,12 @@
-﻿
-@{
-    ViewData["Title"] = "View";
-}
+﻿@using SurfsUpWebApp.Models;
+@model Booking?;
+
 
 <h1>Bookingbekræftelse</h1>
 <div>
     <p>
-        Du har booket 
+        Du har booket @Model.CustomerName 
+        
     </p>
 </div>
 

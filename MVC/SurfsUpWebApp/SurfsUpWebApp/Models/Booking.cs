@@ -3,7 +3,7 @@
     public class Booking
     {
         public int BookingId { get; set; }
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
         public string CustomerEmail { get; set; }
         public string CustomerPhone { get; set; }
         public string SelectedSurfboard { get; set; }
@@ -18,6 +18,10 @@
             SelectedSurfboard = selectedSurfboard;
             RentPeriod = rentPeriod;
             RentHours = rentHours;
+        }
+        public Booking (string selectedSurfboard)
+        {
+            SelectedSurfboard = selectedSurfboard;
         }
        
 

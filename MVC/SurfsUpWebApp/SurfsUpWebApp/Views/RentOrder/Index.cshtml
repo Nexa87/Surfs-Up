@@ -1,28 +1,32 @@
 ﻿@* <link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" /> *@
 @using SurfsUpWebApp.Models;
-@model Surfboard? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
+@model Booking // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
 
 
 <div class="container">
     <h3>Bookingoversigt</h3>
     <br />
 
-    <p>Du har valgt at leje : @Model.BoardName (som er @Model.Length inches lang)</p>
+    <p>Du har valgt at leje : @Model.SelectedSurfboard (som er ? inches lang)</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
-    <form>
+    <form method="post" asp-controller="BookingConfirmation" asp-action="Submit">
         <!-- Name input -->
         <div class="form-group">
-            <label for="exampleFormControlInput1">Fuldt Navn</label>
-            <input type="email" class="form-control" id="rentOrderFullName" placeholder="John Dudeson">
+           <label asp-for="CustomerName">Fuldt Navn</label>
+           <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="John Dudeson" />
+        </div>
+        @* <div class="form-group">
+            <label asp-for="CustomerName">Fuldt Navn</label>
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="John Dudeson" />
         </div>
         <br />
-
+        
         <!-- Email input -->
         <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk">
+            <label asp-for="CustomerEmail">Email address</label>
+            <input type="email" asp-for ="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk" />
         </div>
-        <br/>
+        <br /> *@
 
         <!-- phone input -->
         <div class="form-group">
@@ -45,8 +49,8 @@
                                 <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
                             </div>
                             @* <div class="form-group">
-                                <!-- Submit button -->
-                                <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                            <!-- Submit button -->
+                            <button class="btn btn-primary " name="submit" type="submit">Submit</button>
                             </div> *@
                         </form>
                         <!-- Form code ends -->
@@ -106,11 +110,15 @@
             <label for="exampleFormControlTextarea1">Bemærking</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-        <br/>
+        <br />
 
         <!-- Test button linking to test script -->
         <div>
-            <a asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
+             
+                <button asp-action="submit" asp-controller="BookingConfirmation" class="btn btn-primary" type="submit">Submit</button>
+            
+
+            @* <a <button onclick=TestFunction()>Indsend</button></a> *@
 
         </div>
         <br />
