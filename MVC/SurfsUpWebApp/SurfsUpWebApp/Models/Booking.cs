@@ -24,10 +24,10 @@
             SelectedSurfboard = selectedSurfboard;
         }
        
+        public Booking ()
+        {
 
-
-
-
+        }
 
     }
 }

@@ -11,29 +11,12 @@ namespace SurfsUpWebApp.Controllers
         }
 
         [HttpPost]
-
-        public IActionResult Submit(Booking booking)
+        public IActionResult Index(Booking passedBooking)
         {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-            var newbook = booking;
-            return View(newbook);
+            var passedBoard = passedBooking.SelectedSurfboard;
+            var booking = passedBooking;
+            return View(passedBooking);
         }
-        //[HttpPost]
-        //public IActionResult SubmitBooking()
-        //{
-        //    // Logik til at håndtere booking
-
-        //    // Redirect til Booking Confirmation
-        //    return RedirectToAction("BookingConfirmation");
-        //}
-
-        //public IActionResult BookingConfirmation()
-        //{
-        //    return View(); // Returner booking confirmation view
-        //}
 
     }
 }
