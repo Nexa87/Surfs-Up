@@ -7,16 +7,16 @@
         // Constructor initializing with hardcoded PO-provided surfboards-list
         public SurfboardRepository ()
         {
-            Add_Surfboard(new Surfboard("The Minilog", 6, 21, 2.75f, 38.8f, Surfboard.BoardType.Shortboard, 565, ""));
-            Add_Surfboard(new Surfboard("The Wide Glider", 7.1f, 21.75f, 2.75f, 44.16f, Surfboard.BoardType.Funboard, 685, ""));
-            Add_Surfboard(new Surfboard("The Golden Ratio", 6.3f, 21.85f, 2.9f, 43.22f, Surfboard.BoardType.Funboard, 695, ""));
-            Add_Surfboard(new Surfboard("Mahi Mahi", 5.4f, 20.75f, 2.3f, 29.39f, Surfboard.BoardType.Fish, 645, ""));
-            Add_Surfboard(new Surfboard("The Emerald Glider", 9.2f, 22.8f, 2.8f, 65.4f, Surfboard.BoardType.Longboard, 895, ""));
-            Add_Surfboard(new Surfboard("The Bomb", 5.5f, 21f, 2.5f, 33.7f, Surfboard.BoardType.Shortboard, 645, ""));
-            Add_Surfboard(new Surfboard("Walden Magic", 9.6f, 19.4f, 3f, 80f, Surfboard.BoardType.Longboard, 1025, ""));
-            Add_Surfboard(new Surfboard("Naish One", 12.6f, 30f, 6f, 301f, Surfboard.BoardType.SUP, 854, "Paddle"));
-            Add_Surfboard(new Surfboard("Six Tourer", 11.6f, 32f, 6f, 270f, Surfboard.BoardType.SUP, 611, "Fin, Paddle, Pump, Leash"));
-            Add_Surfboard(new Surfboard("Naish Maliko", 14f, 25f, 6f, 330f, Surfboard.BoardType.SUP, 1304, "Fin, Paddle, Pump, Leash"));
+            Add_Surfboard(new Surfboard(1,"The Minilog", 6, 21, 2.75f, 38.8f, Surfboard.BoardType.Shortboard, 565, ""));
+            Add_Surfboard(new Surfboard(2,"The Wide Glider", 7.1f, 21.75f, 2.75f, 44.16f, Surfboard.BoardType.Funboard, 685, ""));
+            Add_Surfboard(new Surfboard(3,"The Golden Ratio", 6.3f, 21.85f, 2.9f, 43.22f, Surfboard.BoardType.Funboard, 695, ""));
+            Add_Surfboard(new Surfboard(4,"Mahi Mahi", 5.4f, 20.75f, 2.3f, 29.39f, Surfboard.BoardType.Fish, 645, ""));
+            Add_Surfboard(new Surfboard(5,"The Emerald Glider", 9.2f, 22.8f, 2.8f, 65.4f, Surfboard.BoardType.Longboard, 895, ""));
+            Add_Surfboard(new Surfboard(6,"The Bomb", 5.5f, 21f, 2.5f, 33.7f, Surfboard.BoardType.Shortboard, 645, ""));
+            Add_Surfboard(new Surfboard(7,"Walden Magic", 9.6f, 19.4f, 3f, 80f, Surfboard.BoardType.Longboard, 1025, ""));
+            Add_Surfboard(new Surfboard(8,"Naish One", 12.6f, 30f, 6f, 301f, Surfboard.BoardType.SUP, 854, "Paddle"));
+            Add_Surfboard(new Surfboard(9,"Six Tourer", 11.6f, 32f, 6f, 270f, Surfboard.BoardType.SUP, 611, "Fin, Paddle, Pump, Leash"));
+            Add_Surfboard(new Surfboard(10,"Naish Maliko", 14f, 25f, 6f, 330f, Surfboard.BoardType.SUP, 1304, "Fin, Paddle, Pump, Leash"));
         }
 
         /// <summary>
