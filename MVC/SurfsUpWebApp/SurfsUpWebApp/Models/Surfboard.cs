@@ -10,17 +10,17 @@ namespace SurfsUpWebApp.Models
         public float Thickness {  get; set; }
         public float Volume { get; set; }
 
-        public int Price { get; set; }
+        public int Price { get; set; } // måske vi skal vælge en anden vartype
         public string Equipment { get; set; } // E.g. "Fin, Paddle, Pump, Leash"
 
-        public BoardType boardType { get; set; }
-        public enum BoardType
-        {
-            None, Shortboard, Funboard, Fish, Longboard, SUP
-        }
+        // public BoardType boardType { get; set; }
+        // public enum BoardType
+        // {
+        //     None, Shortboard, Funboard, Fish, Longboard, SUP
+        // }
 
 
-        public Surfboard (int surfboardId, string boardName, float length, float width, float thickness, float volume, BoardType boardtype, int price, string equipment)
+        public Surfboard (int surfboardId, string boardName, float length, float width, float thickness, float volume, /*BoardType boardtype,*/ int price, string equipment)
         {
             SurfboardId = surfboardId;
             BoardName = boardName;
@@ -28,14 +28,18 @@ namespace SurfsUpWebApp.Models
             Width = width;
             Thickness = thickness;
             Volume = volume;
-            boardType = boardtype;
+            //boardType = boardtype;
             Price = price;
             Equipment = equipment;
-        }   
+        }
+
+        public Surfboard () {
+
+        }
     }
-    class SurfboardDb : DbContext
-    {
-        public SurfboardDb(DbContextOptions options) : base(options) { }
-        public DbSet<Surfboard> Surfboards { get; set; } = null!;
-    }
+    //class SurfboardDb : DbContext
+    //{
+    //    public SurfboardDb(DbContextOptions options) : base(options) { }
+    //    public DbSet<Surfboard> Surfboards { get; set; } = null!;
+    //}
 }

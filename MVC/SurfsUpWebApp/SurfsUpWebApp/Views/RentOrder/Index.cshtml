@@ -10,53 +10,49 @@
     <p>Du har valgt at leje : @Model.SelectedSurfboard (som er ? inches lang)</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
     <form method="post" asp-controller="BookingConfirmation" asp-action="Index">
+
         <!-- Name input -->
         <div class="form-group">
-           <label asp-for="CustomerName">Fuldt Navn</label>
-           <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="John Dudeson" />
+            <label asp-for="CustomerName">Fuldt Navn</label>
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn" />
         </div>
+
+        <!-- Email input -->
         <div class="form-group">
             <label asp-for="CustomerEmail">Email adresse</label>
-            <input type="email" asp-for="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk" />
+            <input type="email" asp-for="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="Indtast email" />
         </div>
 
         <!-- phone input -->
         <div class="form-group">
-            <label for="exampleFormControlInput1">Telefonnummer</label>
-            <input type="email" class="form-control" id="rentOrderEmail" placeholder="eks 40 40 40 40">
+            <label asp-for="CustomerPhone">Telefonnummer</label>
+            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderEmail" placeholder="Indtast tlf/mobil">
         </div>
         <br />
+        <input type="hidden" name="SelectedSurfboard" value="@Model.SelectedSurfboard" />
 
-        <!-- Date Picker yoinked thingymabob -->
+       @*  <!-- Date Picker yoinked thingymabob -->
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
-                        <!-- Form code begins -->
-                        
-                            <div class="form-group">
-                                <!-- Date input -->
-                                <label class="control-label" for="date">Dato for Udlejning</label>
-                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
-                            </div>
-                            @* <div class="form-group">
-                            <!-- Submit button -->
-                            <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                            </div> *@
-                       
-                        <!-- Form code ends -->
+                        <div class="form-group" style="display:table;">
+                            <!-- Date input -->
+                            <label class="control-label" for="date">Dato for Udlejning</label>
+                            <input class="form-control" id="date" name="RentPeriod" placeholder="MM/DD/YYYY" type="date" />
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
-        <br />
+        <br /> *@
 
         <!-- Surfboards amount -->
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Antal Surfboards</label>
-            <select class="form-control" id="rentOrderAntalSurfboard">
+            <label asp-for="SurfboardAmount">Antal Surfboards</label>
+            <select asp-for="SurfboardAmount" class="form-control" id="rentOrderAntalSurfboard">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -66,11 +62,43 @@
         </div>
         <br />
 
+        <!-- Surfboards price -->
+        <div class="form-group">
+            <label asp-for="Price">Lejeperiode og pris</label>
+            <select asp-for="Price" class="form-control" id="rentperiod">
+                <option value="">Vælg en lejeperiode</option>
+                <option value="1">1 time 299 kr.</option>
+                <option value="3">3 timer 599 kr.</option>
+                <option value="24">1 dag 799 kr.</option>
+                <option value="72">3 dage 999 kr.</option>
+                <option value="168">7 dage 1299 kr.</option>
+            </select>
+        </div>
+        <br />
+
+        <div id="timeInputContainer" class="form-group" style=" display:none;">
+            <label asp-for="RentHours">Vælg starttidspunkt (mellem 08:00 og 17:00)</label>
+            <input Asp-for="RentHours" name ="RentPeriod" type="datetime-local" id="startTime" class="form-control" min=""  step="1800" required>
+        </div>
+
+        <div id="endTimeContainer" class="form-group" style="display: none;">
+            <label asp-for="RentReturn">Sluttidspunkt</label>
+            <input asp-for="RentReturn" type="datetime-local" id="endTime" class="form-control" readonly>
+        </div><br />
+
+        <!-- vælg om du vil leje andet. -->
+        <div>
+            <label for="wetsuit">Ønsker du at leje en vådragt</label><br />
+            <input type="checkbox" id="wetsuitCheckbox" name="wetsuitCheckbox"><br />
+
+            <label for="otherGear">Ønsker du at leje andet</label><br />
+            <input type="checkbox" id="otherGearCheckbox" name="otherGearCheckbox"><br />
+        </div>
         <!-- Amount of wetsuits ; note, this also updates visibility of size-choosing below -->
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Antal Våddragt</label>
+        <div class="form-group" id="wetsuitAmountContainer" style="display:none;">
+            <label for="rentOrderAntalVaaddragt">Antal Våddragt</label>
             <select multiple class="form-control" id="rentOrderAntalVaaddragt">
-                <option>0</option>
+               
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -80,35 +108,20 @@
         </div>
         <br />
 
-        <!-- Wetsuit Size Selection -->
-        <!-- TODO Make a row of individual size selector boxes -->
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Våddragt Størrelse</label>
-            <select multiple class="form-control" id="vaaddragtSizes" style="visibility: hidden">
-                <option>Børn 9-12 år</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>XXXL</option>
-            </select>
-        </div>
-        <br />
+        <div id="sizeSelectionContainer"></div>
 
         <!-- Example text area ; Possible 'Kommentater' ??? -->
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Bemærking</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label asp-for="Remarks">Bemærkinger:</label>
+            <textarea asp-for="Remarks" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <br />
 
         <!-- Test button linking to test script -->
         <div>
-             
-                <button class="btn btn-primary" type="submit">Submit</button>
-            
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+
 
             @* <a <button onclick=TestFunction()>Indsend</button></a> *@
 
@@ -118,11 +131,61 @@
 
 </div>
 
+
+
+
 <script>
-    // Simply here for testing, whether linked scripts work
-    function TestFunction() {
-        document.write("Nothing (Test)");
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectElement = document.getElementById("rentperiod");
+
+        selectElement.addEventListener("change", function () {
+            var selectedValue = selectElement.value; // Get selected rental period in hours
+            var timeInputContainer = document.getElementById("timeInputContainer");
+            var endTimeContainer = document.getElementById("endTimeContainer");
+            var startTimeInput = document.getElementById("startTime");
+            var endTimeInput = document.getElementById("endTime");
+
+            // If a valid rental period is selected, show time input
+            if (selectedValue) {
+                timeInputContainer.style.display = "table";
+            } else {
+                timeInputContainer.style.display = "none";
+                endTimeContainer.style.display = "none";
+            }
+
+            // Handle the input event for the start time
+            startTimeInput.addEventListener("input", function () {
+                var startTime = startTimeInput.value;
+                if (startTime) {
+                    var endTime = calculateEndTime(startTime, selectedValue);
+                    if (endTime) {
+                        endTimeInput.value = endTime;
+                        endTimeContainer.style.display = "table";
+                    }
+                }
+            });
+        });
+
+        // Function to calculate end time based on start time and rental period
+        function calculateEndTime(startTime, rentalPeriod) {
+            var startDateTime = new Date(startTime); // Create a new Date object from input
+            var rentalHours = parseInt(rentalPeriod, 10); // Convert selected rental period to integer
+
+            // Manually add hours or days based on the rental period
+            startDateTime.setHours(startDateTime.getHours() + rentalHours); // Add rental period in hours
+
+
+            var year = startDateTime.getFullYear();
+            var month = String(startDateTime.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+            var day = String(startDateTime.getDate()).padStart(2, '0');
+            var hours = String(startDateTime.getHours()).padStart(2, '0');
+            var minutes = String(startDateTime.getMinutes()).padStart(2, '0');
+
+            // Return formatted date-time string
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+    });
+
 </script>
 
 <script>
@@ -144,15 +207,105 @@
         updateElement.style.visibility = selectElement.selectedIndex > 0 ? "visible" : "hidden";
 
         //document.write(selectElement.selectedIndex);
+        selectElement.addEventListener("change", function () {
+            console.log("Dropdown changed!"); // Test event trigger
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var wetsuitCheckbox = document.getElementById("wetsuitCheckbox");
+        var wetsuitAmountContainer = document.getElementById("wetsuitAmountContainer");
+
+        // Function to toggle the wetsuit amount dropdown
+        wetsuitCheckbox.addEventListener("change", function () {
+            if (wetsuitCheckbox.checked) {
+                wetsuitAmountContainer.style.display = "block";
+            } else {
+                wetsuitAmountContainer.style.display = "none";
+            }
+           
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var antalVaaddragtSelect = document.getElementById("rentOrderAntalVaaddragt");
+        var sizeSelectionContainer = document.getElementById("sizeSelectionContainer");
+
+        // Function to create size selection based on number of wetsuits
+        function updateSizeSelection() {
+            var antal = parseInt(antalVaaddragtSelect.value);
+            sizeSelectionContainer.innerHTML = ""; // Clear previous selections
+
+            if (antal > 0) {
+                for (var i = 0; i < antal; i++) {
+                    var div = document.createElement("div");
+                    div.classList.add("form-group");
+                    div.classList.add("size-selection");
+
+                    var label = document.createElement("label");
+                    label.textContent = "Størrelse for våddragt " + (i + 1);
+                    div.appendChild(label);
+
+                    var select = document.createElement("select");
+                    select.classList.add("form-control");
+                    select.setAttribute("multiple", "multiple");
+                    select.classList.add("wetsuit-size");
+
+                    var sizes = ["Børn 9-12 år", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+                    sizes.forEach(function (size) {
+                        var option = document.createElement("option");
+                        option.value = size;
+                        option.textContent = size;
+                        select.appendChild(option);
+                    });
+
+                    div.appendChild(select);
+                    sizeSelectionContainer.appendChild(div);
+                }
+
+                document.querySelectorAll('.size-selection').forEach(function (element) {
+                    element.style.display = "block";
+                });
+            } else {
+                document.querySelectorAll('.size-selection').forEach(function (element) {
+                    element.style.display = "none";
+                });
+            }
+        }
+
+        // Update size selection when number of wetsuits changes
+        antalVaaddragtSelect.addEventListener("change", updateSizeSelection);
+
+        // Initialize
+        updateSizeSelection();
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var wetsuitCheckbox = document.getElementById("wetsuitCheckbox");
+        var vaaddragtSizesContainer = document.getElementById("vaaddragtSizes");
+
+        // Function to toggle the visibility of the dropdown
+        wetsuitCheckbox.addEventListener("change", function () {
+            if (wetsuitCheckbox.checked) {
+                sizeSelectionContainer.style.visibility = "visible";
+            } else {
+                sizeSelectionContainer.style.visibility = "hidden";
+            }
+        });
     });
 </script>
 
 
-<script>
+@* <script>
     // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
     // Note: This first runs when the page has loaded
     $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var date_input = $('input[name=RentPeriod"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         var options = {
             //format: 'mm/dd/yyyy',
@@ -163,5 +316,7 @@
             weekStart: 1,
         };
         date_input.datepicker(options);
+
     })
-</script>
+</script> *@
+
