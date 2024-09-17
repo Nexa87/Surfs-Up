@@ -13,20 +13,20 @@ namespace SurfsUpWebApp.Controllers
         public IActionResult Index(Booking model)
         {
             // Indlæs priserne fra en kilde, hvis nødvendigt
-            var priceOptions = new Dictionary<int, string>
+            var priceOptions = new Dictionary<float, float>
         {
-            { 1, "299 kr." },
-            { 3, "599 kr." },
-            { 24, "799 kr." },
-            { 72, "999 kr." },
-            { 168, "1299 kr." }
+            { 1, 299 },
+            { 3, 599 },
+            { 24, 799 },
+            { 72, 999 },
+            { 168, 1299 }
         };
             Console.WriteLine($"Selected Price: {model.RentHours}");
 
             // Find den valgte pris tekst
             if (priceOptions.TryGetValue(model.Price, out var selectedPrice))
             {
-                model.SelectedPrice = selectedPrice;
+                model.SelectedPrice = selectedPrice.ToString();
             }
             else
             {
