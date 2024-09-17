@@ -1,4 +1,4 @@
-﻿namespace SurfsUpWebApp.Models
+﻿namespace SurfsUp.Models
 {
     public class Customer
     {

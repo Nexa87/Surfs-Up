@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SurfsUpWebApp.Models;
+using SurfsUp.Models;
 
-namespace SurfsUpWebApp.Controllers
+namespace SurfsUp.Controllers
 {
     public class UdlejningController : Controller
     {
