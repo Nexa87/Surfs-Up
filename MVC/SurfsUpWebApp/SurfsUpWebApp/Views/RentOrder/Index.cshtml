@@ -31,24 +31,6 @@
         <br />
         <input type="hidden" name="SelectedSurfboard" value="@Model.SelectedSurfboard" />
 
-       @*  <!-- Date Picker yoinked thingymabob -->
-        <div class="bootstrap-iso">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <div class="form-group" style="display:table;">
-                            <!-- Date input -->
-                            <label class="control-label" for="date">Dato for Udlejning</label>
-                            <input class="form-control" id="date" name="RentPeriod" placeholder="MM/DD/YYYY" type="date" />
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br /> *@
-
         <!-- Surfboards amount -->
         <div class="form-group">
             <label asp-for="SurfboardAmount">Antal Surfboards</label>
@@ -76,15 +58,58 @@
         </div>
         <br />
 
-        <div id="timeInputContainer" class="form-group" style=" display:none;">
-            <label asp-for="RentHours">Vælg starttidspunkt (mellem 08:00 og 17:00)</label>
-            <input Asp-for="RentHours" name ="RentPeriod" type="datetime-local" id="startTime" class="form-control" min=""  step="1800" required>
+        <!-- DATE PICKER 2 -->
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                @* <div id="timeInputContainer" class="form-group" style="display:none;">
+                    <label asp-for="RentHours">Vælg starttidspunkt (mellem 08:00 og 17:00)</label>
+                    <input asp-for="RentHours" name="RentPeriod" type="datetime-local" id="startTime" class="form-control" step="3600" min="" max="" required />
+                </div> *@
+
+                <div class="form-group">
+                    <!-- Date input -->
+                    <!-- Needs to be rework -->
+                    <label class="control-label" for="date">Dato for Udlejning</label>
+                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12" style="max-width: 100px">
+                    <label for="timeSelect" >Select Time:</label>
+                    <select id="timeSelect" name="timeSelect" class="form-control">
+                        <option value="08:00">08:00</option>
+                        <option value="08:30">08:30</option>
+                        <option value="09:00">09:00</option>
+                        <option value="09:30">09:30</option>
+                        <option value="10:00">10:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option>
+                        <option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option>
+                    </select>
+                </div>
+
+            </div>
         </div>
 
         <div id="endTimeContainer" class="form-group" style="display: none;">
             <label asp-for="RentReturn">Sluttidspunkt</label>
             <input asp-for="RentReturn" type="datetime-local" id="endTime" class="form-control" readonly>
-        </div><br />
+        </div>
+
+        <br />
 
         <!-- vælg om du vil leje andet. -->
         <div>
@@ -98,7 +123,7 @@
         <div class="form-group" id="wetsuitAmountContainer" style="display:none;">
             <label for="rentOrderAntalVaaddragt">Antal Våddragt</label>
             <select multiple class="form-control" id="rentOrderAntalVaaddragt">
-               
+
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -132,7 +157,24 @@
 </div>
 
 
-
+<script>
+    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
+    // Note: This first runs when the page has loaded
+    // Reference: https://bootstrap-datepicker.readthedocs.io/en/latest/options.html
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            //format: 'mm/dd/yyyy',
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            weekStart: 1,
+        };
+        date_input.datepicker(options);
+    })
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -189,31 +231,6 @@
 </script>
 
 <script>
-    const selectElement = document.getElementById("rentOrderAntalVaaddragt");
-
-    selectElement.addEventListener('change', function () {
-        // Get the selected index
-        const selectedIndex = selectElement.selectedIndex;
-
-        // Get the value of the selected option
-        const selectedValue = selectElement.options[selectedIndex].value;
-
-        // Call your custom function or logic here
-        console.log('Selected Index:', selectedIndex);
-        console.log('Selected Value:', selectedValue);
-
-        // Example: Call a custom function
-        const updateElement = document.getElementById("vaaddragtSizes");
-        updateElement.style.visibility = selectElement.selectedIndex > 0 ? "visible" : "hidden";
-
-        //document.write(selectElement.selectedIndex);
-        selectElement.addEventListener("change", function () {
-            console.log("Dropdown changed!"); // Test event trigger
-        });
-    });
-</script>
-
-<script>
     document.addEventListener("DOMContentLoaded", function () {
         var wetsuitCheckbox = document.getElementById("wetsuitCheckbox");
         var wetsuitAmountContainer = document.getElementById("wetsuitAmountContainer");
@@ -225,7 +242,7 @@
             } else {
                 wetsuitAmountContainer.style.display = "none";
             }
-           
+
         });
     });
 </script>
@@ -284,7 +301,9 @@
         updateSizeSelection();
     });
 </script>
+
 <script>
+    // IF Wetsuits have been chosen, this makes size-selection for wetsuits visible
     document.addEventListener("DOMContentLoaded", function () {
         var wetsuitCheckbox = document.getElementById("wetsuitCheckbox");
         var vaaddragtSizesContainer = document.getElementById("vaaddragtSizes");
@@ -300,23 +319,4 @@
     });
 </script>
 
-
-@* <script>
-    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
-    // Note: This first runs when the page has loaded
-    $(document).ready(function () {
-        var date_input = $('input[name=RentPeriod"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        var options = {
-            //format: 'mm/dd/yyyy',
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-            weekStart: 1,
-        };
-        date_input.datepicker(options);
-
-    })
-</script> *@
 
