@@ -1,0 +1,167 @@
+﻿@* <link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" /> *@
+@using SurfsUpWebApp.Models;
+@model Surfboard? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
+
+
+<div class="container">
+    <h3>Bookingoversigt</h3>
+    <br />
+
+    <p>Du har valgt at leje : @Model.BoardName (som er @Model.Length inches lang)</p>
+    <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
+    <form>
+        <!-- Name input -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Fuldt Navn</label>
+            <input type="email" class="form-control" id="rentOrderFullName" placeholder="John Dudeson">
+        </div>
+        <br />
+
+        <!-- Email input -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk">
+        </div>
+        <br/>
+
+        <!-- phone input -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Telefonnummer</label>
+            <input type="email" class="form-control" id="rentOrderEmail" placeholder="eks 40 40 40 40">
+        </div>
+        <br />
+
+        <!-- Date Picker yoinked thingymabob -->
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <!-- Form code begins -->
+                        <form method="post">
+                            <div class="form-group">
+                                <!-- Date input -->
+                                <label class="control-label" for="date">Dato for Udlejning</label>
+                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
+                            </div>
+                            @* <div class="form-group">
+                                <!-- Submit button -->
+                                <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                            </div> *@
+                        </form>
+                        <!-- Form code ends -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!-- Surfboards amount -->
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Antal Surfboards</label>
+            <select class="form-control" id="rentOrderAntalSurfboard">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <br />
+
+        <!-- Amount of wetsuits ; note, this also updates visibility of size-choosing below -->
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Antal Våddragt</label>
+            <select multiple class="form-control" id="rentOrderAntalVaaddragt">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <br />
+
+        <!-- Wetsuit Size Selection -->
+        <!-- TODO Make a row of individual size selector boxes -->
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Våddragt Størrelse</label>
+            <select multiple class="form-control" id="vaaddragtSizes" style="visibility: hidden">
+                <option>Børn 9-12 år</option>
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+                <option>XXXL</option>
+            </select>
+        </div>
+        <br />
+
+        <!-- Example text area ; Possible 'Kommentater' ??? -->
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Bemærking</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <br/>
+
+        <!-- Test button linking to test script -->
+        <div>
+            <a asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
+
+        </div>
+        <br />
+    </form>
+
+</div>
+
+<script>
+    // Simply here for testing, whether linked scripts work
+    function TestFunction() {
+        document.write("Nothing (Test)");
+    }
+</script>
+
+<script>
+    const selectElement = document.getElementById("rentOrderAntalVaaddragt");
+
+    selectElement.addEventListener('change', function () {
+        // Get the selected index
+        const selectedIndex = selectElement.selectedIndex;
+
+        // Get the value of the selected option
+        const selectedValue = selectElement.options[selectedIndex].value;
+
+        // Call your custom function or logic here
+        console.log('Selected Index:', selectedIndex);
+        console.log('Selected Value:', selectedValue);
+
+        // Example: Call a custom function
+        const updateElement = document.getElementById("vaaddragtSizes");
+        updateElement.style.visibility = selectElement.selectedIndex > 0 ? "visible" : "hidden";
+
+        //document.write(selectElement.selectedIndex);
+    });
+</script>
+
+
+<script>
+    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
+    // Note: This first runs when the page has loaded
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            //format: 'mm/dd/yyyy',
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            weekStart: 1,
+        };
+        date_input.datepicker(options);
+    })
+</script>
