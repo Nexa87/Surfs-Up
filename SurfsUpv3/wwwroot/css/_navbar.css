@@ -1,0 +1,22 @@
+﻿.logo {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 38px;
+    color: #2adbde;
+    visibility: visible;
+}
+
+/*  Removes bulletpoints on the li items */
+.nav-item {
+    list-style: none;
+    white-space: nowrap;
+}
+
+/* Navbar img design */
+.nav-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
