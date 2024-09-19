@@ -9,18 +9,20 @@ namespace SurfsUpWebApp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Index(Booking model)
         {
             // Indlæs priserne fra en kilde, hvis nødvendigt
             var priceOptions = new Dictionary<float, float>
-        {
-            { 1, 299 },
-            { 3, 599 },
-            { 24, 799 },
-            { 72, 999 },
-            { 168, 1299 }
-        };
+            {
+                { 1, 299 },
+                { 3, 599 },
+                { 24, 799 },
+                { 72, 999 },
+                { 168, 1299 }
+            };
+
             Console.WriteLine($"Selected Price: {model.RentHours}");
 
             // Find den valgte pris tekst
@@ -34,15 +36,10 @@ namespace SurfsUpWebApp.Controllers
             }
             var passedBoard = model.SelectedSurfboard;
             var booking = model;
-            return View( model);
+            return View(model);
             // Brug de valgte oplysninger som nødvendigt
             // F.eks. Gem data i en database, vis det på en ny side, osv.
-
-            
-
         }
-
-
 
     }
 }

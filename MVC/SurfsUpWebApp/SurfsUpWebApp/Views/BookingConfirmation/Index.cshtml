@@ -19,7 +19,7 @@
                 <span>- @Model.RentReturn.ToString("dd/MM/yyyy")</span>
             }
         </li>
-        <li><strong>Afhentning:</strong> kl. @Model.RentPeriod.ToShortTimeString()</li>
+        <li><strong>Afhentning:</strong> kl. @Model.RentPeriod.ToShortTimeString() @Model.RentHours</li>
         <li><strong>Aflevering:</strong> kl. @Model.RentReturn.ToShortTimeString()</li>
         <li><strong>Bemærkninger:</strong> @Model.Remarks</li>
         <li id="TotalAmount"><strong>Samlet pris:</strong> kr.</li>

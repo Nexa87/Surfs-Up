@@ -62,16 +62,13 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
 
-                @* <div id="timeInputContainer" class="form-group" style="display:none;">
-                    <label asp-for="RentHours">Vælg starttidspunkt (mellem 08:00 og 17:00)</label>
-                    <input asp-for="RentHours" name="RentPeriod" type="datetime-local" id="startTime" class="form-control" step="3600" min="" max="" required />
-                </div> *@
-
                 <div class="form-group">
                     <!-- Date input -->
-                    <!-- Needs to be rework -->
-                    <label class="control-label" for="date">Dato for Udlejning</label>
-                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
+                    <label class="control-label" asp-for="RentPeriod">Dato for Udlejning</label>
+                    <input class="form-control" asp-for="RentPeriod" placeholder="MM/DD/YYYY" type="date" />
+
+                   @*  <label class="control-label" for="date" asp-for="RentPeriod">Dato for Udlejning</label>
+                    <input class="form-control" id="date" name="RentPeriod" asp-for="RentPeriod" placeholder="MM/DD/YYYY" type="text" /> *@
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12" style="max-width: 100px">
@@ -231,6 +228,44 @@
 </script>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // const timethingy = document.getElementById("timeSelect");
+        // const selectedValue = selectElement.value;
+
+        // // Parse the time value (assuming HH:MM format)
+        // const [hours, minutes] = selectedValue.split(':').map(Number);
+
+        // @Model.RentHours = const timeOnly { hours: hours, minutes: minutes};
+
+
+
+        const selectElement = document.getElementById('mySelect');
+
+        // Get the selected value
+        const selectedValue = selectElement.value;
+
+        // Optionally, you can perform additional processing here
+        // For example, formatting or manipulating the string
+
+        // Display the selected value
+        // document.getElementById('result').textContent = 'Selected value: ' + selectedValue;
+        
+        @Model.Remarks = selectedValue;
+
+
+        // THIS IS JUST HERE FOR REFERENCE
+        // Create a time-only object using a Date object (or use your own format)
+        // const timeOnly = {
+        //     hours: hours,
+        //     minutes: minutes,
+        //     toString: function () {
+        //         // Format as "HH:MM" for convenience
+        //         return `${String(this.hours).padStart(2, '0')}:${String(this.minutes).padStart(2, '0')}`;
+        //     }
+        // };
+    })
+
+
     document.addEventListener("DOMContentLoaded", function () {
         var wetsuitCheckbox = document.getElementById("wetsuitCheckbox");
         var wetsuitAmountContainer = document.getElementById("wetsuitAmountContainer");
