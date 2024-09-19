@@ -18,14 +18,30 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    <ul class="nav-list">
+                <li class="nav-item logo">
+                    <img src="~/lib/bootstrap/img/JohnDude.jpg" />
+                    <span class="nav-list_img-text">Surf's up</span>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="home" asp-action="index">Home</a> <!-- Just so we have an asp-controller variation example -->
+                </li>
+                <li class="nav-item">
+                    <a href="Udlejning">Udlejning</a> <!-- Just so we have an href variation example -->
+                </li>
+                <li class="nav-item">
+                    <a href="#">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html">Om os</a>
+                </li>
+                <li class="nav-item">
+                    <a href="RentOrder">Kurv</a>
+                </li>
+                <li class="nav-item">
+                    <input type="text" placeholder="Søg">
+                </li>
+            </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
