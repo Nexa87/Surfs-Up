@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MVC_Programming_Day_II_29_08_2024.Controllers
+namespace SurfsUp.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,119 +1,120 @@
-﻿@* <link rel="stylesheet" href="~/lib/bootstrap/css/navbar.css" /> *@
-@using SurfsUpWebApp.Models;
-@model Surfboard? // Ensure our model is also nullable, if it's a nullable passed into our Controller beforehand
+﻿@using SurfsUp.Models;
+@model Booking
 
 
 <div class="container">
-    <h3>Bookingoversigt</h3>
-    <br />
+    <h3>Booking Oversigt</h3>
+    
+    <br/>
 
-    <p>Du har valgt at leje : @Model.BoardName (som er @Model.Length inches lang)</p>
-    <p>For at fuldføre din ordre bedes du taste dine informationer:</p><br />
-    <form>
-        <!-- Name input -->
+    <p>Du har valgt at leje : @Model.SelectedSurfboard</p>
+    <p>For at fuldføre din ordre bedes du taste dine informationer:</p>
+
+    <form method="post" asp-controller="BookingConfirmation" asp-action="Index">
+
+        <!-- Name -->
         <div class="form-group">
-            <label for="exampleFormControlInput1">Fuldt Navn</label>
-            <input type="email" class="form-control" id="rentOrderFullName" placeholder="John Dudeson">
+            <label asp-for="CustomerName">Fuldt Navn</label>
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn"/>
         </div>
+
+        <!-- E-mail -->
+        <div class="form-group">
+            <label asp-for="CustomerEmail">Email Adresse</label>
+            <input type="email" asp-for="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="Indtast Email" />
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label asp-for="CustomerPhone">Telefonnummer</label>
+            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderEmail" placeholder="Indtast TLF/Mobil" />
+        </div>
+
         <br />
 
-        <!-- Email input -->
+        <!-- Surfboards Amount -->
         <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="rentOrderEmail" placeholder="john@dudeson.dk">
+            <label asp-for="SurfboardAmount">Antal Surfboards</label>
+            <select asp-for="SurfboardAmount" class="form-control" id="rentOrderAntalSurfboard">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
         </div>
-        <br/>
 
-        <!-- phone input -->
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Telefonnummer</label>
-            <input type="email" class="form-control" id="rentOrderEmail" placeholder="eks 40 40 40 40">
-        </div>
         <br />
 
-        <!-- Date Picker yoinked thingymabob -->
-        <div class="bootstrap-iso">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+        <!-- Surfboards Price -->
+        <div class="form-group">
+            <label asp-for="Price">Lejeperiode og Pris</label>
+            <select asp-for="Price" class="form-control" id="rentperiodchooser">
+                <option value="">Vælg en lejeperiode</option>
+                <option value="1">1 Time 299 kr.</option>
+                <option value="3">3 Timer 599 kr.</option>
+                <option value="24">1 dag 799 kr.</option>
+                <option value="72">3 dage 999 kr.</option>
+                <option value="168">7 dage 1299 kr.</option>
+            </select>
+        </div>
 
-                        <!-- Form code begins -->
-                        <form method="post">
-                            <div class="form-group">
-                                <!-- Date input -->
-                                <label class="control-label" for="date">Dato for Udlejning</label>
-                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
-                            </div>
-                            @* <div class="form-group">
-                                <!-- Submit button -->
-                                <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                            </div> *@
-                        </form>
-                        <!-- Form code ends -->
+        <br />
 
-                    </div>
-                </div>
+        <!-- Rental Period / DateTime Picker(s) -- Start/Pickup & End/Return -->
+        <div class="row">
+
+            <div class="form-group">
+                <!-- Seems we can access parts of a Date-property from our model, neat O: -->
+                <label class="control-label" asp-for="RentPeriod.Date" id="startTimeLabel">Dato for Udlejning</label>
+                <input class="form-control" asp-for="RentPeriod.Date" id="startTimeDatePicker" placeholder="MM/DD/YYYY" type="date" style="max-width: 200px" />
+
+                <!-- Start time chooser dropdown -->
+                <label id="startTidspunktLabel">@* Start Tidspunkt *@</label>
+                <select class="form-control" id="startTimeDropdown" style="max-width: 150px;">
+                    <option value="08:00">08:00</option>
+                    <option value="08:30">08:30</option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                </select>
+
             </div>
-        </div>
-        <br />
 
-        <!-- Surfboards amount -->
+            <br />
+
+        </div>
+
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Antal Surfboards</label>
-            <select class="form-control" id="rentOrderAntalSurfboard">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+            <p id="endTimeParagraph">SLUT TID</p>
         </div>
-        <br />
+        
+        <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
 
-        <!-- Amount of wetsuits ; note, this also updates visibility of size-choosing below -->
+
+        <!-- Remarks -->
         <div class="form-group">
-            <label for="exampleFormControlSelect2">Antal Våddragt</label>
-            <select multiple class="form-control" id="rentOrderAntalVaaddragt">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+            <label asp-for="Remarks">Bemærkninger</label>
+            <textarea asp-for="Remarks" class="form-control" rows="3"></textarea>
         </div>
-        <br />
 
-        <!-- Wetsuit Size Selection -->
-        <!-- TODO Make a row of individual size selector boxes -->
         <div class="form-group">
-            <label for="exampleFormControlSelect2">Våddragt Størrelse</label>
-            <select multiple class="form-control" id="vaaddragtSizes" style="visibility: hidden">
-                <option>Børn 9-12 år</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>XXXL</option>
-            </select>
+            <button class="btn btn-primary" type="submit">Færdiggør Booking</button>
         </div>
-        <br />
-
-        <!-- Example text area ; Possible 'Kommentater' ??? -->
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Bemærking</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <br/>
-
-        <!-- Test button linking to test script -->
-        <div>
-            <a asp-controller="BookingConfirmation" asp-action="Index"><button onclick=TestFunction()>Indsend</button></a>
-
-        </div>
-        <br />
     </form>
 
 </div>
@@ -123,45 +124,59 @@
     function TestFunction() {
         document.write("Nothing (Test)");
     }
-</script>
 
-<script>
-    const selectElement = document.getElementById("rentOrderAntalVaaddragt");
+    // When the page has loaded, we want to set our datepicker's default dates
+    document.addEventListener("DOMContentLoaded", function () {
+        var datePicker = document.getElementById("startTimeDatePicker");
+            
+        // Get today's date
+        var today = new Date();
+            
+        // Format the date to YYYY-MM-DD (required format for input[type="date"])
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        var year = today.getFullYear();
 
-    selectElement.addEventListener('change', function () {
-        // Get the selected index
-        const selectedIndex = selectElement.selectedIndex;
-
-        // Get the value of the selected option
-        const selectedValue = selectElement.options[selectedIndex].value;
-
-        // Call your custom function or logic here
-        console.log('Selected Index:', selectedIndex);
-        console.log('Selected Value:', selectedValue);
-
-        // Example: Call a custom function
-        const updateElement = document.getElementById("vaaddragtSizes");
-        updateElement.style.visibility = selectElement.selectedIndex > 0 ? "visible" : "hidden";
-
-        //document.write(selectElement.selectedIndex);
+        // Set the value of the date picker to today's date
+        datePicker.value = `${year}-${month}-${day}`;
     });
-</script>
 
+    // EventListener functionality which ties display of Start DatePicker to rentperiodchooser's current selection
+    document.addEventListener("DOMContentLoaded", function () {
+            // The elements on the page we need to do something to or get something from
+            var rentperiodchooser = document.getElementById("rentperiodchooser");
 
-<script>
-    // Script for activating the datepicker plugin (related stuff played in Shared _Layout for this)-
-    // Note: This first runs when the page has loaded
-    $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        var options = {
-            //format: 'mm/dd/yyyy',
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-            weekStart: 1,
-        };
-        date_input.datepicker(options);
-    })
+            var startTimeLabel = document.getElementById("startTimeLabel");
+            var startTimeDatePicker = document.getElementById("startTimeDatePicker");
+
+            var startTidspunktLabel = document.getElementById("startTidspunktLabel");
+            var startTimeDropdown = document.getElementById("startTimeDropdown");
+
+            var endTimeParagraph = document.getElementById("endTimeParagraph");
+
+            // Function to update visibility based on dropdown value
+            function updateVisibility() {
+                if (rentperiodchooser.value == 0) {
+                    startTimeLabel.style.visibility = "hidden";
+                    startTimeDatePicker.style.visibility = "hidden";
+                    startTidspunktLabel.style.visibility = "hidden";
+                    startTimeDropdown.style.visibility = "hidden";
+                    endTimeParagraph.style.visibility = "hidden";
+                } else {
+                    startTimeLabel.style.visibility = "visible";
+                    startTimeDatePicker.style.visibility = "visible";
+                    startTidspunktLabel.style.visibility = "visible";
+                    startTimeDropdown.style.visibility = "visible";
+                    endTimeParagraph.style.visibility = "visible";
+                }
+            }
+
+            // Initial check when the page loads
+            updateVisibility();
+
+            // Add an event listener to check when the dropdown value changes
+            rentperiodchooser.addEventListener("change", updateVisibility);
+        });
+
+    // TODO Updates the 'returnTimeLabel' to automaticaly be at the end of the rent-period's final day
 </script>
