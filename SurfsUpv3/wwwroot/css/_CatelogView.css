@@ -1,0 +1,104 @@
+
+/* Container padding */
+#surfboardRows {
+    margin-top: 20px;
+}
+
+/* Style each surfboard item */
+.surfboard-item {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-radius: 10px; /* Rounded corners */
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+    transition: all 0.3s ease; /* Smooth transition */
+    padding: 15px;
+    margin-bottom: 20px;
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for surfboard items */
+.surfboard-item:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-5px); /* Lift the item slightly */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Styling the image */
+.surfboard-item img {
+    margin-bottom: 10px;
+    border-radius: 8px; /* Optional: rounded corners for the image */
+}
+
+/* Responsive image size */
+.surfboard-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensures the image is centered and cropped properly */
+}
+
+/* Board name text styling */
+.surfboard-item span {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.containerVaddragt {
+    height: 100px;
+    position: relative;
+    
+}
+
+.verticalCenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.info {
+    font-family: "Arial", sans-serif;
+    font-style: italic;
+    font-size:14px;
+    color: black;
+    font-weight: 300;
+    white-space:nowrap;
+    margin-right:auto;
+    margin-left:100px;
+}
+.Wetsuit {
+    text-align: center;
+    width: 200px;
+    column-count: auto;
+    align-items: center;
+    align-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0px;
+    color:purple;
+    /*background-color:transparent !important;*/
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+    white-space: nowrap;
+    
+}
+
+.surfboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px; /* For at udligne den samlede negative margin */
+    margin-right: -5px; /* For at udligne den samlede negative margin */
+}
+
+.surfboard-item {
+    flex: 0 0 33.333%; /* 3 kolonner per r�kke */
+    padding-left: 1px; /* Juster dette for at �ndre gappet */
+    padding-right: 1px; /* Juster dette for at �ndre gappet */
+    margin-bottom: 20px; /* Juster dette for vertikalt mellemrum mellem r�kkerne */
+}
+
+
+
