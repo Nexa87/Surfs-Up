@@ -1,0 +1,27 @@
+.BookingDetails {
+    padding: 20px;
+    margin-left:30px;
+    
+}
+
+/* Fjern pile i Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Fjern pile i Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form-control{
+
+    width: 40%;
+    padding: 10px;
+    bor
+}
+.form-group{
+    align-items: center;
+}
