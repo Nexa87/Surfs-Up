@@ -26,11 +26,11 @@ namespace SurfsUpv3.Models
         public DateTime RentPeriod {  get; set; }
         public TimeOnly RentHours { get; set; }
         public DateTime RentReturn { get; set; }
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
         public int Price  { get; set; }
         
         public int SurfboardAmount { get; set; }
-        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string remarks, int price, int surfboardAmount)
+        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount)
         {
             BookingId = bookingId;
             CustomerName = customerName;
