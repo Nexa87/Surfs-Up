@@ -46,7 +46,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.OrderBy(m => m.RentPeriod))
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
