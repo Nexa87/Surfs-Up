@@ -111,9 +111,11 @@
                 </select>
 
                 <!-- Hidden, to send the calculated return date forward when we submit our form & proceed to BookingConfirmation -->
-                <label>Date 2</label>
-                <input type="datetime.local" asp-for="RentReturn" id="endDateThingy" />
+                <label>Dato for Tilbagelevering</label>
+                <input type="datetime.local" asp-for="RentReturn" id="endDateThingy" style="display: none;" />
+                <div id="formattedDateTime"></div>
 
+                <!-- A hidden field which gets its datetime updated via eventlisteners (this is what is actually forward to Booking's RentPeriod') -->
                 <input type="hidden" asp-for="RentPeriod" id="hiddenRentPeriod" />
 
             </div>
