@@ -1,4 +1,4 @@
-A project by Louise, Mohr, Özdi, Prime + the artist formerly known as ... Tim.
+A project by Louise, Mohr, Özdi, Asquer, Prime + the artist formerly known as ... Tim.
 
 <h1>Site Versions</h1>
 
