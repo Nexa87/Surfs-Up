@@ -44,7 +44,7 @@
     font-style: italic;
     font-size: small;
     white-space: nowrap;
-    align-items: center;
+    
 }
 
 .nav-item a:hover{
@@ -75,6 +75,41 @@
 .navbar .login-partial {
     
     color: white;
-    justify-content: flex-end;
+    justify-content:center;
+    align-content:center;
     
+}
+@media (min-width: 576px) {
+    .navbar-expand-sm .navbar-nav {
+        flex-direction: row !important;
+        justify-content: center; /* Brug justify-content her, hvis du vil centrere */
+        align-items: center !important; /* Overskriver Bootstrap-styling */
+        margin-right:20px;
+    }
+}
+.nav-item form {
+    background-color: #2adbde;
+    color: white !important;
+    border: none;
+    outline: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-style: italic;
+    font-size: small;
+    white-space: nowrap;
+    height:36px;
+    width:fit-content;
+    justify-content:center;
+    align-items:center;
+}
+.nav-item button {
+    color: white !important;
+    font-style: italic;
+    align-items: left;
+    justify-content: left;
+    width: fit-content;
+    text-align: center;
+    font-size: small;
+    text-decoration: none;
 }
