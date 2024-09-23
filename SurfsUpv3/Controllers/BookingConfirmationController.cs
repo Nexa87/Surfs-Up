@@ -6,8 +6,8 @@ namespace SurfsUpv3.Controllers
 {
     public class BookingConfirmationController : Controller
     {
-        private readonly BookingDetails _context;
-        public BookingConfirmationController(BookingDetails context)
+        private readonly SurfsUpv3Context _context;
+        public BookingConfirmationController(SurfsUpv3Context context)
         {
             _context = context;
         }

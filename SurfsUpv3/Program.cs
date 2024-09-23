@@ -18,22 +18,21 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-//Indsætter surfboards i databasen
-
+// Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//Indsætter Bookings i databasen
-builder.Services.AddDbContext<BookingDetails>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
 
-//    SurfboardDataSeed.Initialize(services);
-//}
+// NOTE Keep in mind this will run everytime the app is run - this might be unintentional
+// Seed to manually add things into the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SurfboardDataSeed.Initialize(services);
+}
 
 
 
