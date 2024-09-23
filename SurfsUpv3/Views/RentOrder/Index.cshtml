@@ -2,7 +2,7 @@
 @model Booking
 
 
-<div class="container">
+<div class="BookingDetails">
     <h3>Booking Oversigt</h3>
     
     <br/>
@@ -41,7 +41,7 @@
         <!-- Phone -->
         <div class="form-group">
             <label asp-for="CustomerPhone">Telefonnummer</label>
-            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderEmail" placeholder="Indtast TLF/Mobil" />
+            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderPhone" placeholder="Indtast TLF/Mobil" />
             <div class="col">
                 <span  class="text-danger" asp-validation-for="CustomerPhone"></span>
             </div>
@@ -128,6 +128,8 @@
             <label asp-for="Remarks">Bemærkninger</label>
             <textarea asp-for="Remarks" class="form-control" rows="3"></textarea>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Færdiggør Booking</button>

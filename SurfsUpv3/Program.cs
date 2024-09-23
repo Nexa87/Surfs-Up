@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SurfsUpv3.Data;
+using SurfsUpv3.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -14,7 +18,24 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//Indsætter surfboards i databasen
+
+builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Indsætter Bookings i databasen
+builder.Services.AddDbContext<BookingDetails>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 var app = builder.Build();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+
+//    SurfboardDataSeed.Initialize(services);
+//}
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

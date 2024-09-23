@@ -30,6 +30,11 @@
             Price = price;
             Equipment = equipment;
         }
+        public Surfboard()
+        {
+        }
+
 
     }
+    
 }

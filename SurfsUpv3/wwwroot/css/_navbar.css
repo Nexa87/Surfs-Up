@@ -5,9 +5,10 @@
     align-items: center;
     gap: 20px;
     font-size: 38px;
-    color: #2adbde;
+    color:#2adbde;
     visibility: visible;
     background-color: white;
+    margin-right: 100px;
 }
 
 .nav-item .logo{
@@ -17,9 +18,7 @@
 /*  Removes bulletpoints on the li items */
 .nav-item {
     list-style: none;
-    white-space: nowrap;
-    
-    
+    white-space: nowrap;    
 }
 .nav-item :last-child{
     margin-right: 10px;
@@ -31,13 +30,12 @@
     
 }
 
-
 .nav-item a {
     text-decoration: none;
-    color:white;
+    color:white !important;  /*bestemmer farven i teksten for buttons til venstre for søg*/
     margin-right: 2rem;
     font-size: 1rem;
-    background-color: #2adbde;
+    background-color: #2adbde; /* bestemmer farven på knapperne i navbar*/
     border: none;
     outline: none;
     border-radius: 0.2rem;
@@ -47,22 +45,6 @@
     font-size: small;
     white-space: nowrap;
     align-items: center;
-}
-
-.nav-link {
-    text-decoration: none;
-    color:white;
-    margin-right: 2rem;
-    font-size: 1rem;
-    background-color: #2adbde;
-    border: none;
-    outline: none;
-    border-radius: 0.2rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-style: italic;
-    font-size: small;
-    white-space: nowrap;
 }
 
 .nav-item a:hover{
@@ -81,7 +63,18 @@
     border-color: #2adbde;
     border-width:1px;
     text-align: left;
+    margin-right: 50px;
+    margin-left: 80px;
 }
 .nav-list_img-text{
     font-family: "Matemasie", sans-serif;
+}
+
+
+/* site.css eller navbar.css */
+.navbar .login-partial {
+    
+    color: white;
+    justify-content: flex-end;
+    
 }
