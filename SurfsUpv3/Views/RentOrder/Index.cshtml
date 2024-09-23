@@ -4,8 +4,8 @@
 
 <div class="container">
     <h3>Booking Oversigt</h3>
-    
-    <br/>
+
+    <br />
 
     <p>Du har valgt at leje : @Model.SelectedSurfboard</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p>
@@ -15,7 +15,7 @@
         <!-- Name -->
         <div class="form-group">
             <label asp-for="CustomerName">Fuldt Navn</label>
-            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn"/>
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn" />
         </div>
 
         <!-- E-mail -->
@@ -71,7 +71,7 @@
 
                 <!-- Start time chooser dropdown -->
                 <label id="startTidspunktLabel">@* Start Tidspunkt *@</label>
-                <select class="form-control" id="startTimeDropdown" style="max-width: 150px;">
+                <select class="form-control" id="startTimeDropdown" style="max-width: 150px;" asp-for="RentPeriod.TimeOfDay">
                     <option value="08:00">08:00</option>
                     <option value="08:30">08:30</option>
                     <option value="09:00">09:00</option>
@@ -102,10 +102,8 @@
         <div class="form-group">
             <p id="endTimeParagraph">SLUT TID</p>
         </div>
-        
+
         <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
-
-
         <!-- Remarks -->
         <div class="form-group">
             <label asp-for="Remarks">Bemærkninger</label>
@@ -128,10 +126,10 @@
     // When the page has loaded, we want to set our datepicker's default dates
     document.addEventListener("DOMContentLoaded", function () {
         var datePicker = document.getElementById("startTimeDatePicker");
-            
+
         // Get today's date
         var today = new Date();
-            
+
         // Format the date to YYYY-MM-DD (required format for input[type="date"])
         var day = String(today.getDate()).padStart(2, '0');
         var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
@@ -143,40 +141,75 @@
 
     // EventListener functionality which ties display of Start DatePicker to rentperiodchooser's current selection
     document.addEventListener("DOMContentLoaded", function () {
-            // The elements on the page we need to do something to or get something from
-            var rentperiodchooser = document.getElementById("rentperiodchooser");
+        // The elements on the page we need to do something to or get something from
+        var rentperiodchooser = document.getElementById("rentperiodchooser");
 
-            var startTimeLabel = document.getElementById("startTimeLabel");
-            var startTimeDatePicker = document.getElementById("startTimeDatePicker");
+        var startTimeLabel = document.getElementById("startTimeLabel");
+        var startTimeDatePicker = document.getElementById("startTimeDatePicker");
 
-            var startTidspunktLabel = document.getElementById("startTidspunktLabel");
-            var startTimeDropdown = document.getElementById("startTimeDropdown");
+        var startTidspunktLabel = document.getElementById("startTidspunktLabel");
+        var startTimeDropdown = document.getElementById("startTimeDropdown");
 
-            var endTimeParagraph = document.getElementById("endTimeParagraph");
+        var endTimeParagraph = document.getElementById("endTimeParagraph");
 
-            // Function to update visibility based on dropdown value
-            function updateVisibility() {
-                if (rentperiodchooser.value == 0) {
-                    startTimeLabel.style.visibility = "hidden";
-                    startTimeDatePicker.style.visibility = "hidden";
-                    startTidspunktLabel.style.visibility = "hidden";
-                    startTimeDropdown.style.visibility = "hidden";
-                    endTimeParagraph.style.visibility = "hidden";
-                } else {
-                    startTimeLabel.style.visibility = "visible";
-                    startTimeDatePicker.style.visibility = "visible";
-                    startTidspunktLabel.style.visibility = "visible";
-                    startTimeDropdown.style.visibility = "visible";
-                    endTimeParagraph.style.visibility = "visible";
-                }
+        // Function to update visibility based on dropdown value
+        function updateVisibility() {
+            if (rentperiodchooser.value == 0) {
+                startTimeLabel.style.visibility = "hidden";
+                startTimeDatePicker.style.visibility = "hidden";
+                startTidspunktLabel.style.visibility = "hidden";
+                startTimeDropdown.style.visibility = "hidden";
+                endTimeParagraph.style.visibility = "hidden";
+            } else {
+                startTimeLabel.style.visibility = "visible";
+                startTimeDatePicker.style.visibility = "visible";
+                startTidspunktLabel.style.visibility = "visible";
+                startTimeDropdown.style.visibility = "visible";
+                endTimeParagraph.style.visibility = "visible";
             }
+        }
 
-            // Initial check when the page loads
-            updateVisibility();
+        // Initial check when the page loads
+        updateVisibility();
 
-            // Add an event listener to check when the dropdown value changes
-            rentperiodchooser.addEventListener("change", updateVisibility);
-        });
+        // Add an event listener to check when the dropdown value changes
+        rentperiodchooser.addEventListener("change", updateVisibility);
+    });
 
-    // TODO Updates the 'returnTimeLabel' to automaticaly be at the end of the rent-period's final day
+    // We add an event listener, so when the datepicker is changed, we update the date-portion in our Booking model
+    document.addEventListener("DOMContentLoaded", function () {
+        // Grab the date from the datepicker
+        var datePicker = document.getElementById("startTimeDatePicker");
+        var dateTimePicker = document.getElementById("startTimeDropdown");
+        
+        // Parse these two elements into appropriate 'portions'
+        var formattedDate = datePicker.value;
+        var formattedTime = dateTimePicker.value;
+
+        // Edit the RentPeriod in our Booking model
+
+    });
+
+
+
+    // When the page has loaded, we want to set our datepicker's default dates
+    document.addEventListener("DOMContentLoaded", function () {
+        var datePicker = document.getElementById("startTimeDatePicker");
+
+        // Get today's date
+        var today = new Date();
+
+        // Format the date to YYYY-MM-DD (required format for input[type="date"])
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        var year = today.getFullYear();
+
+        // Set the value of the date picker to today's date
+        datePicker.value = ${ year } -${ month } -${ day };
+    });
+    document.addEventListener("DOMContentLoaded", function ()) {
+        var datePicker = document.getElementById("pickedTimeDatePicker");
+
+    });
+
 </script>

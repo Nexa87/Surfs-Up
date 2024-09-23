@@ -7,11 +7,11 @@
         public string CustomerEmail { get; set; }
         public string CustomerPhone { get; set; }
         public string SelectedSurfboard { get; set; }
-        public DateTime RentPeriod {  get; set; }
-        public TimeOnly RentHours { get; set; }
-        public DateTime RentReturn { get; set; }
-        public string Remarks { get; set; }
-        public int Price  { get; set; }
+        public DateTime RentPeriod {  get; set; } //Perioden man lejer i, indeholder den valgte dato
+        public TimeOnly RentHours { get; set; } //lejetiden
+        public DateTime RentReturn { get; set; } //Hvornår den afleveres. RentPeriod + RentHours
+        public string Remarks { get; set; } //kommentar
+        public int Price  { get; set; } //Lejeprisen (Købspris fra repo bruges)
         public string SelectedPrice {  get; set; }
         public int SurfboardAmount { get; set; }
         public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string remarks, int price, string selectedPrice, int surfboardAmount )
