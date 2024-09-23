@@ -1,17 +1,54 @@
-﻿.logo {
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+.logo {
     display: flex;
     text-align: center;
     align-items: center;
     gap: 20px;
     font-size: 38px;
-    color: #2adbde;
+    color:#2adbde;
     visibility: visible;
+    background-color: white;
+    margin-right: 100px;
+}
+
+.nav-item .logo{
+    color: white;
 }
 
 /*  Removes bulletpoints on the li items */
 .nav-item {
     list-style: none;
+    white-space: nowrap;    
+}
+.nav-item :last-child{
+    margin-right: 10px;
+    
+}
+.nav-item :nth-child(1){
+    margin-right: auto;
+    margin-left: 2rem;
+    
+}
+
+.nav-item a {
+    text-decoration: none;
+    color:white !important;  /*bestemmer farven i teksten for buttons til venstre for søg*/
+    margin-right: 2rem;
+    font-size: 1rem;
+    background-color: #2adbde; /* bestemmer farven på knapperne i navbar*/
+    border: none;
+    outline: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-style: italic;
+    font-size: small;
     white-space: nowrap;
+    align-items: center;
+}
+
+.nav-item a:hover{
+    color: #fff;
 }
 
 /* Navbar img design */
@@ -19,4 +56,25 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+}
+.nav-item input[type=text]{
+    padding:5px;
+    border-radius: 30px;
+    border-color: #2adbde;
+    border-width:1px;
+    text-align: left;
+    margin-right: 50px;
+    margin-left: 80px;
+}
+.nav-list_img-text{
+    font-family: "Matemasie", sans-serif;
+}
+
+
+/* site.css eller navbar.css */
+.navbar .login-partial {
+    
+    color: white;
+    justify-content: flex-end;
+    
 }

@@ -10,7 +10,7 @@
         public float Volume { get; set; }
 
         public int Price { get; set; } // måske vi skal vælge en anden vartype
-        public string Equipment { get; set; } // E.g. "Fin, Paddle, Pump, Leash"
+        public string Equipment { get; set; } // E.g "Fin, Paddle, Pump, Leash"
 
         // public BoardType boardType { get; set; }
         // public enum BoardType
@@ -30,6 +30,11 @@
             Price = price;
             Equipment = equipment;
         }
+        public Surfboard()
+        {
+        }
+
 
     }
+    
 }

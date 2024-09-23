@@ -2,7 +2,7 @@
 @model Booking
 
 
-<div class="container">
+<div class="BookingDetails">
     <h3>Booking Oversigt</h3>
 
     <br />
@@ -10,24 +10,41 @@
     <p>Du har valgt at leje : @Model.SelectedSurfboard</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p>
 
-    <form method="post" asp-controller="BookingConfirmation" asp-action="Index">
+
+    <form method="post" asp-controller="BookingConfirmation" asp-action="ValidationTest">
+
+        <div class="text-danger" asp-validation-summary="None"></div> <!-- If we use asp-validation-summary="All", ALL our error messages are summarized here -->
+
+        <!-- We need this so we don't lose the SelectedSurfboard if we come back here due to mistakenly not having filled all fields -->
+        <input type="hidden" asp-for="SelectedSurfboard" />
 
         <!-- Name -->
         <div class="form-group">
             <label asp-for="CustomerName">Fuldt Navn</label>
-            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn" />
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn"/>
+
+            <!-- This is an additional error indicator, that'll show "This X field is required" -->
+            <div class="col">
+                <span  class="text-danger" asp-validation-for="CustomerName"></span>
+            </div>
         </div>
 
         <!-- E-mail -->
         <div class="form-group">
             <label asp-for="CustomerEmail">Email Adresse</label>
             <input type="email" asp-for="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="Indtast Email" />
+            <div class="col">
+                <span  class="text-danger" asp-validation-for="CustomerEmail"></span>
+            </div>
         </div>
 
         <!-- Phone -->
         <div class="form-group">
             <label asp-for="CustomerPhone">Telefonnummer</label>
-            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderEmail" placeholder="Indtast TLF/Mobil" />
+            <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderPhone" placeholder="Indtast TLF/Mobil" />
+            <div class="col">
+                <span  class="text-danger" asp-validation-for="CustomerPhone"></span>
+            </div>
         </div>
 
         <br />
@@ -109,6 +126,8 @@
             <label asp-for="Remarks">Bemærkninger</label>
             <textarea asp-for="Remarks" class="form-control" rows="3"></textarea>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Færdiggør Booking</button>
