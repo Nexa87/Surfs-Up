@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurfsUpv3.Data;
 
 #nullable disable
 
-namespace SurfsUpv3.Migrations.BookingDetailsMigrations
+namespace SurfsUpv3.Migrations
 {
-    [DbContext(typeof(BookingDetails))]
-    [Migration("20240922192624_InitialCreat1e")]
-    partial class InitialCreat1e
+    [DbContext(typeof(SurfsUpv3Context))]
+    partial class SurfsUpv3ContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,6 +68,42 @@ namespace SurfsUpv3.Migrations.BookingDetailsMigrations
                     b.HasKey("BookingId");
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("SurfsUpv3.Models.Surfboard", b =>
+                {
+                    b.Property<int>("SurfboardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SurfboardId"));
+
+                    b.Property<string>("BoardName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Equipment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Length")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Thickness")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Volume")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Width")
+                        .HasColumnType("real");
+
+                    b.HasKey("SurfboardId");
+
+                    b.ToTable("Surfboards");
                 });
 #pragma warning restore 612, 618
         }

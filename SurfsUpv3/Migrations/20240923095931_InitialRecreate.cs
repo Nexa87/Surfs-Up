@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SurfsUpv3.Migrations.BookingDetailsMigrations
+namespace SurfsUpv3.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreat1e : Migration
+    public partial class InitialRecreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,25 @@ namespace SurfsUpv3.Migrations.BookingDetailsMigrations
                 {
                     table.PrimaryKey("PK_Bookings", x => x.BookingId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Surfboards",
+                columns: table => new
+                {
+                    SurfboardId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BoardName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Length = table.Column<float>(type: "real", nullable: false),
+                    Width = table.Column<float>(type: "real", nullable: false),
+                    Thickness = table.Column<float>(type: "real", nullable: false),
+                    Volume = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Equipment = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Surfboards", x => x.SurfboardId);
+                });
         }
 
         /// <inheritdoc />
@@ -39,6 +58,9 @@ namespace SurfsUpv3.Migrations.BookingDetailsMigrations
         {
             migrationBuilder.DropTable(
                 name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Surfboards");
         }
     }
 }
