@@ -14,10 +14,10 @@
         <li><strong>Udstyr:</strong> @Model.SurfboardAmount stk. @Model.SelectedSurfboard</li>
         <li>
             <strong>Dato:</strong> @Model.RentPeriod.ToString("dd/MM/yyyy")
-            @if (Model.RentPeriod.Date != Model.RentReturn.Date)
+            @* @if (Model.RentPeriod.Date != Model.RentReturn.Date)
             {
                 <span>- @Model.RentReturn.ToString("dd/MM/yyyy")</span>
-            }
+            } *@
         </li>
         <li><strong>Afhentning:</strong> kl. @Model.RentPeriod.ToShortTimeString()</li>
         <li><strong>Aflevering:</strong> kl. @Model.RentReturn.ToShortTimeString()</li>
