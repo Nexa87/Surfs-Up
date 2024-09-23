@@ -110,6 +110,10 @@
                     <option value="17:00">17:00</option>
                 </select>
 
+                <!-- Hidden  -->
+                <label>Date 2</label>
+                <input type="date" id="endDateThingy" />
+
             </div>
 
             <br />
@@ -195,5 +199,125 @@
             rentperiodchooser.addEventListener("change", updateVisibility);
         });
 
-    // TODO Updates the 'returnTimeLabel' to automaticaly be at the end of the rent-period's final day
+    // Function which runs when the entire document has loaded, to add eventlistener to the first datepicker
+    document.addEventListener("DOMContentLoaded", function () {
+        var datePicker = document.getElementById("startDate");
+
+        // Add an event listener that listens for changes to the date input field
+        datePicker.addEventListener("input", function () {
+            calculateDate(); // Call the calculateDate function when the date is changed
+        });
+    });
+
+    // Function to update the second date picker
+    function calculateDate() {
+        // Get the input values
+        const startDateInput = document.getElementById("startDate").value;
+        const hoursAhead = parseInt(document.getElementById("hoursAhead").value);
+
+        // Check if both inputs are valid
+        if (!startDateInput || isNaN(hoursAhead)) {
+            alert("Please enter both a valid start date and number of hours ahead.");
+            return;
+        }
+
+        // Convert the start date to a JavaScript Date object
+        const startDate = new Date(startDateInput);
+
+        // Add the hours to the start date (hours * 60 minutes * 60 seconds * 1000 milliseconds)
+        const futureDate = new Date(startDate.getTime() + (hoursAhead * 60 * 60 * 1000));
+
+        // Format the future date in 'YYYY-MM-DD' format
+        const formattedDate = futureDate.toISOString().split('T')[0];
+
+        // Set the value of the future date input
+        document.getElementById("endDateThingy").value = formattedDate;
+    }
+
+    
+    function setDateToToday() {
+        // Get the current date
+        var today = new Date();
+
+        // Format the date to 'YYYY-MM-DD'
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // getMonth() returns 0-11, so we add 1
+        var day = String(today.getDate()).padStart(2, '0');
+
+        // Combine year, month, and day into the format required by input type="date"
+        var formattedDate = year + '-' + month + '-' + day;
+
+        // Set the value of the date picker (input type="date")
+        document.getElementById("startDate").value = formattedDate;
+    }
+
+    // Function which takes an element id and tries to set its date to today's date (e.g. aimed at a input-element of type="date")
+    function setDateToTodayOnLoad(elementId) {
+        // Get the current date
+        var today = new Date();
+
+        // Format the date to 'YYYY-MM-DD'
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // getMonth() returns 0-11, so add 1
+        var day = String(today.getDate()).padStart(2, '0');
+
+        // Combine year, month, and day into the format required by input type="date"
+        var formattedDate = year + '-' + month + '-' + day;
+
+        // Get the date input element by its ID
+        var dateInputElement = document.getElementById(elementId);
+
+        // Set the value of the date picker (input type="date") if the element exists
+        if (dateInputElement) {
+            dateInputElement.value = formattedDate;
+        }
+    }
+
+    // Automatically call the function when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        setDateToTodayOnLoad("startDate"); // Update the startdatepicker
+        setDateToTodayOnLoad("endDateThingy"); // Update the intended-hidden enddatepicker
+    });
+
+    // Sets the end date picker to X time ahead of the start date picker (i.e. this is for the 'return date' calculation)
+    function setDateAhead(sourceId, targetId, days, hours, minutes) {
+        // Get the source date input element by ID
+        var sourceDateInput = document.getElementById(sourceId);
+        var targetDateInput = document.getElementById(targetId);
+
+        // Check if both elements exist
+        if (sourceDateInput && targetDateInput) {
+            // Get the value from the source date input
+            var sourceDate = new Date(sourceDateInput.value);
+
+            // Check if the source date is valid
+            if (!isNaN(sourceDate.getTime())) {
+                // Calculate the new date
+                sourceDate.setDate(sourceDate.getDate() + days); // Add days
+                sourceDate.setHours(sourceDate.getHours() + hours); // Add hours
+                sourceDate.setMinutes(sourceDate.getMinutes() + minutes); // Add minutes
+
+                // Format the date to 'YYYY-MM-DD' for the target input
+                var year = sourceDate.getFullYear();
+                var month = String(sourceDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                var day = String(sourceDate.getDate()).padStart(2, '0');
+
+                // Set the value of the target date input
+                targetDateInput.value = `${year}-${month}-${day}`;
+            } else {
+                console.error("Invalid source date.");
+            }
+        } else {
+            console.error("Source or target date input not found.");
+        }
+    }
+
+    // Example usage when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the chosen rent period times
+
+
+        // 
+        setDateAhead("startDate", "endDateThingy", 3, 5, 30); // Sets target to 3 days, 5 hours, and 30 minutes ahead
+    });
 </script>
