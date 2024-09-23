@@ -12,11 +12,11 @@ namespace SurfsUpv3.Models
                 DbContextOptions<SurfsUpv3Context>>()))
             {
                 // Look for any surfboard.
-                if (context.Surfboard.Any())
+                if (context.Surfboards.Any())
                 {
                     return;   // DB has been seeded
                 }
-                context.Surfboard.AddRange(
+                context.Surfboards.AddRange(
             new Surfboard { BoardName = "The Minilog", Length = 6, Width = 21, Thickness = 2.75f, Volume = 38.8f, /*Surfboard.BoardType.Shortboard,*/ Price = 565, Equipment = "" },
             new Surfboard { BoardName = "The Wide Glider", Length = 7.1f, Width = 21.75f, Thickness = 2.75f, Volume = 44.16f, /*Surfboard.BoardType.Funboard,*/ Price = 685, Equipment = "" },
             new Surfboard { BoardName = "The Golden Ratio", Length = 6.3f, Width = 21.85f, Thickness = 2.9f, Volume = 43.22f, /*Surfboard.BoardType.Funboard,*/  Price = 695, Equipment = "" },

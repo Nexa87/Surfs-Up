@@ -22,7 +22,7 @@ namespace SurfsUpv3.Controllers
         // GET: Surfboards
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Surfboard.ToListAsync());
+            return View(await _context.Surfboards.ToListAsync());
         }
 
         // GET: Surfboards/Details/5
@@ -33,7 +33,7 @@ namespace SurfsUpv3.Controllers
                 return NotFound();
             }
 
-            var surfboard = await _context.Surfboard
+            var surfboard = await _context.Surfboards
                 .FirstOrDefaultAsync(m => m.SurfboardId == id);
             if (surfboard == null)
             {
@@ -73,7 +73,7 @@ namespace SurfsUpv3.Controllers
                 return NotFound();
             }
 
-            var surfboard = await _context.Surfboard.FindAsync(id);
+            var surfboard = await _context.Surfboards.FindAsync(id);
             if (surfboard == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace SurfsUpv3.Controllers
                 return NotFound();
             }
 
-            var surfboard = await _context.Surfboard
+            var surfboard = await _context.Surfboards
                 .FirstOrDefaultAsync(m => m.SurfboardId == id);
             if (surfboard == null)
             {
@@ -139,10 +139,10 @@ namespace SurfsUpv3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var surfboard = await _context.Surfboard.FindAsync(id);
+            var surfboard = await _context.Surfboards.FindAsync(id);
             if (surfboard != null)
             {
-                _context.Surfboard.Remove(surfboard);
+                _context.Surfboards.Remove(surfboard);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace SurfsUpv3.Controllers
 
         private bool SurfboardExists(int id)
         {
-            return _context.Surfboard.Any(e => e.SurfboardId == id);
+            return _context.Surfboards.Any(e => e.SurfboardId == id);
         }
     }
 }

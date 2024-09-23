@@ -14,6 +14,6 @@ namespace SurfsUpv3.Data
         {
         }
 
-        public DbSet<SurfsUpv3.Models.Surfboard> Surfboard { get; set; } = default!;
+        public DbSet<Surfboard> Surfboards { get; set; } = default!;
     }
 }

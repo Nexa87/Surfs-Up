@@ -15,7 +15,7 @@ namespace SurfsUpWebApp.Controllers
         }
         public IActionResult Index()
         {
-            var surfboard = _context.Surfboard.ToList();
+            var surfboard = _context.Surfboards.ToList();
                 return View(surfboard);
         }
     }

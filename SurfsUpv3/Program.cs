@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SurfsUpv3Context") ?? throw new InvalidOperationException("Connection string 'SurfsUpv3Context' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -28,12 +28,12 @@ builder.Services.AddDbContext<BookingDetails>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
 
-    SurfboardDataSeed.Initialize(services);
-}
+//    SurfboardDataSeed.Initialize(services);
+//}
 
 
 

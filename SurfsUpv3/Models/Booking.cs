@@ -30,7 +30,8 @@ namespace SurfsUpv3.Models
         public int Price  { get; set; }
         
         public int SurfboardAmount { get; set; }
-        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount)
+        public DateTime BookingTime { get; set; }
+        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount, DateTime bookingTime)
         {
             BookingId = bookingId;
             CustomerName = customerName;
@@ -43,6 +44,7 @@ namespace SurfsUpv3.Models
             Remarks = remarks;
             Price = price;
             SurfboardAmount = surfboardAmount;
+            BookingTime = bookingTime;
         }
         public Booking(string selectedSurfboard)
         {
