@@ -1,3 +1,6 @@
+<h1>Surf's Up</h1>
+<h2>UCL 3. Semester Project</h2>
+
 A project by Asquer, Louise, Saedis, Team Capitañ Mohrphöws, Özdi, Prime + the artist formerly known as ... Tim.
 
 <h1>Site Versions</h1>
