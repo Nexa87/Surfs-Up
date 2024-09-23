@@ -141,6 +141,10 @@
 </div>
 
 <script>
+    // - What we want
+    // - Set datepicker to today's date
+    // - Addlistener for end-datepicker updates to specific_returndate, based on startDate & rentPeriod chosen
+
     // Simply here for testing, whether linked scripts work
     function TestFunction() {
         document.write("Nothing (Test)");
@@ -233,8 +237,8 @@
         // Set the value of the future date input
         document.getElementById("endDateThingy").value = formattedDate;
     }
-
     
+    // Sets a given input type=date element to today's date (via getElementById)
     function setDateToToday() {
         // Get the current date
         var today = new Date();
