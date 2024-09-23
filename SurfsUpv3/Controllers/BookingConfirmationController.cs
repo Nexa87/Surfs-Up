@@ -76,7 +76,7 @@ namespace SurfsUpv3.Controllers
                     RentPeriod = model.RentPeriod,
                     SurfboardAmount = model.SurfboardAmount,
                     Price = model.Price,
-                    BookingTime = model.BookingTime,
+                    //BookingTime = model.BookingTime,
 
                 };
                 _context.Bookings.Add(bookingdetails);

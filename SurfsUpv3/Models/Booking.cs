@@ -26,11 +26,11 @@ namespace SurfsUpv3.Models
         public DateTime RentPeriod {  get; set; } //Perioden man lejer i, indeholder den valgte dato
         public TimeOnly RentHours { get; set; } //lejetiden
         public DateTime RentReturn { get; set; } //Hvornår den afleveres. RentPeriod + RentHours
-        public string Remarks { get; set; } //kommentar
+        public string? Remarks { get; set; } //kommentar
         public int Price  { get; set; } //Lejeprisen (Købspris fra repo bruges)
         public int SurfboardAmount { get; set; }
-        public DateTime BookingTime { get; set; }
-        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount, DateTime bookingTime)
+        //public DateTime BookingTime { get; set; }
+        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount)
         {
             BookingId = bookingId;
             CustomerName = customerName;
@@ -43,7 +43,7 @@ namespace SurfsUpv3.Models
             Remarks = remarks;
             Price = price;
             SurfboardAmount = surfboardAmount;
-            BookingTime = bookingTime;
+            //BookingTime = bookingTime;
         }
         public Booking(string selectedSurfboard)
         {
