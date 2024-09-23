@@ -12,9 +12,9 @@ namespace SurfsUpv3.Controllers
 {
     public class AdminsController : Controller
     {
-        private readonly BookingDetails _context;
+        private readonly SurfsUpv3Context _context;
 
-        public AdminsController(BookingDetails context)
+        public AdminsController(SurfsUpv3Context context)
         {
             _context = context;
         }
