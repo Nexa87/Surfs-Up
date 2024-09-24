@@ -5,7 +5,13 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+        @if (@User.Identity?.Name == "asger@barming.dk")
+        {
+            <li class="nav-item">
+                <a href="Admins/Index" class="nav-´link" page="/Admins/Index" title="Bookings">Se bookninger</a>
+            </li>
+        }
+        <li class="nav-item">
         <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
     <li class="nav-item">

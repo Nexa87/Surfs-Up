@@ -1,7 +1,8 @@
 ﻿@using SurfsUpv3.Models
-@model SurfboardRepository
+@model IEnumerable<Surfboard>
 
-<link rel="stylesheet" href="~/css/_CatelogView.css" />
+
+
 
 <div class="info">
     Er du klar til at fange bølgerne og opleve havets frihed? <br /><br />
@@ -17,21 +18,30 @@
 </div>
 <br />
 
-<div class="container">
-    <h3>Surfboards</h3>
-    <br />
-    <div class="row" id="surfboardRows">
-        @foreach (var surfboard in Model.Surfboards)
-        {
-            <div class="col-md-4">
-                <a class="btn btn-primary surfboard-item d-block text-center py-2" asp-controller="rentorder" asp-action="index" asp-route-passedSurfboard="@surfboard.BoardName">
-                    <img src="@Url.Content("~/images/blueTestTransp.png")" width="150" height="150" alt="Surfboard Image" class="img-fluid" />
-                    <span>@surfboard.BoardName</span>
-                </a>
-            </div>
-        }
+<div class="main-container">
+    <!-- Surfboards section -->
+    <div class="product-list">
+        <h3>Surfboards</h3>
+        <div class="product-container">
+            @foreach (var surfboard in Model)
+            {
+                <div class="product-surfboard">
+                    <a class="btn btn-primary surfboard-item d-block text-center py-2" asp-controller="rentorder" asp-action="index" asp-route-passedSurfboard="@surfboard.BoardName">
+                        <img src="@Url.Content("~/images/blueTestTransp.png")" alt="Surfboard Image" class="img-fluid" />
+                        <span>@surfboard.BoardName</span>
+                    </a>
+                </div>
+            }
+        </div>     
+    </div>
+
+    <!-- Shopping cart section -->
+    <div class="shopping-cart">
+        <h3>Kurv</h3>
+        <!-- Indkøbskurv indhold -->
     </div>
 </div>
+
     
 <br />
 
