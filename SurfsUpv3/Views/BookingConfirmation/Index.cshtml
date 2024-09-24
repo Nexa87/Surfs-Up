@@ -13,13 +13,15 @@
         <li><strong>Telefonnummer:</strong> @Model.CustomerPhone</li>
         <li><strong>Udstyr:</strong> @Model.SurfboardAmount stk. @Model.SelectedSurfboard</li>
         <li>
-            <strong>Dato:</strong> @Model.RentPeriod.ToString("dd/MM/yyyy")
+
+            <strong>Dato:</strong> @Model.RentPeriod.Date.ToString("dd/MM/yyyy")
+
             @* @if (Model.RentPeriod.Date != Model.RentReturn.Date)
             {
                 <span>- @Model.RentReturn.ToString("dd/MM/yyyy")</span>
             } *@
         </li>
-        <li><strong>Afhentning:</strong> kl. @Model.RentPeriod.ToShortTimeString()</li>
+        <li><strong>Afhentning:</strong> kl. @Model.RentPeriod.TimeOfDay</li>
         <li><strong>Aflevering:</strong> kl. @Model.RentReturn.ToShortTimeString()</li>
         <li><strong>Bemærkninger:</strong> @Model.Remarks</li>
         <li><strong>Samlet pris:</strong> @Model.Price</li>

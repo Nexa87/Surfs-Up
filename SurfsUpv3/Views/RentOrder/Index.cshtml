@@ -83,12 +83,15 @@
 
             <div class="form-group">
                 <!-- Seems we can access parts of a Date-property from our model, neat O: -->
-                <label class="control-label" asp-for="RentPeriod" id="startTimeLabel">Dato for Udlejning</label>
-                <input class="form-control" asp-for="RentPeriod" id="startTimeDatePicker" placeholder="MM/DD/YYYY" type="date" style="max-width: 200px" />
+
+                <label class="control-label" @* asp-for="RentPeriod.Date" *@ id="startTimeLabel">Dato for Udlejning</label>
+                <input class="form-control" @* asp-for="RentPeriod.Date" *@ id="startTimeDatePicker" placeholder="MM/DD/YYYY" type="date" style="max-width: 200px" />
 
                 <!-- Start time chooser dropdown -->
                 <label id="startTidspunktLabel">@* Start Tidspunkt *@</label>
-                <select class="form-control" id="startTimeDropdown" style="max-width: 150px;" asp-for="RentPeriod.TimeOfDay">
+                <select class="form-control" @* asp-for="RentPeriod.TimeOfDay" *@ id="startTimeDropdown" style="max-width: 150px;">
+
+               
                     <option value="08:00">08:00</option>
                     <option value="08:30">08:30</option>
                     <option value="09:00">09:00</option>
@@ -110,12 +113,21 @@
                     <option value="17:00">17:00</option>
                 </select>
 
+                <!-- Hidden, to send the calculated return date forward when we submit our form & proceed to BookingConfirmation -->
+                <label>Dato for Tilbagelevering</label>
+                <input type="datetime.local" asp-for="RentReturn" id="endDateThingy" style="display: none;" />
+                <div id="formattedDateTime"></div>
+
+                <!-- A hidden field which gets its datetime updated via eventlisteners (this is what is actually forward to Booking's RentPeriod') -->
+                <input type="hidden" asp-for="RentPeriod" id="hiddenRentPeriod" />
+
             </div>
 
             <br />
 
         </div>
 
+        <!-- The debug helper label, for testing if correct time is calculated by the javascript function 'addHoursToDate' -->
         <div class="form-group">
             <p id="endTimeParagraph">SLUT TID</p>
         </div>
@@ -138,27 +150,14 @@
 
 <script>
     // Simply here for testing, whether linked scripts work
+    // Also a quick easy thing to test with ; recommend keeping it, so we don't have to rewrite anything in the future
     function TestFunction() {
         document.write("Nothing (Test)");
     }
+    // ^ Note: Javascritp has 'ASI' (Automatic Semicolon Insertion, yes it's actually a thing), which automatically adds semicolons where needed
+    // A function needs them in specific cases, but it's generally best practice to include them, to avoid unexpected errors
 
-    // When the page has loaded, we want to set our datepicker's default dates
-    document.addEventListener("DOMContentLoaded", function () {
-        var datePicker = document.getElementById("startTimeDatePicker");
-
-        // Get today's date
-        var today = new Date();
-
-        // Format the date to YYYY-MM-DD (required format for input[type="date"])
-        var day = String(today.getDate()).padStart(2, '0');
-        var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-        var year = today.getFullYear();
-
-        // Set the value of the date picker to today's date
-        datePicker.value = `${year}-${month}-${day}`;
-    });
-
-    // EventListener functionality which ties display of Start DatePicker to rentperiodchooser's current selection
+    // EventListener functionality which ties display of various elements to rentperiodchooser's current selection
     document.addEventListener("DOMContentLoaded", function () {
         // The elements on the page we need to do something to or get something from
         var rentperiodchooser = document.getElementById("rentperiodchooser");
@@ -230,9 +229,175 @@
         var datePicker = document.getElementById("pickedTimeDatePicker");
 
     });
-
     
+    // Function which takes an element id and tries to set its date to today's date
+    // It's aimed at a input-element of type="date")
+    // Used by the on-page-load listeners below, for both date pickers
+    function setDateElementToToday(elementId) {
+        // Get the current date
+        var today = new Date();
 
+        // Format the date to 'YYYY-MM-DD'
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // getMonth() returns 0-11, so add 1
+        var day = String(today.getDate()).padStart(2, '0');
 
+        // Combine year, month, and day into the format required by input type="date"
+        var formattedDate = year + '-' + month + '-' + day;
+
+        // Get the date input element by its ID
+        var dateInputElement = document.getElementById(elementId);
+
+        // Set the value of the date picker (input type="date") if the element exists
+        if (dateInputElement) {
+            dateInputElement.value = formattedDate;
+        }
+    }
+
+    // Add Event Listeners for multiple things, when page has fully loaded and is ready
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add Event Listener for : on page full load, setting start datepicker to today
+        setDateElementToToday("startTimeDatePicker");
+        // Add Event Listener for : on page full load, setting end datepicker to today
+        setDateElementToToday("endDateThingy");
+
+        // Add Event Listener for : auto-setting end date to rentperiod's length ahead of start datepicker, when start datepicker's value changes
+        //setDateAhead("startTimeDatePicker", "endDateThingy", 0, 1, 00); // Sets target to 3 days, 5 hours, and 30 minutes ahead
+
+        // Add Event Listener for : When rentperiodchooser changes, update the end/return time displayed
+        var rentPeriodChooser = document.getElementById("rentperiodchooser");
+        rentPeriodChooser.addEventListener("change", function () {
+            addHoursToDate("startTimeDatePicker", "startTimeDropdown", rentperiodchooser.value);
+        });
+
+        // Add Event Listener for : Calling calculateDate() when datePicker's input is changed
+        var datePicker = document.getElementById("startTimeDatePicker");
+        datePicker.addEventListener("input", function () {
+            //setDateAhead(); // Call the calculateDate function when the date is changed
+            addHoursToDate("startTimeDatePicker", "startTimeDropdown", rentperiodchooser.value);
+        });
+
+        // Add Event Listener for : Changing start timechooser, to update end/return time
+        var timeDropdown = document.getElementById("startTimeDropdown");
+        timeDropdown.addEventListener("change", function () {
+            addHoursToDate("startTimeDatePicker", "startTimeDropdown", rentperiodchooser.value);
+        });
+
+        // Add Event Listener for : When startTimeDatePicker's value changes, the model's RentPeriod is updated (to date from starttimedatepicker & time from starttimedropdown)
+        var timeDropdown = document.getElementById("startTimeDatePicker");
+        timeDropdown.addEventListener("change", function () {
+            updateRentPeriod();
+        });
+
+        // Add Event Listener for : When startTimeDropdown's value changes, the model's RentPeriod is updated (to date from starttimedatepicker & time from starttimedropdown)
+        var timeDropdown = document.getElementById("startTimeDropdown");
+        timeDropdown.addEventListener("change", function () {
+            updateRentPeriod();
+        });
+    });
+
+    // This function does the following:
+    // > Updates the 'endDateThingy' element (which contains the DateTime we pass forward when submitting the form)
+    // > Updates the 'endTimeParagraph' element, which we can use for debugging
+    // > Also writes the result of its calculation out into the console, we can use to debug in our browser
+    function addHoursToDate() {
+        // Get the date from the start date picker (input type="date")
+        const startDateValue = document.getElementById("startTimeDatePicker").value; // Updated ID
+        if (!startDateValue) {
+            console.error("Please select a start date");
+            return;
+        }
+
+        // Get the time from the dropdown element (value in "08:30" format)
+        const timeValue = document.getElementById("startTimeDropdown").value; // Updated ID
+        if (!timeValue) {
+            console.error("Please select a time");
+            return;
+        }
+
+        // Get the number of hours to add from the rent period chooser
+        const hoursToAdd = parseInt(document.getElementById("rentperiodchooser").value, 10); // Updated ID
+        if (isNaN(hoursToAdd)) {
+            console.error("Please enter a valid number of hours");
+            return;
+        }
+
+        // Parse the start date value (YYYY-MM-DD format)
+        const [year, month, day] = startDateValue.split("-").map(Number);
+
+        // Parse the time value (HH:MM format)
+        const [inputHours, inputMinutes] = timeValue.split(":").map(Number);
+
+        // Create a new Date object combining the date and time using UTC to avoid time zone issues
+        const startDateTime = new Date(Date.UTC(year, month - 1, day, inputHours, inputMinutes));
+
+        // Manually add the specified number of hours
+        const millisecondsToAdd = hoursToAdd * 60 * 60 * 1000; // Convert hours to milliseconds
+        let newDateTime = new Date(startDateTime.getTime() + millisecondsToAdd);
+
+        // Log newDateTime for debugging
+        console.log("Calculated New Date and Time:", newDateTime);
+
+        // Check if newDateTime is between 16:30 and 08:00 the next day
+        const clampedStartTime = new Date(newDateTime);
+        clampedStartTime.setUTCHours(16, 30, 0, 0); // Set to 16:30 UTC today
+        const clampedEndTime = new Date(clampedStartTime);
+        clampedEndTime.setUTCDate(clampedEndTime.getUTCDate() + 1); // Next day
+        clampedEndTime.setUTCHours(8, 0, 0, 0); // Set to 08:00 UTC the next day
+
+        // Clamping logic
+        if (newDateTime >= clampedStartTime && newDateTime < clampedEndTime) {
+            // If in the range, set to 08:00 UTC the next day
+            newDateTime = new Date(clampedEndTime);
+        }
+
+        // Check if newDateTime is valid
+        if (isNaN(newDateTime.getTime())) {
+            console.error("Calculated date is invalid");
+            return;
+        }
+
+        // Set the inner HTML with only hours and minutes
+        document.getElementById("endTimeParagraph").innerHTML =
+            newDateTime.toISOString().split("T")[0] + " " +
+            newDateTime.getUTCHours().toString().padStart(2, '0') + ":" +
+            newDateTime.getUTCMinutes().toString().padStart(2, '0');
+
+        // Set the value for datetime-local input
+        document.getElementById("endDateThingy").value = newDateTime.toISOString().slice(0, 16); // For <input type="datetime-local">
+
+        console.log("New Date and Time for endDateThingy:", newDateTime.toISOString().slice(0, 16)); // Debugging
+        return newDateTime;
+    }
+
+    function updateRentPeriod() {
+        // Get the date from the start date picker (input type="date")
+        const startDateValue = document.getElementById("startTimeDatePicker").value;
+        if (!startDateValue) {
+            console.error("Please select a start date");
+            return;
+        }
+
+        // Get the time from the dropdown element (value in "08:30" format)
+        const timeValue = document.getElementById("startTimeDropdown").value; 
+        if (!timeValue) {
+            console.error("Please select a time");
+            return;
+        }
+
+        // Parse the start date value (YYYY-MM-DD format)
+        const [year, month, day] = startDateValue.split("-").map(Number);
+
+        // Parse the time value (HH:MM format)
+        const [inputHours, inputMinutes] = timeValue.split(":").map(Number);
+
+        // Create a new Date object combining the date and time
+        const rentPeriodDateTime = new Date(Date.UTC(year, month - 1, day, inputHours, inputMinutes));
+
+        // Set the value of the hidden input element
+        document.getElementById("hiddenRentPeriod").value = rentPeriodDateTime.toISOString(); // Update your hidden input
+
+        console.log("Updated hidden input RentPeriod:", rentPeriodDateTime.toISOString());
+    }
 
 </script>
