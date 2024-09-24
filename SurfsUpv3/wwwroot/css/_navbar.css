@@ -8,7 +8,7 @@
     color:#2adbde;
     visibility: visible;
     background-color: white;
-    margin-right: 100px;
+    margin-right: 50px;
 }
 
 .nav-item .logo{
@@ -63,8 +63,9 @@
     border-color: #2adbde;
     border-width:1px;
     text-align: left;
-    margin-right: 50px;
-    margin-left: 80px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width:250px;
 }
 .nav-list_img-text{
     font-family: "Matemasie", sans-serif;
@@ -84,7 +85,8 @@
         flex-direction: row !important;
         justify-content: center; /* Brug justify-content her, hvis du vil centrere */
         align-items: center !important; /* Overskriver Bootstrap-styling */
-        margin-right:20px;
+        margin-right:100px;
+       
     }
 }
 .nav-item form {
