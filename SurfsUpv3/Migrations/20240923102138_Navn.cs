@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SurfsUpv3.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialRecreate : Migration
+    public partial class Navn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
