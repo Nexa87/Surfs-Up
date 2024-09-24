@@ -3,7 +3,7 @@
 /* Container for surfboards and cart */
 .main-container {
     display: flex;
-    justify-content:space-between; /* Sørger for plads mellem de to sektioner */
+    justify-content: space-between; /* Sørger for plads mellem de to sektioner */
     width: 100%; /* Fylder hele bredden af siden */
     padding: 20px;
     align-content: flex-start;
@@ -13,16 +13,15 @@
 .product-list {
     width: 80%;
     text-align: center;
-    font-weight:bolder;
+    font-weight: bolder;
     font-style: italic;
-    
 }
 
-.product-list h3{
-    font-family: "Matemasie", sans-serif;
-    color: black;
-    font-size: xx-large;
-}
+    .product-list h3 {
+        font-family: "Matemasie", sans-serif;
+        color: black;
+        font-size: xx-large;
+    }
 
 .product-container {
     display: flex;
@@ -32,7 +31,6 @@
     padding: 10px;
     margin-left: 50px;
     width: fit-content;
-    
 }
 
 .product-surfboard {
@@ -41,18 +39,49 @@
     box-sizing: border-box;
     justify-content: flex-start;
     text-align: center;
-    background-color:transparent;
+    background-color: transparent;
     padding: 10px;
     border-radius: 5px;
     border: none;
     box-shadow: none;
-    
     height: auto;
 }
 
-.product-surfboard img {
-    width: 50%;
-    height: auto;
+    .product-surfboard img {
+        width: 50%;
+        height: auto;
+    }
+
+
+.product-wetsuit {
+    flex: 1 1 calc(33.333% - 40px); /* Hver surfboard fylder en tredjedel af bredden */
+    max-width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    justify-content: flex-start;
+    text-align: center;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    gap: 300px;
+    box-shadow: none;
+    height: 200px;
+    width:400px;
+    display: flex;
+}
+
+.product-wetsuit img {
+        width: 400px;
+        
+        
+
+}.product-wetsuit button {
+    font-family: "poppins", sans-serif;
+    color: white;
+    font-style:italic;
+    
+    
+    
 }
 
 /* Shopping cart section - tager 15% af bredden */
@@ -77,8 +106,8 @@
 .surfboard-item img {
     margin-bottom: 10px;
     border-radius: 8px; /* Optional: rounded corners for the image */
-    
-    /* align-items: center;
+
+/* align-items: center;
     
 } */
 
@@ -87,7 +116,7 @@
     width: 100px;
     height: 100px;
     object-fit:cover Ensures the image is centered and cropped properly */
-    
+
 
 
 /* Board name text styling */
@@ -99,44 +128,21 @@
     font-style: italic;
 }
 
-.containerVaddragt {
-    height: 100px;
-    position: relative;
-    
+.wetsuit-item span {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-style: italic;
 }
-
-
 
 .info {
     font-family: "Arial", sans-serif;
-    font-style:oblique;
-    font-size:14px;
+    font-style: oblique;
+    font-size: 14px;
     color: black;
-    font-weight:600;
-    white-space:nowrap;
+    font-weight: 600;
+    white-space: nowrap;
     padding: 10px;
     margin-left: 50px;
-    
-    
 }
-.Wetsuit {
-    text-align: center;
-    width: 200px;
-    column-count: auto;
-    align-items: center;
-    align-content: center;
-    margin-left: 10px;
-    margin-right: 10px;
-    border: 0px;
-    color:purple;
-    /*background-color:transparent !important;*/
-    background-color: rgba(0,0,0,0);
-    box-shadow: none;
-    white-space: nowrap;
-    
-}
-
-
-
-
-

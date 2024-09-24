@@ -1,0 +1,66 @@
+﻿.admin-row {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centrering lodret */
+    
+}
+.admin-row1 {
+    margin-left:500px;
+    justify-content: center;
+    align-items: center; /* Centrering lodret */
+}
+
+.admin-body {
+    display: flex;
+    min-height: 100vh; /* Sørger for, at admin-body fylder hele viewport-højden */
+    width: 600px;
+    justify-content: center;
+    align-items: center; /* Centrering lodret */
+}
+
+form {
+    display: flex;
+    background-color: #2adbde;
+    flex-direction: column; /* Sikrer, at formularfelterne vises lodret */
+    width: 100%;
+    max-width: 400px; /* Begrænser formularens bredde */
+    padding: 10px;
+   
+    
+    
+    
+}
+
+.header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Matemasie";
+    border:none;
+}
+
+input {
+    width: 100%; /* Sætter bredden til 300px */
+}
+
+input[type="text"].form-control {
+        width: 100%; /* Fylder hele containerens bredde */
+    }
+
+.form-group {
+    margin-bottom: 25px;
+    
+}
+
+.back{
+    justify-content:center;
+    align-items:center;
+    
+    display:flex;
+}
+
+.dl.row{
+    align-items:center;
+    justify-items:center;
+       
+}

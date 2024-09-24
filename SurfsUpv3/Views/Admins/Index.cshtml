@@ -13,77 +13,85 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerName)
+                @TranslationHelper.Labels["BookingId"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerEmail)
+                @TranslationHelper.Labels["CustomerName"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerPhone)
+                @TranslationHelper.Labels["CustomerEmail"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SelectedSurfboard)
+                @TranslationHelper.Labels["CustomerPhone"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RentPeriod)
+                @TranslationHelper.Labels["SelectedSurfboard"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RentHours)
+                @TranslationHelper.Labels["RentPeriod"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RentReturn)
+                @TranslationHelper.Labels["RentHours"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Remarks)
+                @TranslationHelper.Labels["RentReturn"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @TranslationHelper.Labels["Remarks"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SurfboardAmount)
+                @TranslationHelper.Labels["SurfboardAmount"]
+            </th>
+            <th>
+                @TranslationHelper.Labels["Price"]
             </th>
             <th></th>
         </tr>
+        
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SelectedSurfboard)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentPeriod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentReturn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Remarks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SurfboardAmount)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BookingId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookingId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookingId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.OrderBy(m => m.RentPeriod))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SelectedSurfboard)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentPeriod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentReturn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurfboardAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BookingId">Ret</a>
+                    <a asp-action="Details" asp-route-id="@item.BookingId">Detaljer</a>
+                    <a asp-action="Delete" asp-route-id="@item.BookingId">Slet</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

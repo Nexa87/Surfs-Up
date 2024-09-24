@@ -4,78 +4,81 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="header"><h1>Slet booking</h1></div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Booking</h4>
-    <hr />
+<div class="admin-row">
+<div class="admin-row1">
+   
+    <hr/>
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerName)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["CustomerName"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CustomerName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerEmail)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["CustomerEmail"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CustomerEmail)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerPhone)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["CustomerPhone"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CustomerPhone)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SelectedSurfboard)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["SelectedSurfboard"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SelectedSurfboard)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentPeriod)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["RentPeriod"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RentPeriod)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentHours)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["RentHours"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RentHours)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentReturn)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["RentReturn"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RentReturn)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Remarks)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["Remarks"]
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Remarks)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["SurfboardAmount"]
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SurfboardAmount)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SurfboardAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["Price"]
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="BookingId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Slet booking" class="btn btn-danger" />
+            <div class="back">
+                <a asp-action="Index">Tilbage</a>
+            </div>
     </form>
+</div>
 </div>
