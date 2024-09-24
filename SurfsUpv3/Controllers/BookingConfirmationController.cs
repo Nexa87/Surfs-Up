@@ -41,6 +41,14 @@ namespace SurfsUpv3.Controllers
                 };
                 Console.WriteLine($"Selected Price: {model.RentHours}");
 
+                if (priceOptions.TryGetValue(model.Price, out var selectedPrice))
+                {
+                    model.Price = selectedPrice;
+                }
+                else
+                {
+                    model.Price = -1; // Value indicating "Something-Went-Wrong"
+                }
                 var bookingdetails = new Booking
                 {
                     CustomerName = model.CustomerName,
@@ -60,14 +68,6 @@ namespace SurfsUpv3.Controllers
                 _context.SaveChanges();
 
                 // Find den valgte pris tekst
-                if (priceOptions.TryGetValue(model.Price, out var selectedPrice))
-                {
-                    model.Price = selectedPrice;
-                }
-                else
-                {
-                    model.Price = -1; // Value indicating "Something-Went-Wrong"
-                }
 
                 var passedBoard = model.SelectedSurfboard;
                 var booking = model;
