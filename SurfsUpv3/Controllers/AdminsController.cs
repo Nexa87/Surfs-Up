@@ -47,7 +47,7 @@ namespace SurfsUpv3.Controllers
         public IActionResult Create()
         {
             var surfboards = _context.Surfboards.ToList();
-            ViewBag.SurfboardList = new SelectList(surfboards, "BoardName");
+            ViewBag.SurfboardList = new SelectList(surfboards, "BoardName", "BoardName");
 
             return View();
         }

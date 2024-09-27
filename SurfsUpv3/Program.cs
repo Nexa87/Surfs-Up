@@ -18,7 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-// Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
+// Indsï¿½tter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gï¿½r det ?)
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
