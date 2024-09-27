@@ -12,8 +12,8 @@ using SurfsUpv3.Data;
 namespace SurfsUpv3.Migrations
 {
     [DbContext(typeof(SurfsUpv3Context))]
-    [Migration("20240923102138_Navn")]
-    partial class Navn
+    [Migration("20240927074039_Jakobsfirst")]
+    partial class Jakobsfirst
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

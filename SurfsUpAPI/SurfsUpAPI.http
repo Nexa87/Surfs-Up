@@ -1,0 +1,6 @@
+@SurfsUpAPI_HostAddress = http://localhost:5055
+
+GET {{SurfsUpAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
