@@ -31,6 +31,28 @@ namespace SurfsUpv3.Models
 
                 context.SaveChanges();
 
+                if (context.WetSuits.Any())
+                {
+                    return;
+                }
+                context.WetSuits.AddRange(
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Small },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Large },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Small },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.XL },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.Medium },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Large },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.XXL },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.Medium },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Small },
+                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Small }
+                    );
+                
+                context.SaveChanges();
+
             }
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurfsUpv3.Data;
 
@@ -11,9 +12,11 @@ using SurfsUpv3.Data;
 namespace SurfsUpv3.Migrations
 {
     [DbContext(typeof(SurfsUpv3Context))]
-    partial class SurfsUpv3ContextModelSnapshot : ModelSnapshot
+    [Migration("20240927091531_Wetsuit")]
+    partial class Wetsuit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,9 +116,6 @@ namespace SurfsUpv3.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WetSuitId"));
-
-                    b.Property<int>("wetSuitGender")
-                        .HasColumnType("int");
 
                     b.Property<int>("wetSuitSize")
                         .HasColumnType("int");
