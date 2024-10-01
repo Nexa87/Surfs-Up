@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SurfsUpAPI.Models;
 
 namespace SurfsUpAPI.Controllers
 {
@@ -19,7 +20,7 @@ namespace SurfsUpAPI.Controllers
         }
 
         [HttpPost]
-        public string CreateBooking()
+        public string CreateBooking([FromBody] Booking booking)
         {
             return $"Creating Booking";
 
