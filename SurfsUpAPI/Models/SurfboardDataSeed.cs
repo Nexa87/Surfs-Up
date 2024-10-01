@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
+using SurfsUpAPI.Data;
 
-namespace SurfsUpv3.Models
+namespace SurfsUpAPI.Models
 {
     public class SurfboardDataSeed
     {

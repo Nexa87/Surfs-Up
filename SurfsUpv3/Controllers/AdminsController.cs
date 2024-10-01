@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Data;
+using SurfsUpAPI.Models;
 
 namespace SurfsUpv3.Controllers
 {

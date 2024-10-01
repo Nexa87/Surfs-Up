@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Models;
 using System.Diagnostics;
 
 namespace SurfsUpv3.Controllers

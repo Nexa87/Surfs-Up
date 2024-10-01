@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SurfsUpv3.Models
+namespace SurfsUpAPI.Models
 {
     public class WetSuit
     {

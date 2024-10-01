@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SurfsUpv3.Data;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Data;
+using SurfsUpAPI.Models;
 
 namespace SurfsUpWebApp.Controllers
 {

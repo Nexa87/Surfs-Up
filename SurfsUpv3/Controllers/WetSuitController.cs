@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Data;
+using SurfsUpAPI.Models;
 namespace SurfsUpv3.Controllers
 {
     public class WetSuitController : Controller

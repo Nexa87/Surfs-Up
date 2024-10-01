@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Data;
+using SurfsUpAPI.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);

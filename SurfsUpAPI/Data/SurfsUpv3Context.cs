@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Models;
+using SurfsUpAPI.Models;
 
-namespace SurfsUpv3.Data
+namespace SurfsUpAPI.Data
 {
     public class SurfsUpv3Context : DbContext
     {
