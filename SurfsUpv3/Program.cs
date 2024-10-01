@@ -9,6 +9,7 @@ builder.Services.AddDbContext<SurfsUpv3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 // Add services to the container.
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -16,7 +17,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 // Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
@@ -49,6 +52,9 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
+
 app.UseStaticFiles();
 
 app.UseRouting();
