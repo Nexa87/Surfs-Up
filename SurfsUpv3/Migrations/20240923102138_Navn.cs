@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using SurfsUpv3.Models;
 
 #nullable disable
 
@@ -51,6 +52,17 @@ namespace SurfsUpv3.Migrations
                 {
                     table.PrimaryKey("PK_Surfboards", x => x.SurfboardId);
                 });
+            migrationBuilder.CreateTable(
+                name: "WetSuits",
+                columns: table => new
+                {
+                    WetSuitId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WetSuits", x => x.WetSuitId);
+                });
         }
 
         /// <inheritdoc />
@@ -61,6 +73,8 @@ namespace SurfsUpv3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Surfboards");
+            migrationBuilder.DropTable(
+                name: "WetSuits");
         }
     }
 }

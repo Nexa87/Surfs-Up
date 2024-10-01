@@ -30,6 +30,8 @@ namespace SurfsUpv3.Models
         public int Price  { get; set; } //Lejeprisen (Købspris fra repo bruges)
         public int SurfboardAmount { get; set; }
         //public DateTime BookingTime { get; set; }
+        //public string? SelectedWetSuit {  get; set; }
+        //public int? WetSuitAmount {  get; set; }
         public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount)
         {
             BookingId = bookingId;
@@ -44,11 +46,19 @@ namespace SurfsUpv3.Models
             Price = price;
             SurfboardAmount = surfboardAmount;
             //BookingTime = bookingTime;
+            //SelectedWetSuit = selectedWetSuit;
+            //WetSuitAmount = wetSuitAmount;
         }
         public Booking(string selectedSurfboard)
         {
             SelectedSurfboard = selectedSurfboard;
         }
+
+        //public Booking(string selectedSurfboard, string selectedWetSuit)
+        //{
+        //    SelectedSurfboard = selectedSurfboard;
+        //    SelectedWetSuit = selectedWetSuit;
+        //}
        
         public Booking()
         {
