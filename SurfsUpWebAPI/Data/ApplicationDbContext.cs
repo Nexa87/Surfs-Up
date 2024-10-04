@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace SurfsUpv3.Data
+namespace SurfsUpWebAPI.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
