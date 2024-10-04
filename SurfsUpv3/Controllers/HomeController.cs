@@ -23,7 +23,7 @@ namespace SurfsUpv3.Controllers
             var client = _httpClientFactory.CreateClient();
 
             // URL of the WeatherApp WebAPI's weather forecast endpoint
-            var weatherApiUrl = "http://localhost:5272/weatherforecast";
+            var weatherApiUrl = "https://localhost:7137/bookings";
 
             // Send an HTTP GET request to the WeatherApp WebAPI
             var response = await client.GetAsync(weatherApiUrl);
@@ -34,7 +34,7 @@ namespace SurfsUpv3.Controllers
                 var weatherData = await response.Content.ReadAsStringAsync();
 
                 // You can pass this weather data to the view or process it further
-                ViewData["WeatherData"] = weatherData;
+                ViewData["DATA"] = weatherData;
                 return View();
             }
             else
