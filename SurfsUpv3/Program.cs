@@ -27,8 +27,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
 var app = builder.Build();
+
+app.UseStatusCodePagesWithReExecute("/404");
 
 // NOTE Keep in mind this will run everytime the app is run - this might be unintentional
 // Seed to manually add things into the database

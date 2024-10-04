@@ -8,10 +8,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLogging();
 
 var app = builder.Build();
 
 //app.UseMiddleware<HowManyCallsAndHowManyNoSites>();
+app.UseHowManyHowMany(); // Custom not-pretty but recognizable :D
+app.UseStatusCodePages();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -20,7 +23,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHowManyHowMany(); // Custom not-pretty but recognizable :D
 
 app.UseHttpsRedirection();
 

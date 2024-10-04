@@ -17,21 +17,21 @@ namespace SurfsUpWebAPI.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // If it's a 404, tally that too
-            if (context.Response.StatusCode == 404)
-                _notfoundcount += 1;
-
             // Increment the request count
             _requestCount++;
 
-            // Log the request count
-            _logger.LogInformation("API has been called {RequestCount} times.", _requestCount);
-            _logger.LogInformation($"404 requests: {_notfoundcount}");
-
-            // TODO Poke these info into the DB for future reference ?
-
             // Call the next middleware in the pipeline
             await _next(context);
+
+            if (context.Response.StatusCode == StatusCodes.Status404NotFound)
+            {
+                //_notfoundcount++;
+                _logger.LogInformation("404 Not Found encountered for {Path}", context.Request.Path);
+            }
+
+            // Log the request count and not found count
+            _logger.LogInformation("API has been called {RequestCount} times.", _requestCount);
+            _logger.LogInformation($"404 requests: {_notfoundcount}");
         }
     }
 
