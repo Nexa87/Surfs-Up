@@ -8,6 +8,7 @@ namespace SurfsUpWebAPI.Controllers
     {
         public string Bookings ()
         {
+            // Test comment
             return $"All the bookings";
         }
     }
