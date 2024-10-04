@@ -8,25 +8,62 @@ namespace SurfsUpv3.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
+
+            _httpClientFactory = httpClientFactory;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            // Create an HttpClient instance
+            var client = _httpClientFactory.CreateClient();
+
+            // URL of the WeatherApp WebAPI's weather forecast endpoint
+            var weatherApiUrl = "http://localhost:5272/weatherforecast";
+
+            // Send an HTTP GET request to the WeatherApp WebAPI
+            var response = await client.GetAsync(weatherApiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Read the response content as a string (or deserialize to an object if needed)
+                var weatherData = await response.Content.ReadAsStringAsync();
+
+                // You can pass this weather data to the view or process it further
+                ViewData["WeatherData"] = weatherData;
+                return View();
+            }
+            else
+            {
+                return BadRequest("Failed to get weather data from the WeatherApp WebAPI.");
+            }
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //private readonly ILogger<HomeController> _logger;
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
+
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }
