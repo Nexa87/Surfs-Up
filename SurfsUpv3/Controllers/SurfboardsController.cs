@@ -1,157 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SurfsUpv3.Models;
+using System.Net.Http;
 
-namespace SurfsUpv3.Controllers
+public class SurfboardsController : Controller
 {
-    public class SurfboardsController : Controller
+        private readonly IHttpClientFactory _httpClientFactory;
+
+    public SurfboardsController(IHttpClientFactory httpClientFactory)
     {
-        private readonly SurfsUpv3Context _context;
+        _httpClientFactory = httpClientFactory;
+    }
 
-        public SurfboardsController(SurfsUpv3Context context)
+    public async Task<IActionResult> Index()
+    {
+        var client = _httpClientFactory.CreateClient();
+        var response = await client.GetAsync("https://localhost:7137/api/Surfboards"); // URL til dit Web API
+
+        if (response.IsSuccessStatusCode)
         {
-            _context = context;
+            // Læs JSON responsen som en string
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            // Konverter JSON til en liste af Product objekter
+            var surfboards = JsonConvert.DeserializeObject<List<Surfboard>>(jsonString);
+
+            // Sender data til dit view
+            return View(surfboards);
         }
-
-        // GET: Surfboards
-        public async Task<IActionResult> Index()
+        else
         {
-            return View(await _context.Surfboards.ToListAsync());
-        }
-
-        // GET: Surfboards/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var surfboard = await _context.Surfboards
-                .FirstOrDefaultAsync(m => m.SurfboardId == id);
-            if (surfboard == null)
-            {
-                return NotFound();
-            }
-
-            return View(surfboard);
-        }
-
-        // GET: Surfboards/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Surfboards/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SurfboardId,BoardName,Length,Width,Thickness,Volume,Price,Equipment")] Surfboard surfboard)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(surfboard);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(surfboard);
-        }
-
-        // GET: Surfboards/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var surfboard = await _context.Surfboards.FindAsync(id);
-            if (surfboard == null)
-            {
-                return NotFound();
-            }
-            return View(surfboard);
-        }
-
-        // POST: Surfboards/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SurfboardId,BoardName,Length,Width,Thickness,Volume,Price,Equipment")] Surfboard surfboard)
-        {
-            if (id != surfboard.SurfboardId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(surfboard);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SurfboardExists(surfboard.SurfboardId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(surfboard);
-        }
-
-        // GET: Surfboards/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var surfboard = await _context.Surfboards
-                .FirstOrDefaultAsync(m => m.SurfboardId == id);
-            if (surfboard == null)
-            {
-                return NotFound();
-            }
-
-            return View(surfboard);
-        }
-
-        // POST: Surfboards/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var surfboard = await _context.Surfboards.FindAsync(id);
-            if (surfboard != null)
-            {
-                _context.Surfboards.Remove(surfboard);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool SurfboardExists(int id)
-        {
-            return _context.Surfboards.Any(e => e.SurfboardId == id);
+            // Returner en tom liste, hvis intet produkt hentes
+            return View(new List<Surfboard>());
         }
     }
 }

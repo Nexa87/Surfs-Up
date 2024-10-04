@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SurfsUpv3.Data;
+
 using SurfsUpv3.Models;
 
 namespace SurfsUpv3.Controllers
 {
     public class BookingConfirmationController : Controller
     {
-        private readonly SurfsUpv3Context _context;
-        public BookingConfirmationController(SurfsUpv3Context context)
-        {
-            _context = context;
-        }
+       
         public IActionResult Index()
         {
             return View();
@@ -41,31 +37,31 @@ namespace SurfsUpv3.Controllers
                 };
                 Console.WriteLine($"Selected Price: {model.RentHours}");
 
-                if (priceOptions.TryGetValue(model.Price, out var selectedPrice))
-                {
-                    model.Price = selectedPrice;
-                }
-                else
-                {
-                    model.Price = -1; // Value indicating "Something-Went-Wrong"
-                }
-                var bookingdetails = new Booking
-                {
-                    CustomerName = model.CustomerName,
-                    CustomerEmail = model.CustomerEmail,
-                    CustomerPhone = model.CustomerPhone,
-                    SelectedSurfboard = model.SelectedSurfboard,
-                    Remarks = model.Remarks,
-                    RentHours = model.RentHours,
-                    RentReturn = model.RentReturn,
-                    RentPeriod = model.RentPeriod,
-                    SurfboardAmount = model.SurfboardAmount,
-                    Price = model.Price,
-                    //BookingTime = model.BookingTime,
+                //if (priceOptions.TryGetValue(model.Price, out var selectedPrice))  skal nok laves som en post til db
+                //{
+                //    model.Price = selectedPrice;
+                //}
+                //else
+                //{
+                //    model.Price = -1; // Value indicating "Something-Went-Wrong"
+                //}
+                //var bookingdetails = new Booking
+                //{
+                //    CustomerName = model.CustomerName,
+                //    CustomerEmail = model.CustomerEmail,
+                //    CustomerPhone = model.CustomerPhone,
+                //    SelectedSurfboard = model.SelectedSurfboard,
+                //    Remarks = model.Remarks,
+                //    RentHours = model.RentHours,
+                //    RentReturn = model.RentReturn,
+                //    RentPeriod = model.RentPeriod,
+                //    SurfboardAmount = model.SurfboardAmount,
+                //    Price = model.Price,
+                //    //BookingTime = model.BookingTime,
 
-                };
-                _context.Bookings.Add(bookingdetails);
-                _context.SaveChanges();
+                //};
+                //_context.Bookings.Add(bookingdetails);
+                //_context.SaveChanges();
 
                 // Find den valgte pris tekst
 

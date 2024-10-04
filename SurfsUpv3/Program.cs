@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SurfsUpv3.Data;
 using SurfsUpv3.Models;
 using Microsoft.Extensions.DependencyInjection;
+using SurfsUpv3.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<SurfsUpv3Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+//builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 // Add services to the container.
 
@@ -19,23 +19,24 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 
 // Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
-builder.Services.AddDbContext<SurfsUpv3Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+//    //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 var app = builder.Build();
 
-// NOTE Keep in mind this will run everytime the app is run - this might be unintentional
-// Seed to manually add things into the database
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
+//// NOTE Keep in mind this will run everytime the app is run - this might be unintentional
+//// Seed to manually add things into the database
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
 
-    SurfboardDataSeed.Initialize(services);
-}
+//    SurfboardDataSeed.Initialize(services);
+//}
 
 
 

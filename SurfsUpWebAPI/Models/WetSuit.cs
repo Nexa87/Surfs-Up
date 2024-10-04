@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SurfsUpv3.Models
+namespace SurfsUpWebAPI.Models
 {
     public class WetSuit
     {
@@ -21,8 +21,8 @@ namespace SurfsUpv3.Models
         public WetSuit (int wetSuitId, WetSuitGender gender, WetSuitSize size)
         {
             WetSuitId = wetSuitId;
-            size = size;
-            gender = gender;
+            wetSuitSize = size;
+            wetSuitGender = gender;
         }
 
         public WetSuit()
