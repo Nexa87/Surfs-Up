@@ -10,6 +10,8 @@ builder.Services.AddDbContext<SurfsUpv3Context>(options =>
 
 // Add services to the container.
 
+builder.Services.AddHttpClient();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
