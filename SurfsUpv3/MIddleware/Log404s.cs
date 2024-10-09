@@ -1,14 +1,12 @@
-﻿using System.Globalization;
-
-namespace SurfsUpWebAPI.Middleware
+﻿namespace SurfsUpv3.Middleware
 {
-    public class HowManyAPIRequest
+    public class Log404Middleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<HowManyAPIRequest> _logger;
-        private static int _requestCount = 0;
+        private readonly ILogger<Log404Middleware> _logger;
+        private static int _notfoundcount = 0;
 
-        public HowManyAPIRequest(RequestDelegate next, ILogger<HowManyAPIRequest> logger)
+        public Log404Middleware(RequestDelegate next, ILogger<Log404Middleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -16,30 +14,27 @@ namespace SurfsUpWebAPI.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Increment the request count
-            _requestCount++;
-
             // Call the next middleware in the pipeline
             await _next(context);
 
             if (context.Response.StatusCode == StatusCodes.Status404NotFound)
             {
+                _notfoundcount++;
                 _logger.LogInformation("404 Not Found encountered for {Path}", context.Request.Path);
             }
 
             // Log the request count and not found count
-            _logger.LogInformation("API has been called {RequestCount} times.", _requestCount);
+            _logger.LogInformation($"404 requests: {_notfoundcount}");
         }
     }
 
     // This permits us to do a 'app.UseHowManyHowMany();' in Program.cs :D
-    public static class HowManyAPIRequestExtensions
+    public static class UseLog404sExtensions
     {
-        public static IApplicationBuilder UseHowManyAPIRequests(
+        public static IApplicationBuilder UseLog404s(
             this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<HowManyAPIRequest>();
+            return builder.UseMiddleware<Log404Middleware>();
         }
     }
-
 }
