@@ -38,14 +38,21 @@ namespace SurfsUpWebAPI.Controllers
         }
 
         // POST: api/Booking
+        
         [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(Booking booking)
+        public async Task<ActionResult<Booking>> AddBookingDetailsToAPI([FromBody] Booking booking)
         {
-            _context.Bookings.Add(booking);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Bookings.Add(booking);  // _context er din database context
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingId }, booking);
+            return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingId }, booking);  // Assuming you have a GetBooking method
         }
+
 
         // PUT: api/Booking/5
         [HttpPut("{id}")]

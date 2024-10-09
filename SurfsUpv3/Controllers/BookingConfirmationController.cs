@@ -16,8 +16,11 @@ namespace SurfsUpv3.Controllers
         // [HttpPost]
         //public IActionResult Index(Booking model)
         //{
-        
+
         //}
+
+      
+
 
         [HttpPost]
         public IActionResult ValidationTest(Booking model)
@@ -36,6 +39,8 @@ namespace SurfsUpv3.Controllers
                     { 168, 1299 }
                 };
                 Console.WriteLine($"Selected Price: {model.RentHours}");
+
+                
 
                 //if (priceOptions.TryGetValue(model.Price, out var selectedPrice))  skal nok laves som en post til db
                 //{
@@ -88,5 +93,6 @@ namespace SurfsUpv3.Controllers
             }
         }
 
+        
     }
 }
