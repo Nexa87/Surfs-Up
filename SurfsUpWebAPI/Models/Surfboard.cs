@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿namespace SurfsUpWebAPI;
 
 public class Surfboard
+=======
+﻿namespace SurfsUpWebAPI.Models
+>>>>>>> main
 {
     public int SurfboardId { get; set; }
     public string BoardName { get; set; }
