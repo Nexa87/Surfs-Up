@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SurfsUpv3.Data;
 using SurfsUpv3.Models;
 using Microsoft.Extensions.DependencyInjection;
+using SurfsUpv3.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SurfsUpv3Context>(options =>
@@ -30,6 +31,7 @@ builder.Services.AddDbContext<SurfsUpv3Context>(options =>
 var app = builder.Build();
 
 app.UseStatusCodePagesWithReExecute("/404");
+app.UseLog404s();
 
 // NOTE Keep in mind this will run everytime the app is run - this might be unintentional
 // Seed to manually add things into the database
