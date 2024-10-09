@@ -6,7 +6,7 @@ namespace SurfsUpv3.Controllers
 {
     public class BookingConfirmationController : Controller
     {
-       
+
         public IActionResult Index()
         {
             return View();
@@ -18,9 +18,6 @@ namespace SurfsUpv3.Controllers
         //{
 
         //}
-
-      
-
 
         [HttpPost]
         public IActionResult ValidationTest(Booking model)
@@ -40,7 +37,7 @@ namespace SurfsUpv3.Controllers
                 };
                 Console.WriteLine($"Selected Price: {model.RentHours}");
 
-                
+
 
                 //if (priceOptions.TryGetValue(model.Price, out var selectedPrice))  skal nok laves som en post til db
                 //{
@@ -93,6 +90,6 @@ namespace SurfsUpv3.Controllers
             }
         }
 
-        
     }
 }
+
