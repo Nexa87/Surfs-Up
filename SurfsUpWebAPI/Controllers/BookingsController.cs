@@ -6,6 +6,7 @@ namespace SurfsUpWebAPI.Controllers
     [Route("bookings")]
     public class BookingsController
     {
+        [HttpGet]
         public string Bookings ()
         {
             // Test comment
