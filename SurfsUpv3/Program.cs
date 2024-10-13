@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SurfsUpv3.Data;
 using SurfsUpv3.Models;
 using Microsoft.Extensions.DependencyInjection;
-using SurfsUpv3.Data;
+using SurfsUpv3.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<SurfsUpv3Context>(options =>
@@ -28,8 +29,10 @@ builder.Services.AddControllers();
 //builder.Services.AddDbContext<SurfsUpv3Context>(options =>
 //    //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
 var app = builder.Build();
+
+app.UseStatusCodePagesWithReExecute("/404");
+app.UseLog404s();
 
 //// NOTE Keep in mind this will run everytime the app is run - this might be unintentional
 //// Seed to manually add things into the database

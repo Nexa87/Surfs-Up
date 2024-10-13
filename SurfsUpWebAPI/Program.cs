@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using SurfsUpWebAPI.Data;
 using Swashbuckle.AspNetCore.Filters;
 using SurfsUpWebAPI.Models;
+using SurfsUpWebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+//app.UseMiddleware<HowManyAPIRequest>(); // v1, replaced by below 'app.UseHowManyHowMany();'
+app.UseHowManyAPIRequests(); // Custom not-pretty but recognizable :D
+app.UseStatusCodePages(); // Needed for 404 tracking, middleware
+
+// Configure the HTTP request pipeline.
 
 //using (var scope = app.Services.CreateScope())
 //{
