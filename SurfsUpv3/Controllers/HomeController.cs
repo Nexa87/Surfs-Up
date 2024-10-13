@@ -17,24 +17,10 @@ namespace SurfsUpv3.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            // Create an HttpClient instance
-            var client = _httpClientFactory.CreateClient();
+           if(ModelState.IsValid) {
 
-            // URL of the WeatherApp WebAPI's weather forecast endpoint
-            var weatherApiUrl = "https://localhost:7137/bookings";
-
-            // Send an HTTP GET request to the WeatherApp WebAPI
-            var response = await client.GetAsync(weatherApiUrl);
-
-            if (response.IsSuccessStatusCode)
-            {
-                // Read the response content as a string (or deserialize to an object if needed)
-                var weatherData = await response.Content.ReadAsStringAsync();
-
-                // You can pass this weather data to the view or process it further
-                ViewData["DATA"] = weatherData;
                 return View();
             }
             else

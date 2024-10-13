@@ -1,22 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SurfsUpv3.Data;
+using Newtonsoft.Json;
 using SurfsUpv3.Models;
+using System.Net.Http;
 
 namespace SurfsUpWebApp.Controllers
 {
     public class UdlejningController : Controller
     {
-
-        private readonly SurfsUpv3Context _context;
-
-        public UdlejningController(SurfsUpv3Context context)
+        private readonly IHttpClientFactory _httpClientFactory;
+        public UdlejningController(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClientFactory = httpClientFactory;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            var surfboard = _context.Surfboards.ToList();
-                return View(surfboard);
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.GetAsync("https://localhost:7137/api/Surfboards"); // URL til dit Web API
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    var surfboards = JsonConvert.DeserializeObject<List<Surfboard>>(jsonString);
+
+                    return View(surfboards);
+                }
+                else
+                {
+                    // Returner en tom liste, hvis API-kaldet fejler
+                    return View(new List<Surfboard>());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fejl under API-kald: {ex.Message}");
+                return View(new List<Surfboard>()); // Returner tom liste, hvis der opstår en fejl
+            }
         }
     }
 }

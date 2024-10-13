@@ -21,8 +21,8 @@ namespace SurfsUpWebAPI.Models
         public WetSuit (int wetSuitId, WetSuitGender gender, WetSuitSize size)
         {
             WetSuitId = wetSuitId;
-            size = size;
-            gender = gender;
+            wetSuitSize = size;
+            wetSuitGender = gender;
         }
 
         public WetSuit()

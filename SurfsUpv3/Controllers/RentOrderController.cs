@@ -5,7 +5,9 @@ namespace SurfsUpWebApp.Controllers
 {
     public class RentOrderController : Controller
     {
+
         
+
         public IActionResult Index(string? passedSurfboard)
         {
             var booking = new Booking(passedSurfboard);
