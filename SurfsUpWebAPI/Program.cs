@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SurfsUpWebAPI.Data;
 using SurfsUpWebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +10,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddLogging(); // Needed for client & 404 middleware
+builder.Services.AddLogging(); // Needed for 404 middleware (?)
+builder.Services.AddHttpClient ();
+builder.Services.AddScoped<ILoggingService, LoggingService> (); // For logging API calls
+
+builder.Services.AddDbContext<SurfsUpv3Context> (options =>
+    options.UseSqlServer (builder.Configuration.GetConnectionString ("DefaultConnection")));
 
 var app = builder.Build();
 

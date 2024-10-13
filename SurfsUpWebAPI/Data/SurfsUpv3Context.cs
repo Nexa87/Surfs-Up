@@ -13,6 +13,7 @@ namespace SurfsUpWebAPI.Data
         public DbSet<Booking> Bookings { get; set; } = default!;
         public DbSet<WetSuit> WetSuits { get; set; } = default!;
         public DbSet<SiteVisit> SiteVisits { get; set; }
+        public DbSet<SiteLog> SiteLogs { get; set; } // For logging 404 & API calls
         
         public SurfsUpv3Context (DbContextOptions<SurfsUpv3Context> options)
             : base(options)
