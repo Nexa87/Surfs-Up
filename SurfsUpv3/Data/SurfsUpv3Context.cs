@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SurfsUpv3.Models;
+using SurfsUpv3.Models;
 
 namespace SurfsUpv3.Data
 {

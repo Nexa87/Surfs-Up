@@ -45,14 +45,14 @@ namespace SurfsUpWebAPI.Controllers
             _context.WetSuits.Add(wetSuit);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetWetSuit), new { id = wetSuit.WetSuitId }, wetSuit);
+            return CreatedAtAction(nameof(GetWetSuit), new { id = wetSuit.WetsuitId }, wetSuit);
         }
 
         // PUT: api/WetSuit/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWetSuit(int id, WetSuit wetSuit)
         {
-            if (id != wetSuit.WetSuitId)
+            if (id != wetSuit.WetsuitId)
             {
                 return BadRequest();
             }
@@ -96,7 +96,7 @@ namespace SurfsUpWebAPI.Controllers
 
         private bool WetSuitExists(int id)
         {
-            return _context.WetSuits.Any(e => e.WetSuitId == id);
+            return _context.WetSuits.Any(e => e.WetsuitId == id);
         }
     }
 }

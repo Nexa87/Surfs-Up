@@ -44,14 +44,16 @@ namespace SurfsUpWebAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                              
                 return BadRequest(ModelState);
             }
 
             _context.Bookings.Add(booking);  // _context er din database context
             await _context.SaveChangesAsync();
-            return Ok();
+            // Returner den oprettede booking med status 201 (Created)
+            return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingId, booking.BookingTime }, booking);// bruges til at kunne oplyse bookingId på bookingconfirmation
 
-            /*return CreatedAtAction(nameof(GetBooking), new { id = booking.BookingId }, booking); */ // Assuming you have a GetBooking method
+            
         }
 
 

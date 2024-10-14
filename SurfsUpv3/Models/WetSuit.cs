@@ -5,14 +5,17 @@ namespace SurfsUpv3.Models
     public class WetSuit
     {
         public int WetSuitId { get; set; }
-        [Required]
-        public WetSuitGender wetSuitGender { get; set; }
+        
+        public WetSuitGender Gender { get; set; }
         public enum WetSuitGender
         {
-            None, Male, Female, Child
+            [Display(Name = "Mand")]
+            Male,
+            [Display(Name = "Kvinde")]
+            Female
         }
-        [Required]
-        public WetSuitSize wetSuitSize { get; set; }
+        
+        public WetSuitSize Size { get; set; }
         public enum WetSuitSize
         {
             Small, Medium, Large, XL, XXL
@@ -21,8 +24,7 @@ namespace SurfsUpv3.Models
         public WetSuit (int wetSuitId, WetSuitGender gender, WetSuitSize size)
         {
             WetSuitId = wetSuitId;
-            size = size;
-            gender = gender;
+            
         }
 
         public WetSuit()
