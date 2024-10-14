@@ -12,7 +12,7 @@ namespace SurfsUpWebAPI.Data
     public class SurfsUpAPIContext : DbContext
     {
         
-        public SurfsUpv3Context (DbContextOptions<SurfsUpv3Context> options)
+        public SurfsUpAPIContext(DbContextOptions<SurfsUpAPIContext> options)
             : base(options)
         {
 
@@ -21,9 +21,8 @@ namespace SurfsUpWebAPI.Data
         public DbSet<Booking> Bookings { get; set; } = default!;
         public DbSet<WetSuit> WetSuits { get; set; } = default!;
         public DbSet<SiteLog> SiteLogs { get; set; } // For logging 404 & API calls
+
         
-        public SurfsUpAPIContext (DbContextOptions<SurfsUpAPIContext> options)
-            : base(options)
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
