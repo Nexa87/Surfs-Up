@@ -17,7 +17,7 @@ namespace SurfsUpWebAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -29,6 +29,9 @@ namespace SurfsUpWebAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
+
+                    b.Property<DateTime>("BookingTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired()
@@ -42,6 +45,9 @@ namespace SurfsUpWebAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -62,7 +68,13 @@ namespace SurfsUpWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SurfboardAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WetsuitId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
@@ -72,19 +84,21 @@ namespace SurfsUpWebAPI.Migrations
 
             modelBuilder.Entity("SurfsUpWebAPI.Models.WetSuit", b =>
                 {
-                    b.Property<int>("WetSuitId")
+                    b.Property<int>("WetsuitId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WetSuitId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WetsuitId"));
 
-                    b.Property<int>("wetSuitGender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("wetSuitSize")
-                        .HasColumnType("int");
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("WetSuitId");
+                    b.HasKey("WetsuitId");
 
                     b.ToTable("WetSuits");
                 });

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SurfsUpv3.Models.Booking>
+﻿@model List<SurfsUpv3.Models.Booking>
 
 @{
     ViewData["Title"] = "Index";
@@ -44,10 +44,18 @@
             </th>
             <th>
                 @TranslationHelper.Labels["Price"]
+            <th>
+                @TranslationHelper.Labels["BookingTime"]
             </th>
-            <th></th>
+            <th>
+                    @TranslationHelper.Labels["Gender"]
+            </th>
+            <th>
+                    @TranslationHelper.Labels["Size"]
+            </th>
+            
         </tr>
-        
+
     </thead>
     <tbody>
         @foreach (var item in Model.OrderBy(m => m.RentPeriod))
@@ -85,6 +93,15 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.BookingId">Ret</a>

@@ -70,6 +70,25 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["BookingTime"]
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BookingTime)
+        </dd>
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["Gender"]
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @TranslationHelper.Labels["Size"]
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
     </dl>
 </div>
 <div class="back">

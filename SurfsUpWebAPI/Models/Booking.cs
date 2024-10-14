@@ -1,4 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using System.Reflection;
+using SurfsUpWebAPI.Models;
+using static SurfsUpWebAPI.Models.WetSuit;
 
 namespace SurfsUpWebAPI.Models
 {
@@ -29,10 +33,15 @@ namespace SurfsUpWebAPI.Models
         public string? Remarks { get; set; } //kommentar
         public int Price  { get; set; } //Lejeprisen (Købspris fra repo bruges)
         public int SurfboardAmount { get; set; }
-        //public DateTime BookingTime { get; set; }
-        //public string? SelectedWetSuit {  get; set; }
-        //public int? WetSuitAmount {  get; set; }
-        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount)
+        public DateTime BookingTime { get; set; }
+
+        //Våddragt sektion
+        public int? WetsuitId { get; set; } // Nullable, da det ikke er obligatorisk
+
+        // Køn og størrelse
+        public WetSuitGender? Gender { get; set; } // Nullable for valgfrihed
+        public WetSuitSize? Size { get; set; } // Nullable for valgfrihed
+        public Booking(int bookingId, string customerName, string customerEmail, string customerPhone, string selectedSurfboard, DateTime rentPeriod, TimeOnly rentHours, DateTime rentReturn, string? remarks, int price, int surfboardAmount,DateTime bookingtime , WetSuitGender gender, WetSuitSize size)
         {
             BookingId = bookingId;
             CustomerName = customerName;
@@ -45,9 +54,8 @@ namespace SurfsUpWebAPI.Models
             Remarks = remarks;
             Price = price;
             SurfboardAmount = surfboardAmount;
-            //BookingTime = bookingTime;
-            //SelectedWetSuit = selectedWetSuit;
-            //WetSuitAmount = wetSuitAmount;
+            BookingTime = bookingtime;
+           
         }
         public Booking(string selectedSurfboard)
         {

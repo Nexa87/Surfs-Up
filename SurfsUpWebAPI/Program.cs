@@ -41,19 +41,19 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddCors(options =>
-{
-    //Mobil app
-    options.AddPolicy("MobileApp", policyBuilder =>
-    {
-        policyBuilder.WithOrigins("http://localhost:9999");
-        policyBuilder.AllowAnyHeader();
-        policyBuilder.AllowAnyMethod();
-        policyBuilder.AllowCredentials();
-    });
+//builder.Services.AddCors(options =>
+//{
+//    //Mobil app
+//    options.AddPolicy("MobileApp", policyBuilder =>
+//    {
+//        policyBuilder.WithOrigins("http://localhost:9999");
+//        policyBuilder.AllowAnyHeader();
+//        policyBuilder.AllowAnyMethod();
+//        policyBuilder.AllowCredentials();
+//    });
       
     
-});
+//});
 
 var app = builder.Build();
 
@@ -81,6 +81,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("MobileApp");
+//app.UseCors("MobileApp");
 
 app.Run();

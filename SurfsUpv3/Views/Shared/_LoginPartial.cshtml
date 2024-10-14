@@ -6,10 +6,10 @@
 @if (SignInManager.IsSignedIn(User))
 {
 
-        @if (@User.Identity?.Name == "admin@admin.dk")
+        @if (@User.Identity?.Name == "hej@hej.dk")
         {
             <li class="nav-item">
-                <a href="Admins/Index" class="nav-´link" page="/Admins/Index" title="Bookings">Se bookninger</a>
+                <a class="nav-´link" asp-controller="Admins"  asp-action="Index" title="Bookings">Se bookninger</a>
             </li>
         }
         <li class="nav-item">

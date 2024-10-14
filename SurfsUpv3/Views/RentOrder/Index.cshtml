@@ -1,4 +1,5 @@
-﻿@using SurfsUpv3.Models;
+﻿@using SurfsUpv3.Models
+@using SurfsUpv3.Models;
 @model Booking
 
 
@@ -128,9 +129,36 @@
         <div class="form-group">
             <p id="endTimeParagraph">SLUT TID</p>
         </div>
-        
-        <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
 
+        <div>
+            <label for="wetsuit">Vil du leje en våddragt?</label>
+            <select id="wetsuitSelection" asp-for="WetsuitId" class="form-control" onchange="toggleWetsuitFields(this)">
+                <option value="">Nej tak</option>
+                <option value="1">Ja, jeg vil gerne leje en våddragt</option>
+            </select>
+        </div>
+        <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
+        <!-- Felter til køn og størrelse, som skjules indtil våddragt vælges -->
+        <div id="wetsuitFields" style="display: none;">
+            <div>
+                <label for="gender">Vælg køn:</label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="Male">Mand</option>
+                    <option value="Female">Kvinde</option>
+                                    </select>
+            </div>
+
+            <div>
+                <label for="size">Vælg størrelse:</label>
+                <select asp-for="Size" class="form-control">
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+        </div>
 
         <!-- Remarks -->
         <div class="form-group">
@@ -339,35 +367,69 @@
         return newDateTime;
     }
 
+    // Funktion der opdaterer RentPeriod skjult felt
     function updateRentPeriod() {
-        // Get the date from the start date picker (input type="date")
+        // Hent datoen fra startdato picker
         const startDateValue = document.getElementById("startTimeDatePicker").value;
         if (!startDateValue) {
-            console.error("Please select a start date");
+            console.error("Startdato mangler");
             return;
         }
 
-        // Get the time from the dropdown element (value in "08:30" format)
-        const timeValue = document.getElementById("startTimeDropdown").value; 
+        // Hent tiden fra dropdown (værdien i "08:30" format)
+        const timeValue = document.getElementById("startTimeDropdown").value;
         if (!timeValue) {
-            console.error("Please select a time");
+            console.error("Tid mangler");
             return;
         }
 
-        // Parse the start date value (YYYY-MM-DD format)
+        // Split dato og tid for at lave en ny Date objekt
         const [year, month, day] = startDateValue.split("-").map(Number);
+        const [hours, minutes] = timeValue.split(":").map(Number);
 
-        // Parse the time value (HH:MM format)
-        const [inputHours, inputMinutes] = timeValue.split(":").map(Number);
+        // Opret en ny Date objekt med UTC (for at undgå tidszoneproblemer)
+        const rentPeriodDateTime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
 
-        // Create a new Date object combining the date and time
-        const rentPeriodDateTime = new Date(Date.UTC(year, month - 1, day, inputHours, inputMinutes));
+        // Tjek om rentPeriodDateTime er gyldig
+        if (isNaN(rentPeriodDateTime.getTime())) {
+            console.error("Dato og tid kunne ikke konverteres");
+            return;
+        }
 
-        // Set the value of the hidden input element
-        document.getElementById("hiddenRentPeriod").value = rentPeriodDateTime.toISOString(); // Update your hidden input
+        // Debugging: Log værdier for at sikre alt er korrekt
+        console.log("Dato:", startDateValue);
+        console.log("Tid:", timeValue);
+        console.log("RentPeriod DateTime ISO:", rentPeriodDateTime.toISOString());
 
-        console.log("Updated hidden input RentPeriod:", rentPeriodDateTime.toISOString());
+        // Opdater det skjulte input felt med ISO-format
+        document.getElementById("hiddenRentPeriod").value = rentPeriodDateTime.toISOString();
     }
 
+    // Funktion der lytter efter ændringer i dato og tid
+    document.addEventListener("DOMContentLoaded", function () {
+        // Tilføj event listener for når start dato ændres
+        const datePicker = document.getElementById("startTimeDatePicker");
+        datePicker.addEventListener("change", updateRentPeriod);
+
+        // Tilføj event listener for når start tid ændres
+        const timeDropdown = document.getElementById("startTimeDropdown");
+        timeDropdown.addEventListener("change", updateRentPeriod);
+
+        // Kør opdatering ved indlæsning for at fange en eventuel præ-udfyldt værdi
+        updateRentPeriod();
+    });
+
+
     // IT ALL ENDS HERE ---------------------------------------------------------------------------------------------------------------------------------------------------------
+</script>
+
+<script>
+    function toggleWetsuitFields(select) {
+        var wetsuitFields = document.getElementById("wetsuitFields");
+        if (select.value) {
+            wetsuitFields.style.display = "block";
+        } else {
+            wetsuitFields.style.display = "none";
+        }
+    }
 </script>

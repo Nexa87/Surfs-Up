@@ -1,11 +1,13 @@
-﻿@using SurfsUpv3.Models;
+﻿@using SurfsUpv3.Models
+@using SurfsUpv3.Models;
 @model Booking;
 
 
 
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; background-color:rgba(0, 0, 0, 00); border:none; box-shadow:none;">
     <h2 style="color: #2e86c1; text-align: center;">Tak for din booking</h2>
-    <p>Hej @Model.CustomerName.<br /><br />Dit <strong>ordrenummer</strong> er : @Model.BookingId<br /><br /> Din reservation af surf-udstyr er bekræftet. Vi glæder os til at byde dig velkommen til en fantastisk dag på vandet.</p>
+    <p><strong>Bestillingsdato:</strong> @Model.BookingTime.ToString("dd/MM/yyyy" + " kl. " + "hh:mm")</p>
+    <p>Hej @Model.CustomerName.<br /><br />Dit <strong>ordrenummer</strong>: @Model.BookingId<br /><br /> Din reservation af surf-udstyr er bekræftet. Vi glæder os til at byde dig velkommen til en fantastisk dag på vandet.</p>
 
     <h3 style="color: #2e86c1;">Detaljer om din booking:</h3>
     <ul style="list-style-type: none; padding: 0;">
@@ -13,7 +15,15 @@
         <li><strong>Telefonnummer:</strong> @Model.CustomerPhone</li>
         <li><strong>Udstyr:</strong> @Model.SurfboardAmount stk. @Model.SelectedSurfboard</li>
         <li>
-
+            @if(Model.WetsuitId.HasValue)
+            {
+            <li><strong>Våddragt:</strong> Ja</li>
+            <li><strong>Køn:</strong> @Html.DisplayFor(model => model.Gender)</li>
+            <li><strong>Størrelse:</strong>: @Model.Size </li>
+            }
+        </li>
+        <li>
+        
             <strong>Dato:</strong> @Model.RentPeriod.Date.ToString("dd/MM/yyyy")
 
             @* @if (Model.RentPeriod.Date != Model.RentReturn.Date)

@@ -4,25 +4,27 @@ namespace SurfsUpWebAPI.Models
 {
     public class WetSuit
     {
-        public int WetSuitId { get; set; }
-        [Required]
-        public WetSuitGender wetSuitGender { get; set; }
+        [Key]
+        public int WetsuitId { get; set; }
+        public string Size { get; set; }
+        public string Gender { get; set; }
+        
+        
         public enum WetSuitGender
         {
-            None, Male, Female, Child
+            Male, Female
         }
-        [Required]
-        public WetSuitSize wetSuitSize { get; set; }
+    
+    
         public enum WetSuitSize
         {
             Small, Medium, Large, XL, XXL
         }
 
-        public WetSuit (int wetSuitId, WetSuitGender gender, WetSuitSize size)
+        public WetSuit (int wetSuitId)
         {
-            WetSuitId = wetSuitId;
-            wetSuitSize = size;
-            wetSuitGender = gender;
+            WetsuitId = wetSuitId;
+           
         }
 
         public WetSuit()
