@@ -33,7 +33,10 @@ namespace SurfsUpWebAPI.Models
         public string? Remarks { get; set; } //kommentar
         public int Price  { get; set; } //Lejeprisen (Købspris fra repo bruges)
         public int SurfboardAmount { get; set; }
-        public DateTime BookingTime { get; set; }
+        [Timestamp] // For optimistic lock
+        public byte[] RowVersion { get; set; }
+
+       public DateTime BookingTime { get; set; }
 
         //Våddragt sektion
         public int? WetsuitId { get; set; } // Nullable, da det ikke er obligatorisk
@@ -54,8 +57,7 @@ namespace SurfsUpWebAPI.Models
             Remarks = remarks;
             Price = price;
             SurfboardAmount = surfboardAmount;
-            BookingTime = bookingtime;
-           
+            BookingTime = bookingtime;           
         }
         public Booking(string selectedSurfboard)
         {
