@@ -27,10 +27,22 @@
             @foreach (var surfboard in Model)
             {
                 <div class="product-surfboard">
-                    <a class="btn btn-primary surfboard-item d-block text-center py-2" asp-controller="rentorder" asp-action="index" asp-route-passedSurfboard="@surfboard.BoardName">
-                        <img src="@Url.Content("~/images/blueTestTransp.png")" alt="Surfboard Image" class="img-fluid" />
-                        <span>@surfboard.BoardName</span>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-primary surfboard-item d-block text-center py-2" asp-controller="rentorder" asp-action="index" asp-route-passedSurfboard="@surfboard.BoardName">
+                            <img src="@Url.Content("~/images/blueTestTransp.png")" alt="Surfboard Image" class="img-fluid" />
+                            <span>@surfboard.BoardName</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-warning surfboard-item d-block text-center py-2" href="/Identity/Account/Login">
+                            <img src="@Url.Content("~/images/blueTestTransp.png")" alt="Surfboard Image" class="img-fluid" />
+                            <span>@surfboard.BoardName</span>
+                            <br />
+                            <small>Login for at leje</small>
+                        </a>
+                    }
                 </div>
             }
         </div>
