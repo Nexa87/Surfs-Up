@@ -1,11 +1,12 @@
-﻿@using SurfsUpv3.Models;
+﻿@using SurfsUpv3.Models
+@using SurfsUpv3.Models;
 @model Booking
 
 
 <div class="container">
     <h3>Booking Oversigt</h3>
-    
-    <br/>
+
+    <br />
 
     <p>Du har valgt at leje : @Model.SelectedSurfboard</p>
     <p>For at fuldføre din ordre bedes du taste dine informationer:</p>
@@ -14,18 +15,17 @@
     <form method="post" asp-controller="BookingConfirmation" asp-action="ValidationTest">
 
         <div class="text-danger" asp-validation-summary="None"></div> <!-- If we use asp-validation-summary="All", ALL our error messages are summarized here -->
-
         <!-- We need this so we don't lose the SelectedSurfboard if we come back here due to mistakenly not having filled all fields -->
         <input type="hidden" asp-for="SelectedSurfboard" />
 
         <!-- Name -->
         <div class="form-group">
             <label asp-for="CustomerName">Fuldt Navn</label>
-            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn"/>
+            <input type="text" asp-for="CustomerName" class="form-control" id="rentOrderFullName" placeholder="Indtast navn" />
 
             <!-- This is an additional error indicator, that'll show "This X field is required" -->
             <div class="col">
-                <span  class="text-danger" asp-validation-for="CustomerName"></span>
+                <span class="text-danger" asp-validation-for="CustomerName"></span>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             <label asp-for="CustomerEmail">Email Adresse</label>
             <input type="email" asp-for="CustomerEmail" class="form-control" id="rentOrderEmail" placeholder="Indtast Email" />
             <div class="col">
-                <span  class="text-danger" asp-validation-for="CustomerEmail"></span>
+                <span class="text-danger" asp-validation-for="CustomerEmail"></span>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             <label asp-for="CustomerPhone">Telefonnummer</label>
             <input type="number" asp-for="CustomerPhone" class="form-control" id="rentOrderEmail" placeholder="Indtast TLF/Mobil" />
             <div class="col">
-                <span  class="text-danger" asp-validation-for="CustomerPhone"></span>
+                <span class="text-danger" asp-validation-for="CustomerPhone"></span>
             </div>
         </div>
 
@@ -128,9 +128,36 @@
         <div class="form-group">
             <p id="endTimeParagraph">SLUT TID</p>
         </div>
-        
-        <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
 
+        <div>
+            <label for="wetsuit">Vil du leje en våddragt?</label>
+            <select id="wetsuitSelection" asp-for="WetsuitId" class="form-control" onchange="toggleWetsuitFields(this)">
+                <option value="">Nej tak</option>
+                <option value="1">Ja, jeg vil gerne leje en våddragt</option>
+            </select>
+        </div>
+        <!-- Amount of wetsuits ; Note: When changed, updates visibility of size-choosing below it -->
+        <!-- Felter til køn og størrelse, som skjules indtil våddragt vælges -->
+        <div id="wetsuitFields" style="display: none;">
+            <div>
+                <label for="gender">Vælg køn:</label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="Male">Mand</option>
+                    <option value="Female">Kvinde</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="size">Vælg størrelse:</label>
+                <select asp-for="Size" class="form-control">
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+        </div>
 
         <!-- Remarks -->
         <div class="form-group">
@@ -159,44 +186,44 @@
 
     // EventListener functionality which ties display of various elements to rentperiodchooser's current selection
     document.addEventListener("DOMContentLoaded", function () {
-            // The elements on the page we need to do something to or get something from
-            var rentperiodchooser = document.getElementById("rentperiodchooser");
+        // The elements on the page we need to do something to or get something from
+        var rentperiodchooser = document.getElementById("rentperiodchooser");
 
-            var startTimeLabel = document.getElementById("startTimeLabel");
-            var startTimeDatePicker = document.getElementById("startTimeDatePicker");
+        var startTimeLabel = document.getElementById("startTimeLabel");
+        var startTimeDatePicker = document.getElementById("startTimeDatePicker");
 
-            var startTidspunktLabel = document.getElementById("startTidspunktLabel");
-            var startTimeDropdown = document.getElementById("startTimeDropdown");
+        var startTidspunktLabel = document.getElementById("startTidspunktLabel");
+        var startTimeDropdown = document.getElementById("startTimeDropdown");
 
-            var endTimeParagraph = document.getElementById("endTimeParagraph");
+        var endTimeParagraph = document.getElementById("endTimeParagraph");
 
-            // Function to update visibility based on dropdown value
-            function updateVisibility() {
-                if (rentperiodchooser.value == 0) {
-                    startTimeLabel.style.visibility = "hidden";
-                    startTimeDatePicker.style.visibility = "hidden";
-                    startTidspunktLabel.style.visibility = "hidden";
-                    startTimeDropdown.style.visibility = "hidden";
-                    endTimeParagraph.style.visibility = "hidden";
-                } else {
-                    startTimeLabel.style.visibility = "visible";
-                    startTimeDatePicker.style.visibility = "visible";
-                    startTidspunktLabel.style.visibility = "visible";
-                    startTimeDropdown.style.visibility = "visible";
-                    endTimeParagraph.style.visibility = "visible";
-                }
+        // Function to update visibility based on dropdown value
+        function updateVisibility() {
+            if (rentperiodchooser.value == 0) {
+                startTimeLabel.style.visibility = "hidden";
+                startTimeDatePicker.style.visibility = "hidden";
+                startTidspunktLabel.style.visibility = "hidden";
+                startTimeDropdown.style.visibility = "hidden";
+                endTimeParagraph.style.visibility = "hidden";
+            } else {
+                startTimeLabel.style.visibility = "visible";
+                startTimeDatePicker.style.visibility = "visible";
+                startTidspunktLabel.style.visibility = "visible";
+                startTimeDropdown.style.visibility = "visible";
+                endTimeParagraph.style.visibility = "visible";
             }
+        }
 
-            // Initial check when the page loads
-            updateVisibility();
+        // Initial check when the page loads
+        updateVisibility();
 
-            // Add an event listener to check when the dropdown value changes
-            rentperiodchooser.addEventListener("change", updateVisibility);
-        });
+        // Add an event listener to check when the dropdown value changes
+        rentperiodchooser.addEventListener("change", updateVisibility);
+    });
 
     // Function which runs when the entire document has loaded, to add eventlistener to the first datepicker
     document.addEventListener("DOMContentLoaded", function () {
-        
+
     });
 
     // Function which takes an element id and tries to set its date to today's date
@@ -339,35 +366,69 @@
         return newDateTime;
     }
 
+    // Funktion der opdaterer RentPeriod skjult felt
     function updateRentPeriod() {
-        // Get the date from the start date picker (input type="date")
+        // Hent datoen fra startdato picker
         const startDateValue = document.getElementById("startTimeDatePicker").value;
         if (!startDateValue) {
-            console.error("Please select a start date");
+            console.error("Startdato mangler");
             return;
         }
 
-        // Get the time from the dropdown element (value in "08:30" format)
-        const timeValue = document.getElementById("startTimeDropdown").value; 
+        // Hent tiden fra dropdown (værdien i "08:30" format)
+        const timeValue = document.getElementById("startTimeDropdown").value;
         if (!timeValue) {
-            console.error("Please select a time");
+            console.error("Tid mangler");
             return;
         }
 
-        // Parse the start date value (YYYY-MM-DD format)
+        // Split dato og tid for at lave en ny Date objekt
         const [year, month, day] = startDateValue.split("-").map(Number);
+        const [hours, minutes] = timeValue.split(":").map(Number);
 
-        // Parse the time value (HH:MM format)
-        const [inputHours, inputMinutes] = timeValue.split(":").map(Number);
+        // Opret en ny Date objekt med UTC (for at undgå tidszoneproblemer)
+        const rentPeriodDateTime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
 
-        // Create a new Date object combining the date and time
-        const rentPeriodDateTime = new Date(Date.UTC(year, month - 1, day, inputHours, inputMinutes));
+        // Tjek om rentPeriodDateTime er gyldig
+        if (isNaN(rentPeriodDateTime.getTime())) {
+            console.error("Dato og tid kunne ikke konverteres");
+            return;
+        }
 
-        // Set the value of the hidden input element
-        document.getElementById("hiddenRentPeriod").value = rentPeriodDateTime.toISOString(); // Update your hidden input
+        // Debugging: Log værdier for at sikre alt er korrekt
+        console.log("Dato:", startDateValue);
+        console.log("Tid:", timeValue);
+        console.log("RentPeriod DateTime ISO:", rentPeriodDateTime.toISOString());
 
-        console.log("Updated hidden input RentPeriod:", rentPeriodDateTime.toISOString());
+        // Opdater det skjulte input felt med ISO-format
+        document.getElementById("hiddenRentPeriod").value = rentPeriodDateTime.toISOString();
     }
 
+    // Funktion der lytter efter ændringer i dato og tid
+    document.addEventListener("DOMContentLoaded", function () {
+        // Tilføj event listener for når start dato ændres
+        const datePicker = document.getElementById("startTimeDatePicker");
+        datePicker.addEventListener("change", updateRentPeriod);
+
+        // Tilføj event listener for når start tid ændres
+        const timeDropdown = document.getElementById("startTimeDropdown");
+        timeDropdown.addEventListener("change", updateRentPeriod);
+
+        // Kør opdatering ved indlæsning for at fange en eventuel præ-udfyldt værdi
+        updateRentPeriod();
+    });
+
+
     // IT ALL ENDS HERE ---------------------------------------------------------------------------------------------------------------------------------------------------------
+</script>
+
+<script>
+    function toggleWetsuitFields(select) {
+        var wetsuitFields = document.getElementById("wetsuitFields");
+        if (select.value) {
+            wetsuitFields.style.display = "block";
+        } else {
+            wetsuitFields.style.display = "none";
+        }
+    }
 </script>
