@@ -10,9 +10,9 @@ namespace SurfsUpWebAPI.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-        private readonly SurfsUpv3Context _context;
+        private readonly SurfsUpAPIContext _context;
 
-        public BookingController(SurfsUpv3Context context)
+        public BookingController(SurfsUpAPIContext context)
         {
             _context = context;
         }

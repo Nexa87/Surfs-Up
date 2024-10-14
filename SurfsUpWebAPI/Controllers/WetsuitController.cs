@@ -10,9 +10,9 @@ namespace SurfsUpWebAPI.Controllers
     [ApiController]
     public class WetsuitController : ControllerBase
     {
-        private readonly SurfsUpv3Context _context;
+        private readonly SurfsUpAPIContext _context;
 
-        public WetsuitController(SurfsUpv3Context context)
+        public WetsuitController(SurfsUpAPIContext context)
         {
             _context = context;
         }

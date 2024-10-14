@@ -9,10 +9,10 @@ namespace SurfsUpWebAPI.Controllers
     [Route("/logging")]
     public class LoggingController
     {
-        private readonly SurfsUpv3Context _context;
+        private readonly SurfsUpAPIContext _context;
         private readonly ILogger<LoggingController> _logger;
 
-        public LoggingController (SurfsUpv3Context context, ILogger<LoggingController> logger)
+        public LoggingController (SurfsUpAPIContext context, ILogger<LoggingController> logger)
         {
             _context = context;
             _logger = logger;

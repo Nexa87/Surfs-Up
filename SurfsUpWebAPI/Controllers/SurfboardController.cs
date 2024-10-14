@@ -9,9 +9,9 @@ namespace SurfsUpWebAPI.Controllers
     [ApiController]
     public class SurfboardsController : ControllerBase
     {
-        private readonly SurfsUpv3Context _context;
+        private readonly SurfsUpAPIContext _context;
 
-        public SurfboardsController(SurfsUpv3Context context)
+        public SurfboardsController(SurfsUpAPIContext context)
         {
             _context = context;
         }
