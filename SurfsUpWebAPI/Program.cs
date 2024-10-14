@@ -9,7 +9,7 @@ using SurfsUpWebAPI.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+builder.Services.AddDbContext<SurfsUpAPIContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

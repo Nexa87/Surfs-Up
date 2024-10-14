@@ -7,9 +7,9 @@ namespace SurfsUpWebAPI.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new SurfsUpv3Context(
+            using (var context = new SurfsUpAPIContext(
             serviceProvider.GetRequiredService<
-                DbContextOptions<SurfsUpv3Context>>()))
+                DbContextOptions<SurfsUpAPIContext>>()))
             {
                 // Look for any surfboard.
                 if (context.Surfboards.Any())

@@ -12,9 +12,9 @@ namespace SurfsUpWebAPI.Middleware
     // Services/LoggingService.cs
     public class LoggingService : ILoggingService
     {
-        private readonly SurfsUpv3Context _context;
+        private readonly SurfsUpAPIContext _context;
 
-        public LoggingService (SurfsUpv3Context context)
+        public LoggingService (SurfsUpAPIContext context)
         {
             _context = context;
         }
