@@ -1,0 +1,28 @@
+############################################
+### Requirements for project 'Surf's Up' ###
+############################################
+
+------------>>> Pre-official requirements
+[Big] Asquer:
+"Seek knowledge elsewhere!"
+
+------------>>> 
+
+* NOTE These are given one each week
+
+Haandtegnet-skitse og en prototype (HTML & CSS)
+
+Udvikle prototypen til at illustrere grundlaeggende elementer & PO kan afpröve den
+
+Faa booking op og köre
+
+'Nemmere at se end Excel' (Database) & fejlbeskeder (Data Annotations)
+
+Oprette sig som bruger, Admin skal kunne se hvem der lejer hvilket surfboards & Hvis to brugere lejer samme board (concurrency control)
+
+Mobilapp (WebAPI med DB'en; business logic), skal ikke kunne booke vaaddragt medmindre man har angivet korrekt kön og störrelse
+
+Admin-side visuel oversigt over antal gange bruger kontakter API & hvor ofte brugere efterspörger sider der ikke findes (404)
+
+CORS til port 9999
+
