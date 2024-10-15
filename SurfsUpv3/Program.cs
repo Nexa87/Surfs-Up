@@ -4,6 +4,7 @@ using SurfsUpv3.Data;
 using SurfsUpv3.Models;
 using Microsoft.Extensions.DependencyInjection;
 using SurfsUpv3.Middleware;
+using SurfsUpv3.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<SurfsUpv3Context>(options =>
@@ -23,9 +24,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+//builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<>
 
-builder.Services.AddDbContext<SurfsUpv3Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
