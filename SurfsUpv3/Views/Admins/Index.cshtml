@@ -45,7 +45,14 @@
             <th>
                 @TranslationHelper.Labels["Price"]
             </th>
+             <th>
+                @TranslationHelper.Labels["Gender"]
+            </th>
+                 <th>
+                @TranslationHelper.Labels["Size"]
+            </th>
             <th></th>
+
         </tr>
         
     </thead>
@@ -85,6 +92,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.BookingId">Ret</a>

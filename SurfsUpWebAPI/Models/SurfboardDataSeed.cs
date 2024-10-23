@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SurfsUpWebAPI.Data;
+using static SurfsUpWebAPI.Models.WetSuit;
 
 namespace SurfsUpWebAPI.Models
 {
@@ -7,9 +8,9 @@ namespace SurfsUpWebAPI.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new SurfsUpv3Context(
+            using (var context = new SurfsUpAPIContext(
             serviceProvider.GetRequiredService<
-                DbContextOptions<SurfsUpv3Context>>()))
+                DbContextOptions<SurfsUpAPIContext>>()))
             {
                 // Look for any surfboard.
                 if (context.Surfboards.Any())
@@ -31,27 +32,27 @@ namespace SurfsUpWebAPI.Models
 
                 context.SaveChanges();
 
-                if (context.WetSuits.Any())
-                {
-                    return;
-                }
-                context.WetSuits.AddRange(
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Small },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Large },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Small },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.XL },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.Medium },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Large },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.XL },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.XXL },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Female, wetSuitSize = WetSuit.WetSuitSize.Medium },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Child, wetSuitSize = WetSuit.WetSuitSize.Small },
-                    new WetSuit { wetSuitGender = WetSuit.WetSuitGender.Male, wetSuitSize = WetSuit.WetSuitSize.Small }
-                    );
+            //    if (context.WetSuits.Any())
+            //    {
+            //        return;
+            //    }
+            //    context.WetSuits.AddRange(
+            //        new WetSuit { Gender = WetSuitGender.Male, Size = WetSuit.WetSuitSize.XL },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Child, Size = WetSuit.WetSuitSize.Small },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Male, Size = WetSuit.WetSuitSize.Large },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Male, Size = WetSuit.WetSuitSize.Small },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Female, Size = WetSuit.WetSuitSize.XL },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Female, Size = WetSuit.WetSuitSize.Medium },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Child, Size = WetSuit.WetSuitSize.Large },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Male, Size = WetSuit.WetSuitSize.XL },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Male, Size = WetSuit.WetSuitSize.XL },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Female, Size = WetSuit.WetSuitSize.XXL },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Female, Size = WetSuit.WetSuitSize.Medium },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Child, Size = WetSuit.WetSuitSize.Small },
+            //        new WetSuit { Gender = WetSuit.WetSuitGender.Male, Size = WetSuit.WetSuitSize.Small }
+            //        );
                 
-                context.SaveChanges();
+            //    context.SaveChanges();
 
             }
         }

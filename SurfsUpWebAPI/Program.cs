@@ -9,7 +9,7 @@ using SurfsUpWebAPI.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<SurfsUpv3Context>(options =>
+builder.Services.AddDbContext<SurfsUpAPIContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -44,19 +44,19 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddCors(options =>
-{
-    //Mobil app
-    options.AddPolicy("MobileApp", policyBuilder =>
-    {
-        policyBuilder.WithOrigins("http://localhost:9999");
-        policyBuilder.AllowAnyHeader();
-        policyBuilder.AllowAnyMethod();
-        policyBuilder.AllowCredentials();
-    });
+//builder.Services.AddCors(options =>
+//{
+//    //Mobil app
+//    options.AddPolicy("MobileApp", policyBuilder =>
+//    {
+//        policyBuilder.WithOrigins("http://localhost:9999");
+//        policyBuilder.AllowAnyHeader();
+//        policyBuilder.AllowAnyMethod();
+//        policyBuilder.AllowCredentials();
+//    });
       
     
-});
+//});
 
 var app = builder.Build();
 
@@ -66,12 +66,12 @@ app.UseStatusCodePages(); // Needed for 404 tracking, middleware
 
 // Configure the HTTP request pipeline.
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
-//    SurfboardDataSeed.Initialize(services);
-//}
+    SurfboardDataSeed.Initialize(services);
+}
 
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -89,6 +89,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("MobileApp");
+//app.UseCors("MobileApp");
 
 app.Run();

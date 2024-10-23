@@ -1,160 +1,83 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Text.Json;
+using SurfsUpv3.Models;
 
-//using SurfsUpv3.Models;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
-//namespace SurfsUpv3.Controllers
-//{
-//    public class AdminsController : Controller
-//    {
-//        private readonly SurfsUpv3Context _context;
+namespace SurfsUpv3.Controllers
+{
+    public class AdminsController : Controller
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
 
-//        public AdminsController(SurfsUpv3Context context)
-//        {
-//            _context = context;
-//        }
+        public AdminsController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
 
-//        // GET: Admins
-//        public async Task<IActionResult> Index()
-//        {
-//            return View(await _context.Bookings.ToListAsync());
-//        }
+        // Display a list of all bookings
+        public async Task<IActionResult> Index()
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync("https://localhost:7137/api/Booking");
 
-//        // GET: Admins/Details/5
-//        public async Task<IActionResult> Details(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+            if (response.IsSuccessStatusCode)
+            {
+                var bookingsJson = await response.Content.ReadAsStringAsync();
+                var bookings = JsonConvert.DeserializeObject<List<Booking>>(bookingsJson);
 
-//            var booking = await _context.Bookings
-//                .FirstOrDefaultAsync(m => m.BookingId == id);
-//            if (booking == null)
-//            {
-//                return NotFound();
-//            }
+                return View(bookings);
+            }
 
-//            return View(booking);
-//        }
+            return View("Error");
+        }
 
-//        // GET: Admins/Create
-//        public IActionResult Create()
-//        {
-//            var surfboards = _context.Surfboards.ToList();
-//            ViewBag.SurfboardList = new SelectList(surfboards, "BoardName");
+        // Display a single booking for editing
+        public async Task<IActionResult> Edit(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"https://localhost:7137/api/Booking/{id}");
 
-//            return View();
-//        }
+            if (response.IsSuccessStatusCode)
+            {
+                var bookingJson = await response.Content.ReadAsStringAsync();
+                var booking = JsonSerializer.Deserialize<Booking>(bookingJson);
 
-//        // POST: Admins/Create
-//        // To protect from overposting attacks, enable the specific properties you want to bind to.
-//        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Create([Bind("BookingId,CustomerName,CustomerEmail,CustomerPhone,SelectedSurfboard,RentPeriod,RentHours,RentReturn,Remarks,Price,SurfboardAmount")] Booking booking)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                _context.Add(booking);
-//                await _context.SaveChangesAsync();
-//                return RedirectToAction(nameof(Index));
-//            }
-//            return View(booking);
-//        }
+                return View(booking);
+            }
 
-//        // GET: Admins/Edit/5
-//        public async Task<IActionResult> Edit(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+            return View("Error");
+        }
 
-//            var booking = await _context.Bookings.FindAsync(id);
-//            if (booking == null)
-//            {
-//                return NotFound();
-//            }
-//            return View(booking);
-//        }
+        // Update a booking after admin edits
+        [HttpPost]
+        public async Task<IActionResult> Edit(Booking booking)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.PutAsJsonAsync($"https://localhost:7137/api/Booking/{booking.BookingId}", booking);
 
-//        // POST: Admins/Edit/5
-//        // To protect from overposting attacks, enable the specific properties you want to bind to.
-//        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Edit(int id, [Bind("BookingId,CustomerName,CustomerEmail,CustomerPhone,SelectedSurfboard,RentPeriod,RentHours,RentReturn,Remarks,Price,SurfboardAmount")] Booking booking)
-//        {
-//            if (id != booking.BookingId)
-//            {
-//                return NotFound();
-//            }
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
 
-//            if (ModelState.IsValid)
-//            {
-//                try
-//                {
-//                    _context.Update(booking);
-//                    await _context.SaveChangesAsync();
-//                }
-//                catch (DbUpdateConcurrencyException)
-//                {
-//                    if (!BookingExists(booking.BookingId))
-//                    {
-//                        return NotFound();
-//                    }
-//                    else
-//                    {
-//                        throw;
-//                    }
-//                }
-//                return RedirectToAction(nameof(Index));
-//            }
-//            return View(booking);
-//        }
+            return View(booking);
+        }
 
-//        // GET: Admins/Delete/5
-//        public async Task<IActionResult> Delete(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return NotFound();
-//            }
+        // Delete a booking
+        public async Task<IActionResult> Delete(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.DeleteAsync($"https://localhost:7137/api/Booking/{id}");
 
-//            var booking = await _context.Bookings
-//                .FirstOrDefaultAsync(m => m.BookingId == id);
-//            if (booking == null)
-//            {
-//                return NotFound();
-//            }
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
 
-//            return View(booking);
-//        }
-
-//        // POST: Admins/Delete/5
-//        [HttpPost, ActionName("Delete")]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> DeleteConfirmed(int id)
-//        {
-//            var booking = await _context.Bookings.FindAsync(id);
-//            if (booking != null)
-//            {
-//                _context.Bookings.Remove(booking);
-//            }
-
-//            await _context.SaveChangesAsync();
-//            return RedirectToAction(nameof(Index));
-//        }
-
-//        private bool BookingExists(int id)
-//        {
-//            return _context.Bookings.Any(e => e.BookingId == id);
-//        }
-//    }
-//}
+            return View("Error");
+        }
+    }
+}

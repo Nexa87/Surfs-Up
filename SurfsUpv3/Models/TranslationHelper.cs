@@ -14,7 +14,10 @@
         { "RentReturn", "Afleveringsdato" },
         { "Remarks", "Bemærkninger" },
         { "SurfboardAmount", "Antal surfboard(s)" },
-        { "Price", "Samlet pris" }
+        { "Price", "Samlet pris" },
+        { "BookingTime", "Bekræftelsesdato" },
+        { "Gender", "Køn" },
+        { "Size", "Størrelse" }
 
     };
     }

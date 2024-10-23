@@ -4,6 +4,7 @@ using SurfsUpv3.Data;
 using SurfsUpv3.Models;
 using Microsoft.Extensions.DependencyInjection;
 using SurfsUpv3.Middleware;
+using SurfsUpv3.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<SurfsUpv3Context>(options =>
@@ -23,18 +24,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+//builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<>
 
-// Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
 //builder.Services.AddDbContext<SurfsUpv3Context>(options =>
-//    //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
 app.UseStatusCodePagesWithReExecute("/404");
 app.UseLog404s();
 
-//// NOTE Keep in mind this will run everytime the app is run - this might be unintentional
-//// Seed to manually add things into the database
+// Indsætter surfboards i databasen (er det ikke 'dotnet ef database add/update' der gör det ?)
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;
